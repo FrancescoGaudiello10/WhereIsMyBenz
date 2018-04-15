@@ -1,0 +1,11 @@
+FactoryGirl.define do
+  factory :owner do |f| 
+    f.name { Faker::Name.name }
+    f.email { Faker::Internet.email }
+    f.password "matteo"
+    f.password_confirmation "matteo"
+    
+    f.website "www.carlo.it"
+    f.description "sono una prova"
+  end
+end

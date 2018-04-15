@@ -1,0 +1,127 @@
+<div class="well">
+<script>window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '285762471795260',
+      xfbml      : true,
+      version    : 'v2.7'
+    }); };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script><html prefix="og: http://ogp.me/ns#">
+     <% content_for (:head) do %><% content_for (:meta_data) do %>
+        <meta property="og:url"           content="http://localhost.it:3000/items/300" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:site_name"         content="RevIt" />
+        <meta property="og:title"         content="RevIt" />
+	<meta property="og:description"   content="Hey checkout this review!" />
+        <meta property="og:image"   content="http://www.repstatic.it/content/nazionale/img/2015/11/26/121631321-63ff8328-4925-4ee2-9ff5-a81974b7074e.jpg" />
+<%end%><%end%></html>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="review-rating" data-score="<%= review.rating %>" >
+                <strong><%= review.user.name %></strong>&nbsp&nbsp
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+            <h4><strong><%= t(:price) %> <i class="fa fa-usd" aria-hidden="true"></i></strong> <%= review.price %></h4>
+        </div>
+    </div>
+    
+    <div class="row">
+         
+         <div class="col-md-9">
+            <p><%= review.comment %></p>
+         </div> 
+         
+         <div class="col-md-3">
+            <strong><%= t(:store)%>:</strong> <%= review.store %>, <%= review.store_location %>
+       
+            <p>
+            <p class="Like">
+                <%= link_to positive_item_review_path(review.item, review), class: "like", method: :put do %>
+                    <button type="button" class="btn btn-success" aria-label="Left Align">
+                        <span class="fa fa-plus-square-o" aria-hidden="true"></span>
+                        <span class="badge"><%= review.get_upvotes.size %></span>
+                    </button>
+                <% end %>
+                                  
+                <%= link_to negative_item_review_path(review.item, review), class: "like", method: :put do %>
+                    <button type="button" class="btn btn-danger" aria-label="Left Align" >
+                        <span class="fa fa-minus-square-o" aria-hidden="true" ></span>
+                        <span class="badge"><%= review.get_downvotes.size %></span>
+                    </button>
+                <% end %>
+             </p>
+             </p>
+         </div>                  
+        
+
+    </div>
+   
+    <hr>
+    <p class="pull-right">
+        Posted <%= time_ago_in_words(review.created_at) %> ago.
+    </p>
+
+           <%if current_user!=nil && current_user.active_reports.exists?(['reported_id LIKE ?', review.id]) %>     
+
+   <%= t(:abreported)%>
+   <%end%> 
+      <%if current_user!= nil && !current_user.active_reports.exists?(['reported_id LIKE ?',review.id]) && review.user.id!= current_user.id%>
+      <%= form_tag(reports_create_path, method: :post) do%>
+      <%= hidden_field_tag 'reporter_id', current_user.id %>
+      <%= hidden_field_tag 'reported_id', review.id %>
+      <%= submit_tag I18n.t("reportab") %>
+
+ <%end%>
+
+<%end%>
+
+    <% if review.user == current_user %>
+    
+    <p>
+        <%= link_to 'Destroy ', [review.item, review],
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+        <i class="fa fa-times" aria-hidden="true" style="color:#DC143C"></i>
+
+        |
+        
+        <%= link_to "Edit", edit_item_review_path(review.item, review) %>
+       <i class="fa fa-pencil-square-o" aria-hidden="true" style="color:#6495ED"></i>
+
+    </p>
+    
+    <% end %>
+
+
+
+
+	
+
+
+        
+	<!-- Your share button code -->
+	<%= tag(:div, class: "fb-share-button", data:{href:"http://localhost.it:3000/items/"+review.item.id.to_s+"/reviews/"+review.id.to_s})%></div>
+		
+		
+	
+
+
+</div>
+
+
+<!-- jQuery -->
+<script src="app/assets/javascripts/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="app/assets/javascripts/bootstrap.min.js"></script>
+
+

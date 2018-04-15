@@ -1,0 +1,23 @@
+<% @properties.each do |p| %>
+  <hr>
+    <b>Anteprima:</b>
+    <br>
+    <%= image_tag p.img1.url(:thumb), size: "70x50" %><br>
+    <b>Titolo:</b> <%= p.title %><br>
+
+    <% if p.offer == nil %>
+    <b>Prezzo:</b> <%= p.price %>€<br>
+    <% else %>
+    <b>Prezzo:</b> <del><%= p.price %>€</del> <font color="red"><%= p.offer %>€ </font><br>
+    <%end%>
+
+    <b>Città:</b> <%= p.city %><br/>
+    <b>Utente:</b>
+    <%= p.user.username %>
+    <br>
+
+    <%= link_to "Vedi", property_path(p), :class => 'btn btn-success' %>
+    <br>
+<% end %>
+
+<%= paginate @properties %>

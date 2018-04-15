@@ -1,0 +1,9 @@
+<h1>Preferiti:</h1>
+
+<% if @properties.empty? %>
+  <div class="alert alert-warning" role="alert">
+    <p>Nessun risultato.</p>
+  </div>
+<% else %>
+  <p/><%= render 'properties/list' %>
+<% end %>

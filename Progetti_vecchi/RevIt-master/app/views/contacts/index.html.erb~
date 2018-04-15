@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Listing Mail</h1>
+  
+    <% @contacts.each do |contact| %>
+      
+      <h2><%= contact.title %></h2>
+      <h4><%= contact.description %></h4>
+      <p class="pull-right"><%= contact.author %></p>
+        
+      <p><hr></p>
+
+    <% end %>
+</div>
+

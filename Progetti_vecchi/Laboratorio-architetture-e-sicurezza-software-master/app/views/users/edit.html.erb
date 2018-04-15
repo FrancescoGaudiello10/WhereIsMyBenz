@@ -1,0 +1,17 @@
+<h1>EDIT USER <%= @user.name %></h1>
+
+<%= form_for @user, url: user_path(@user), method: :put do |f| %>
+    <p>
+        <%= f.label :email %><br>
+        <%= f.text_area :email %>
+    </p>
+
+    <p>
+        <%= f.label :role %><br>
+        <%= f.select :role, ["Active", "Banned", "Admin"]%>
+    </p>
+
+    <p>
+        <%= f.submit "Edit User"%>
+    </p>
+<% end %>

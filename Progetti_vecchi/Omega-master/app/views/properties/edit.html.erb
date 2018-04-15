@@ -1,0 +1,62 @@
+<h1>Modifica Inserzione</h1>
+<%= form_for(@property) do |p| %>
+
+  <!--ERRORI-->
+  <% if @property.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@property.errors.count, "error") %>
+        </h2>
+          <ul>
+          <% @property.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <p>
+    <%= p.label :titolo %><br>
+    <%= p.text_field :title %><br>
+  </p>
+
+  <p>
+    <%= p.label :descrizione %><br>
+    <%= p.text_area :description %>
+  </p>
+
+  <p>
+    <%= p.label :prezzo %><br>
+    <%= p.text_field :price %><br>
+  </p>
+
+  <p>
+    <%= p.label :sconto %><br>
+    <%= p.text_field :offer %><br>
+  </p>
+  <p>
+    <%= p.label :città %><br>
+    <%= p.text_field :city %><br>
+  </p>
+
+  <p>
+    <%= p.label "Immagine 1" %><br>
+    <%= p.file_field :img1 %><br>
+  </p>
+
+  <p>
+    <%= p.label "Immagine 2" %><br>
+    <%= p.file_field :img2 %><br>
+  </p>
+
+  <p>
+    <%= p.label "Immagine 3" %><br>
+    <%= p.file_field :img3 %><br>
+  </p>
+
+  <p>
+    <%= p.submit "Modifica" %>
+  </p>
+<% end %>

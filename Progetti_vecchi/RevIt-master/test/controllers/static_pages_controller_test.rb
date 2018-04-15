@@ -1,0 +1,13 @@
+require 'test_helper'
+require 'omniauth'
+require 'omniauth-facebook'
+
+
+class StaticPagesControllerTest < ActionController::TestCase
+  test "should get home" do
+    get :home
+    assert_response :success
+  end
+
+  
+end

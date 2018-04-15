@@ -1,0 +1,316 @@
+<script>
+  var set_stars = function(form_id, stars) {
+    for (i=1; i<=5; i++) {
+      if(i <= stars) {
+        $('#' + form_id + '_' + i).addClass('on');
+      }
+      else {
+        $('#' + form_id + '_' + i).removeClass('on');
+      }
+    }
+  }
+
+  $(function() {
+    $('.rating_star').click(function() {
+      var star = $(this);
+      var form_id = $(this).attr('data-form-id');
+      var stars = $(this).attr('data-stars');
+      set_stars(form_id,stars);
+
+      $('#' + form_id + '_stars').val(stars);
+
+      $.ajax({
+        type: "post",
+        url: $('#' + form_id).attr('action'),
+        data: $('#' + form_id).serialize()
+      });
+    });
+  });
+</script>
+
+<div class="page-header">
+  <h1><%= @property.title %></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><b>Descrizione</b></div>
+  <div class="panel-body">
+    <div><%= @property.description %></div>
+  </div>
+</div>
+
+<div class='property_images'>
+  <%= image_tag @property.img1.url(:medium), size: "260x200" %>
+
+  <%= image_tag @property.img2.url(:medium), size: "260x200" %>
+
+  <%= image_tag @property.img3.url(:medium), size: "260x200" %>
+</div>
+
+<% if @property.offer == nil %>
+<h3><p><b>Prezzo: <%= @property.price %>€</b></p></h3>
+<%else %>
+<h3><b><del><%= @property.price %>€</del></b> <font style="color:red"><b><%= @property.offer %>€</b></font></h3>
+<%end%>
+
+<ul class='rating'>
+  <% (1..5).each do |i| %>
+    <% if i <= @property.valutation %>
+      <li class="rating_star_review on"></li>
+    <% else %>
+      <li class="rating_star_review"></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<br><br>
+
+<p><b>Città: </b><%= @property.city %></p>
+
+<p>
+  <b>Categorie:</b>
+  | <% @property.categories.each do |c| %>
+    <% if c != "" %>
+      <%= c %> |
+    <% end %>
+  <% end %>
+</p>
+
+<p><b>Inserzione di:</b>
+<%= @property.user.username %>
+
+(<%= link_to "Vedi altro dall'utente", summary_path(@property), method: :get %>)
+</p>
+
+<% if current_user != @property.user %>
+  <p><%= mail_to @property.user.email, "Vuoi prenotare? Contatta l'utente", subject: @property.title, class: 'btn btn-info' %></p>
+<% end %>
+<hr>
+
+<% if current_user %>
+  <p><% if @property.user == current_user || current_user.admin %>
+  	<%= link_to "Modifica", edit_property_path(@property), :class => 'btn btn-warning' %>
+	  <%= link_to "Elimina", property_path(@property),
+		  	method: :delete,
+		          data: {confirm: 'Are you sure?'},
+			  :class => 'btn btn-danger' %>
+  <% end %></p>
+<% end %>
+
+<% if current_user && current_user != @property.user %>
+  <% if current_user.followings.exists?(@property.user.id) %>
+    <%= link_to "Unfollow utente", unfollow_path(@property), method: :post, class: 'btn btn-warning' %><p/>
+  <% else %>
+    <%= link_to "Follow utente", follow_path(@property), method: :post, class: 'btn btn-default' %><p/>
+  <% end %>
+<% end %>
+
+<br>
+
+<% if current_user && current_user != @property.user %>
+	<% if current_user.favourites.exists?(@property.id) %>
+		<%= link_to "Rimuovi dai preferiti", remove_from_f_property_path(@property), method: :post, class: 'btn btn-warning' %><p/>
+	<% else %>
+		<%= link_to "Aggiungi ai preferiti", add_to_f_property_path(@property), method: :post, class: 'btn btn-default' %><p/>
+	<% end %>
+<% end %>
+
+<p><a class="twitter-share-button"
+  href="https://twitter.com/share"
+  data-size="large"
+  data-text="Guarda questo locale: "
+  data-url="https://dev.twitter.com/web/tweet-button"
+  data-hashtags="example,demo"
+  data-via="twitterdev"
+  data-related="twitterapi,twitter">
+  <img src="http://tweetforprofits.com/UltraVid/images/share-twitter.png" style="width:210px;height:45px;">
+</a></p><hr>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Mappa:</h4>
+      <p>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=500x350&maptype=roadmap
+      &markers=color:red%8Clabel:S%7C#{@property.latitude},#{@property.longitude}
+      &key=AIzaSyB4bGTS4lIxDUcOJC8YZM3eAuyg-4JYPfQ "%>
+      </p>
+      <hr>
+      <p>
+        <h4>Proprietà nelle vicinanze:</h4>
+        <% for p in @property.nearbys(10) %>
+        <li>
+          <%= link_to p.title, p %>, in  <%= p.city %> (<%= p.distance.round(2)%> km)
+        </li>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<p>
+  <h4><b>Disponibilità:</b></h4>
+  <br>
+  <%= month_calendar events: @property.prenotations do |date, prenotations| %>
+    <%= date.day %>
+    <% prenotations.each do |prenotation| %>
+      <div>
+        <p style="color:red;">Riservato</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if current_user && (@property.user == current_user || current_user.admin) %>
+    <%= link_to "Modifica disponibilità", property_prenotations_path(@property), :class => 'btn btn-warning' %>
+  <% end %>
+</p><hr>
+
+<!-- ##########RECENSIONI########## -->
+
+<div class='ratings'>
+  <div class="panel panel-default">
+  <div class="panel-heading"><b>Recensioni</b></div>
+  <div class="panel-body">
+
+      <% if @property.reviews.first == nil %>
+      <div class="alert alert-warning" role="alert">
+        <h5> Non è ancora stata scritta alcuna recensione!</h5>
+      </div>
+      <% else %>
+        <% @property.reviews.each do |review| %>
+          <div class="panel panel-default">
+          <div class="panel-body">
+            <p>
+              <h4><%= review.user.username %></h4>
+              <% if review.user.provider == nil %>
+                <%= image_tag review.user.avatar.url(:thumb) %>
+              <% else %>
+                <%= image_tag review.user.image %>
+              <% end %>              <br>
+              <b>Titolo: </b> <%= review.title %><br>
+              <b>Descrizione:</b>
+              <p><%= review.body %></p>
+              <b>Valutazione:</b>
+              <ul class='rating'>
+                <% (1..5).each do |i| %>
+                  <% if i <= review.valutation %>
+                    <li class="rating_star_review on"></li>
+                  <% else %>
+                    <li class="rating_star_review"></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </p><br>
+            <% if current_user && (current_user == review.user || current_user.admin) %>
+                <%= link_to 'Elimina', [review.property, review],
+                      method: :delete,
+                      data: { confirm: 'Sei sicuro?' }, :class => 'btn btn-danger' %>
+            <% end %>
+          </div>
+          </div>
+        <% end %>
+      <% end %><br>
+
+      <% if current_user && current_user != @property.user %>
+        <%= link_to "Scrivi una recensione", new_review_path(:property => @property), :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- ##########DOMANDE########## -->
+
+<div class='question'>
+  <div class="panel panel-default">
+  <div class="panel-heading"><b>Domande</b></div>
+  <div class="panel-body" >
+
+      <% if @property.questions.first == nil %>
+        <div class="alert alert-warning" role="alert">
+          <h5> Non è ancora stata fatta alcuna domanda!</h5>
+        </div>
+      <% else %>
+        <ul class='list_question'>
+          <% @questions.each do |question| %>
+            <div class="panel panel-default">
+            <div class="panel-body">
+
+                <b><%= question.user.username %></b>
+                <br>
+                <%= question.body %><br>
+                <br>
+                Punteggio:
+                <%= question.valutation %>
+                <br>
+                <% if current_user %>
+                  <% if question.user != current_user %>
+                    <ul class='rating'>
+                      <% form_id = "question_#{question.id}_rating" %>
+                      <%= form_for question.ratings.last || question.ratings.build, :html => {:id => "question_#{question.id}_rating" } do |f| %>
+                        <%= f.hidden_field :question_id %>
+                        <%= f.hidden_field :stars, :id => "#{form_id}_stars" %>
+                      <% end %>
+
+                      <% stars = 0 %>
+                      <% question.ratings.each do |r| %>
+                        <% if current_user.ratings.find_by(:id => r.id) %>
+                          <% stars = r.stars %>
+                          <% break %>
+                        <% end %>
+                      <% end %>
+
+                      <% (1..5).each do |i| %>
+                        <% if i <= stars %>
+                          <li class="rating_star on" data-stars="<%= i %>" data-form-id = "<%= form_id %>" id= "<%= "#{form_id}_#{i}" %>"></li>
+                        <% else %>
+                          <li class="rating_star" data-stars="<%= i %>" data-form-id = "<%= form_id %>" id= "<%= "#{form_id}_#{i}" %>"></li>
+                        <% end %>
+                      <% end %>
+                    </ul><br>
+                  <% end %>
+                <% end %>
+                <br>
+                <%= link_to 'Vedi risposte', property_question_path(question), :class => 'btn btn-default' %>
+                <% if current_user %>
+                  <% if current_user == question.user || current_user.admin %>
+                    <%= link_to 'Elimina', [question.property, question],
+                               method: :delete,
+                               data: { confirm: 'Sei sicuro?' }, :class => 'btn btn-danger' %>
+                  <% end %>
+                <% end %>
+
+            </div>
+            </div>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if current_user && current_user != @property.user %>
+        <%= link_to "Fai una domanda", new_question_path(:property => @property), :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<br class='clear'>
+
+<hr>
+  <h4><b>Proprietà Correlate:</b></h4>
+  <% @correlated.each do |p| %>
+    <table class='correlated'>
+      <% if p.id != @property.id %>
+        <tr><th><%= image_tag(p.img1.url(:thumb), size: "90x80") %></th></tr>
+        <tr><th><b>Titolo: <%= p.title %></b></th></tr>
+        <% if p.offer == nil %>
+          <tr><th><%= p.price %>€</th></tr>
+        <% else %>
+          <tr><th><del><%= p.price %>€</del> <font color="red"> <%= p.offer %>€</font></th></tr>
+        <% end %>
+        <tr><th><%= link_to "Vedi", property_path(p), class: 'btn btn-primary' %></th></tr>
+      <% end %>
+    </table>
+  <% end %>
+<br class='clear'>

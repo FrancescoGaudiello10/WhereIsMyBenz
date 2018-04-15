@@ -1,0 +1,168 @@
+</div>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Ω Benvenuto in Omega! Ω</h1>
+    <p>Se prevedi di organizzare un evento e cerchi una location da affittare/prenotare, o sei già proprietario di una location e intendi renderla disponibile, puoi provare la nostra piattaforma. </p>
+    <p>
+      Piattaforma sviluppata con Ruby on Rails
+      <a class="btn btn-primary btn-lg" href="http://rubyonrails.org/" role="button">Maggiori Info</a>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+<%= form_tag("/welcome/results", method: :get) do %>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1"> <%= label_tag(:city, "Inserisci la località:") %> </span>
+    <%= text_field_tag(:city, nil, required: true, :class => "form-control", :placeholder => "Via o città") %>
+  </div>
+
+  <hr>
+    <table class='correlated'>
+      <tr><th><%= label_tag(:categories, "Tipologia di acquisto") %></th></tr>
+      <tr><th><%= select_tag :categories, options_for_select([["Affitto", "Affitto"], ["Prenotazione", "Prenotazione"]]), :include_blank => false, :multiple => true, :class => "btn btn-default dropdown-toggle" %></th></tr>
+    </table>
+    <table class='correlated'>
+      <tr><th><%= label_tag(:categories, "Tipologia di proprietà") %></th></tr>
+      <tr><th><%= select_tag :categories, options_for_select([["Abitazione", "Abitazione"], ["B&B", "B&B"], ["Casa Vacanza", "Casa Vacanza"], ["Attività Commerciale", "Attività Commerciale"]]), :include_blank => false, :multiple => true, :class => "btn btn-default dropdown-toggle" %></th></tr>
+    </table>
+    <table class='correlated'>
+      <tr><th><%= label_tag(:categories, "Preferenza fascia oraria") %></th></tr>
+      <tr><th><%= select_tag :categories, options_for_select([["Mattina", "Mattina"], ["Pomeriggio", "Pomeriggio"], ["Sera", "Sera"], ["Più Giorni", "Più Giorni"]]), :include_blank => false, :multiple => true, :class => "btn btn-default dropdown-toggle" %></th></tr>
+    </table>
+    <table class='correlated'>
+      <tr><th><%= label_tag(:categories, "Preferenza stanza") %></th></tr>
+      <tr><th><%= select_tag :categories, options_for_select([["Intera Casa", "Intera Casa"], ["Stanza Condivisa", "Stanza Condivisa"], ["Stanza Privata", "Stanza Privata"]]), :include_blank => false, :multiple => true, :class => "btn btn-default dropdown-toggle" %></th></tr>
+    </table>
+    <br class='clear'><br>
+    <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
+<% end %>
+
+
+<hr>
+<h4><b>Più valutati:</b></h4>
+<% @highest_rank.each do |p| %>
+  <table class='correlated' >
+    <tr><th><%= image_tag p.img1.url(:thumb), size: "70x50" %></th></tr>
+    <tr><th><b><%= p.title %></b></th></tr>
+    <% if p.offer == nil %>
+      <tr><th><%= p.price %>€</th></tr>
+    <% else %>
+      <tr><th><del><%= p.price %>€</del> <font color="red"> <%= p.offer %>€</font></th></tr>
+    <% end %>
+    <tr><th><ul class='rating'>
+      <% (1..5).each do |i| %>
+        <% if i <= p.valutation %>
+          <li class="rating_star on"></li>
+        <% else %>
+          <li class="rating_star"></li>
+        <% end %>
+      <% end %>
+    </ul></th></tr>
+    <tr><th><%= link_to "Vedi", property_path(p), :class => 'btn btn-success' %></th></tr>
+  </table>
+<% end %>
+
+<br class='clear'>
+<hr>
+
+<h4><b>Più recensiti:</b></h4>
+<% @most_rated.each do |r| %>
+  <% p = Property.find(r.first) %>
+  <table class='correlated' >
+    <tr><th><%= image_tag p.img1.url(:thumb), size: "70x50" %></th></tr>
+    <tr><th><b><%= p.title %></b></th></tr>
+    <% if p.offer == nil %>
+      <tr><th><%= p.price %>€</th></tr>
+    <% else %>
+      <tr><th><del><%= p.price %>€</del> <font color="red"> <%= p.offer %>€</font></th></tr>
+    <% end %>
+    <tr><th><ul class='rating'>
+      <% (1..5).each do |i| %>
+        <% if i <= p.valutation %>
+          <li class="rating_star on"></li>
+        <% else %>
+          <li class="rating_star"></li>
+        <% end %>
+      <% end %>
+    </ul></th></tr>
+    <tr><th><%= link_to "Vedi", property_path(p), :class => 'btn btn-success' %></th></tr>
+  </table>
+<% end %>
+
+<br class='clear'>
+<hr>
+<h4><b>Proprietà in offerta:</b></h4>
+
+<% @on_sale.each do |p| %>
+  <table class='correlated' >
+    <tr><th><%= image_tag p.img1.url(:thumb), size: "70x50" %></th></tr>
+    <tr><th><b><%= p.title %></b></th></tr>
+    <tr><th><del><%= p.price %>€</del> <font color="red"> <%= p.offer %>€</font></th></tr>
+    <tr><th><%= link_to "Vedi", property_path(p), :class => 'btn btn-success' %></th></tr>
+    <tr><th><ul class='rating'>
+      <% (1..5).each do |i| %>
+        <% if i <= p.valutation %>
+          <li class="rating_star on"></li>
+        <% else %>
+          <li class="rating_star"></li>
+        <% end %>
+      <% end %>
+    </ul></th></tr>
+  </table>
+<% end %>
+<br class='clear'>
+<hr>
+
+<h4><b>Proprietà aggiunte ultimamente:</b></h4>
+
+<% @newest.each do |p| %>
+  <table class='correlated' >
+    <tr><th><%= image_tag p.img1.url(:thumb), size: "70x50" %></th></tr>
+    <tr><th><b><%= p.title %></b></th></tr>
+    <% if p.offer == nil %>
+      <tr><th><%= p.price %>€</th></tr>
+    <% else %>
+      <tr><th><del><%= p.price %>€</del> <font color="red"> <%= p.offer %>€</font></th></tr>
+    <% end %>
+    <tr><th><ul class='rating'>
+      <% (1..5).each do |i| %>
+        <% if i <= p.valutation %>
+          <li class="rating_star on"></li>
+        <% else %>
+          <li class="rating_star"></li>
+        <% end %>
+      <% end %>
+    </ul></th></tr>
+    <tr><th><%= link_to "Vedi", property_path(p), :class => 'btn btn-success' %></th></tr>
+  </table>
+<% end %>
+<br class='clear'>
+<hr>
+
+<script>
+  function initAutocomplete() {
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('city');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQIh8MGEehUptz2u7vr8JbRvyvB6mA4M8&libraries=places&callback=initAutocomplete"
+   async defer></script>

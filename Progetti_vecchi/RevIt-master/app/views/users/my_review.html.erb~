@@ -1,0 +1,41 @@
+<div class="container">
+<% provide(:title, @user.name) %>
+ <% @user.reviews.each do |review| %>
+      
+      <div class="row">
+            <div class="col-md-4">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/200x150" alt="">
+                </a>
+            </div>
+            <div class="col-md-4">
+                 
+                
+                <h3><%=link_to review.item.name, "/items/"+review.item.id.to_s %></a>
+                <h5><strong><%= t(:price)%>: <i class="fa fa-usd" aria-hidden="true"></i></strong><%= review.price %><br>
+                 <strong><%= t(:store)%>:</strong><%= review.store %>, <%= review.store_location %><br>
+                  <strong><%= t(:rating)%>:</strong><%= review.rating %><br></h5>
+                <p><%= review.comment %></p>
+            </div>
+        </div>
+      <%end%>
+
+
+
+  <%= link_to 'Home', home_path %>
+  <%= link_to "Users",    users_path %>
+  <% if logged_in? %>
+  <%= link_to "Settings", edit_user_path(current_user) %>
+  
+  <%= link_to "Log out", logout_path, method: :delete %>
+  <%= link_to "Profile", current_user %>
+  <% else %>
+
+
+  <%= link_to "Log in", login_path %>
+<%end%>
+
+</div>
+
+
+

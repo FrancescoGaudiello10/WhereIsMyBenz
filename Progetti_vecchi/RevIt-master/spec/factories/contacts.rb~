@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :contact do
+    title "MyString"
+    description "MyText"
+    author {FactoryGirl(:user)}
+  end
+end

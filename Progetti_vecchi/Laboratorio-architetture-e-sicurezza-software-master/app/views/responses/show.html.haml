@@ -1,0 +1,9 @@
+%h2 #{@response.user.name} è interessato a #{@response.ad.game.name}!
+%br
+
+%h3 Puoi contattarlo via mail al seguente indirizzo: #{@response.user.email}
+
+%br
+%hr
+= link_to 'Back', responses_path
+= link_to 'Delete', response_path(@response), :method => :delete, data: { confirm: 'Are you sure?' }

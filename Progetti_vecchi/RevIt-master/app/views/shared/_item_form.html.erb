@@ -1,0 +1,33 @@
+<%= form_for(@item, html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, placeholder: "Create new item" %>
+    <br>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+    <br>
+     <%= f.label :tag_list %><br>
+ <pre style="width:500px">
+  <%= f.check_box :tag_list, { :multiple => true }, 'booksaudible', nil%> Books & Audible         <%= f.check_box :tag_list, { :multiple => true }, 'beautyhealtsgrocery', nil%> Beauties, Helats & Grocery
+  <%= f.check_box :tag_list, { :multiple => true }, 'moviesmusicgames', nil%> Movies, Music & Games   <%= f.check_box :tag_list, { :multiple => true }, 'toyskidsbaby', nil%> Toys, Kids & Baby
+  <%= f.check_box :tag_list, { :multiple => true }, 'electronicsgames', nil%> Electronics & Games     <%= f.check_box :tag_list, { :multiple => true }, 'clothingshoesjewelry', nil%> Clothing, Shoes & Jewelry
+  <%= f.check_box :tag_list, { :multiple => true }, 'homegardentools', nil%> Home, Garden & Tool     <%= f.check_box :tag_list, { :multiple => true }, 'sportsoutdoors', nil%> Sports & Outdoors 
+  <%= f.check_box :tag_list, { :multiple => true }, 'automotiveindustrial', nil%> Automotive & Industrial     </pre>
+
+  </div>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
+<% end %>
+
+<script type="text/javascript">
+  $('#item_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
+

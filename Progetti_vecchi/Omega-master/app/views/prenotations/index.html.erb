@@ -1,0 +1,34 @@
+<h3> Prenotazioni attive per: <%= @property.title %></h3>
+
+<br>
+<%= link_to "Torna alla proprietà", property_path(@property), class: 'btn btn-default' %>
+<br><br>
+<%= link_to new_property_prenotation_path(@property), class: 'btn btn-primary' do %>
+  <span class="glyphicon glyphicon-plus"></span>
+  Nuova prenotazione
+<% end %>
+<br><br>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Name</th>
+            <th>Start time</th>
+            <th>End time</th>
+        <th>Opzioni</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @prenotations.each do |prenotation| %>
+        <%= content_tag :tr, id: dom_id(prenotation), class: dom_class(prenotation) do %>
+                      <td><%= prenotation.name %></td>
+                      <td><%= prenotation.start_time %></td>
+                      <td><%= prenotation.end_time %></td>
+          <td><%= link_to 'Elimina', [@property, prenotation], method: :delete, data: { confirm: 'Sei sicuro?' }, :class => 'btn btn-danger' %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

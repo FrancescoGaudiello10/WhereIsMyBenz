@@ -1,0 +1,7 @@
+
+$("#new_foobar").change(function() { 
+  $form = $(this);
+  $input_value = $form.children("#name").val();
+  $label = $form.children("#foobar_some_size").siblings("label");
+  $label.text("Current Value = " + $input_value);
+})

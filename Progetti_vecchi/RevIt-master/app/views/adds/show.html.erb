@@ -1,0 +1,46 @@
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+                <div class="thumbnail">
+                        <% if !@add.picture.present? %>
+                            <%= link_to image_tag("http://placehold.it/400x400"), @add %> 
+                        <% else %>
+                            <%= link_to image_tag(@add.picture.url), @add %>
+                        <% end %>
+                    
+                        <div class="row">
+                            <div class="col-md-9">
+                                 <h3><strong>&nbsp&nbsp&nbsp<%= @add.name %></strong></h3> 
+                            </div>
+                            <div class="col-md-3">
+                                <h4><strong>Price: <i class="fa fa-usd" aria-hidden="true"></i> <%= @add.price %></strong></h4>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">
+                                <%= @add.description %>
+                            </div>
+                            <div class="col-md-3">
+                                <p>
+                                    <i class="fa fa-sitemap" aria-hidden="true"></i> <strong>:</strong> <%= link_to @add.owner.website, "http://#{@add.owner.website}" %>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i> <strong>:</strong> <%= @add.owner.email %> 
+                                </p>
+                            </div>
+                        </div>
+                    
+               </div>
+               <div class="thumbnail">
+                    <div id="map">
+                        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@add.owner.latitude}%2C#{@add.owner.longitude}" %>
+                    </div>
+               </div>
+          </div>      
+    </div>
+</div>
+<!-- /.container -->

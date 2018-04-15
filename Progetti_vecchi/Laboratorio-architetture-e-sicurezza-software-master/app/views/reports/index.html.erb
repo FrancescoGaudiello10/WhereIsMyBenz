@@ -1,0 +1,17 @@
+<h1>Listing reports</h1>
+
+<table>
+    <tr>
+        <th>Description</th>
+    </tr>
+
+    <% @reports.each do |report| %>
+        <tr>
+            <td><%= report.description %></td>
+            <td><%= link_to 'Show', report_path(report) %></td>
+        </tr>
+    <% end %>
+</table>
+
+<hr>
+<%= link_to 'Back', games_path %>

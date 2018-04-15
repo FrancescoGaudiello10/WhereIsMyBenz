@@ -1,0 +1,50 @@
+<%= @owner = current_owner %>
+        <%= @add = @owner.adds.new %>
+        <%= form_for([@owner,@add]) do |f| %>
+            <% if @add.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@add.errors.count, "error") %> prohibited this add from being saved:</h2>
+
+                    <ul>
+                    <% @add.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                </div>
+            <% end %>
+    <h4>Add a new add!</h4>
+    
+<div class="well">
+        
+        
+        <div class="row">
+            <div class="col-md-9">
+                
+                <p>
+                    <%= f.label :name %>
+                    <%= f.text_area :name, class: 'form-control' %>
+                </p>
+            </div>
+                
+            <div class="col-md-3">
+                <strong>Description: </strong><%= f.text_field :description, class: 'form-control' %>
+                <strong>Price: </strong><%= f.text_field :price, class: 'form-control' %> 
+            </div>
+            
+        </div>
+
+        <hr>
+        
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <%= f.submit "Add Add", class: "btn btn-primary" %>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+</div>
+<% end %>
+
+

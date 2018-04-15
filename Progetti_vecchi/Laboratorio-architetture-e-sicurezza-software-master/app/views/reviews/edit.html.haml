@@ -1,0 +1,15 @@
+%h2 Edit review
+
+= form_tag game_review_path(@game,@review), :method => :put do
+
+    = label :review, :rating, 'Rating'
+    %br
+    = select :review, :rating, options_for_select(1..10)
+    %br
+
+    = label :review, :description, 'Description'
+    %br
+    = text_area :review, :description, size: "100x30"
+    %br
+
+    = submit_tag 'Save Changes'

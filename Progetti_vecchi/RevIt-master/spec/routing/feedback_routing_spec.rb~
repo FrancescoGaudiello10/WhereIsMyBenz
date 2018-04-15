@@ -1,0 +1,21 @@
+require "rails_helper"
+
+RSpec.describe "routes for users", :type => :routing do
+
+        it "new user" do
+            expect(:get => "/users/new").to route_to(
+                      :controller => "users",
+                      :action => "new"
+                    )
+        end
+
+
+        it "create user" do 
+           expect(:post => "/users").to route_to(
+                      :controller => "users",
+                      :action => "create",
+                      
+                  )
+        end 
+
+end

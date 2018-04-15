@@ -1,0 +1,41 @@
+<div class="container">
+<li id="add-<%= add.id %>">
+    <div class="row">
+        <div class="col-md-3">
+            
+
+        </div>
+        <div class="col-md-8">
+            <h3><%= link_to add.owner.name,  add.owner %></h3>
+            <h4><i class="fa fa-usd" aria-hidden="true"></i> <%= add.price %></h4>
+
+            <p><%= add.description %></p>
+        </div>
+        
+        <div class="col-md-1">
+            <% if current_owner?(add.owner) %>
+                <%= link_to "delete", add, method: :delete,
+                    data: { confirm: "You sure?" } %>
+            <i class="fa fa-times" aria-hidden="true" style="color:#DC143C"></i>
+        </div>
+                    
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2">
+            <span class="timestamp">
+                Posted <%= time_ago_in_words(add.created_at) %> ago.
+            </span>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<% end %>
+</li>
+</div>
+
+
+

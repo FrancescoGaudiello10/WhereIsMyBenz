@@ -1,0 +1,11 @@
+<%= form_tag(feedbacks_create_path, method: :post) do%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', false %>
+     <%= submit_tag '-' %><%end%>Feedback:<% if !@user.passive_feedbacks.empty? %>
+ <%= @user.passive_feedbacks.where(value: true).count- @user.passive_feedbacks.where(value: false).count %>
+<%else%>  0 <%end%>
+<%= form_tag(feedbacks_create_path, method: :post)%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', true%>
+     <%= submit_tag '+' %>
+</div>

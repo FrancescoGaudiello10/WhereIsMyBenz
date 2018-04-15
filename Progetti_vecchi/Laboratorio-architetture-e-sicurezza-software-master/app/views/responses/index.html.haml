@@ -1,0 +1,28 @@
+- if flash[:notice]
+    #notice.message= flash[:notice]
+
+- elsif flash[:warning]
+    #notice.warning= flash[:warning]
+
+%hr
+
+%h2 Responses:
+- if @responses.length == 0
+    = 'Nessuna risposta '
+- else
+    There are #{@responses.length} responses
+    %table
+        %thead
+            %tr
+                %th Game
+                %th Response from
+        %tbody
+            - @responses.each do |response|
+                %tr
+                    %td= response.ad.game.name
+                    %td= response.user.name
+                    %td= link_to 'See details', response_path(response)
+%br
+
+%hr
+= link_to 'Back to list', games_path

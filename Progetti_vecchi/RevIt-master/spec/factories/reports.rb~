@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :report do |t|
+    t.review_id {FactoryGirl.create(:review)}
+    t.user_id {FactoryGirl.create(:user)}
+    
+  end
+end

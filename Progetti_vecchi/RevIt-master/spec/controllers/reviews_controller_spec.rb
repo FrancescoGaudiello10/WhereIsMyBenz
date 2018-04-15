@@ -1,0 +1,147 @@
+require 'rails_helper'
+
+RSpec.describe ReviewsController, type: :controller do
+  before :each do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+    @item = FactoryGirl.create(:item)
+  end
+  describe "POST create" do
+		context "with valid attributes" do
+			it 'add one review' do
+				count = Review.count
+				@review = FactoryGirl.create(:review)
+				post :create, review: {comment: @review.comment, price: @review.price, rating: @review.rating, store: @review.store, store_location: @review.store_location}, item_id: @item.id
+				assert Review.count > count
+			end 	
+			
+			it "should create review" do
+				@review = FactoryGirl.create(:review)
+				post :create, review: {comment: @review.comment, price: @review.price, rating: @review.rating, store: @review.store, store_location: @review.store_location}, item_id: @item.id
+				assert_response :redirect
+				expect(response).to redirect_to('/items/1')
+			end			
+		end
+		
+		context "with invalid attributes" do
+                        it "does not accept the review with rating greater tha 5" do
+				count = Review.count
+				post :create, review: {comment: "prova", price: 10, rating: 6, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+			it "does not accept the review with rating negative" do
+				count = Review.count
+				post :create, review: {comment: "prova", price: 10, rating: -2, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+			it "does not accept the review with price negative" do
+				count = Review.count
+				post :create, review: {comment: "prova", price: -10, rating: 2, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end 
+ 
+			it "does not save the review without comment" do
+				count = Review.count
+				post :create, review: {comment: nil, price: 10, rating: 2, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+
+                        it "does not save the review without price" do
+				count = Review.count
+				post :create, review: {comment: "p", price: nil, rating: 2, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+                        it "does not save the review without rating" do
+				count = Review.count
+				post :create, review: {comment: "p", price: 10, rating: nil, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+                        it "does not save the review without store" do
+				count = Review.count
+				post :create, review: {comment: "P", price: 10, rating: 2, store: nil, store_location: "velletri"}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+                        it "does not save the review without store location" do
+				count = Review.count
+				post :create, review: {comment: "p", price: 10, rating: 2, store: "casa", store_location: nil}, item_id: @item.id
+				expect(Review.count).to eq(count)
+			end
+			
+			it "re-renders the new method" do
+				post :create, review: {comment: "nonvabene", price: 10, rating: nil, store: "casa", store_location: "velletri"}, item_id: @item.id
+				expect(response).to redirect_to('/items/1')
+			end
+		end
+	end
+	
+	describe 'PUT update' do
+		before :each do
+			@review = FactoryGirl.create(:review)
+		end		
+		
+		context "valid attributes" do
+			it "located the requested @review" do
+				put :update, id: @review,review: {comment: @review.comment, price: @review.price, rating: @review.rating, store: @review.store, store_location: @review.store_location}, item_id: @review.item.id
+				expect(assigns(:review)).to eq(@review)
+			end
+
+			it "changes @review's attributes" do
+				put :update, id: @review,
+				review: {comment: "Modified", price: @review.price, rating: @review.rating, store: @review.store, store_location: @review.store_location}, item_id: @review.item.id
+				@review.reload
+				expect(@review.comment).to eq("Modified")
+			end
+
+			it "redirects to the updated review" do
+				put :update, id: @review, review: {comment: @review.comment, price: @review.price, rating: @review.rating, store: @review.store, store_location: @review.store_location}, item_id: @review.item.id
+				expect(response).to redirect_to ('/items/2')
+			end
+		end
+		
+		context "invalid attributes" do
+			it "locates the requested @review" do
+				put :update, id: @review, review: {comment: @review.comment, price: @review.price, rating: nil, store: @review.store, store_location: @review.store_location}, item_id: @review.item.id
+				expect(assigns(:review)).to eq(@review)
+			end
+			
+			it "does not change @review's attributes" do
+				put :update, id: @review,
+				review: {comment: "Modified", price: @review.price, rating: nil, store: @review.store, store_location: @review.store_location}, item_id: @review.item.id
+				@review.reload
+				expect(@review.comment).not_to eq("Modified")
+			end
+		end
+	end	
+	
+	describe 'DELETE update' do
+		before :each do
+			@review = FactoryGirl.create(:review)
+		end	
+		
+		it "should delete review" do
+			delete :destroy, :id => @review.id, :item_id => @review.item.id
+			assert_response :redirect
+			expect(response).to redirect_to(root_path)
+		end
+	end
+		
+	private
+	
+	def sign_in(user)
+		session[:user_id] = user.id
+		current_user = user
+		@current_user = user
+	end
+	
+	def sign_out
+		current_user = nil
+		@current_user = nil
+		cookies.delete(:remember_token)
+	end
+	
+	def signed_in?
+		return !@current_user.nil?
+	end				
+
+
+end

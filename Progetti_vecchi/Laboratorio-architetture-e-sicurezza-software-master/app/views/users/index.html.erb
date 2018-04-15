@@ -1,0 +1,36 @@
+<h1>Listing users</h1>
+
+<p>
+<strong>Filters</strong>
+<%= form_for :search, url: users_path, method: :get do |f| %>
+    <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :parameter %>
+    </p>
+    <p>
+        <%= f.label :role %><br>
+        <%= f.select :role, ["Any", "Active", "Banned", "Admin"]%>
+    </p>
+    <p>
+        <%= f.submit "Search for User"%>
+    </p>
+<% end %>
+</p>
+<hr>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+    </tr>
+
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= user.name %></td>
+            <td><%= user.role %></td>
+            <td><%= link_to 'Show', user_path(user) %></td>
+        </tr>
+    <% end %>
+</table>
+
+<%= link_to 'Back', games_path %>

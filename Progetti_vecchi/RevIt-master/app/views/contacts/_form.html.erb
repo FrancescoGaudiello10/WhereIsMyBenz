@@ -1,0 +1,21 @@
+<div class="container">
+
+<%= form_for(@contact) do |f| %>
+  
+    <%= f.label t(:title) %>
+    <%= f.text_field :title, class: 'form-control' %>
+  
+  
+    <%= f.label t(:description) %>
+    <%= f.text_field :description, class: 'form-control' %>
+    
+    <%= f.label t(:author) %>
+    <%= f.text_field :author, class: 'form-control' %>
+    
+    <p></p>
+    <div class="text-center">
+        <%= f.submit "Send", class: "btn btn-primary" %>
+    </div>
+    
+</div>
+<% end %>

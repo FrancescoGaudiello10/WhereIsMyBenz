@@ -1,0 +1,49 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1><%= t(:lista)+" "+t(:items) %></h1>
+    
+    <div class="text-right">
+        <a class="btn btn-primary" href="/items/new"><%= t(:new)+" "+t(:item) %></span></a>
+    </div>
+    
+    
+    <% @items.each do |item| %>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <% if !item.picture.present? %>
+                <%= link_to image_tag("http://placehold.it/200x150"), item %> 
+            <% else %>
+                <%= link_to image_tag(item.picture.listing_items.url), item %> 
+            <% end %>
+
+        </div>
+        
+        <div class="col-md-8">
+            <h3><%= link_to item.name,  item %></h3>
+            <h4><i class="fa fa-usd" aria-hidden="true"></i> <%= item.avg_price %></h4>
+            <div class="review-rating" data-score="<%= item.avg_rating %>"></div> <%= item.avg_rating %> stars
+
+            <p><%= item.description %></p>
+<<<<<<< HEAD
+            <%= link_to t(:view)+" "+t(:item), item_path(item.id) ,class: "btn btn-primary" %>
+=======
+>>>>>>> master
+        </div>
+            
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<% end %>
+
+ <tr> <% if !@items.present? %>
+  <p><%= t(:nosearchitem) %></p> </tr>
+<% end %>
+
+<%= will_paginate  @items %>
+</div>
+
+  

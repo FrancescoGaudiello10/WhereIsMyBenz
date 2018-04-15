@@ -1,0 +1,39 @@
+
+
+<div class="container">
+<li>
+    <div class="row">
+        <div class="col-md-3">
+            <%= gravatar_for owner %>
+        </div>
+        
+        <div class="col-md-8">
+            <h3><%= link_to owner.name,  owner %></h3>
+            <strong>Email: </strong><%= owner.email %>
+            <p>
+                <strong>Website: </strong><%= link_to owner.website, "http://#{owner.website}" %>
+                <strong>Address: </strong><%= owner.address %>
+            </p>
+        </div>
+        
+        <div class="col-md-1">
+            <p> 
+                <% if current_user !=nil %>
+                <% if current_user.admin? %>
+                <%= link_to "", owner, method: :delete,
+                    data: { confirm: "You sure?"}, class: "fa fa-times", style: "color:#DC143C" %>
+            </p>
+            <p>
+                <%= link_to "", edit_owner_path(owner), class: "fa fa-pencil-square-o", style: "color:#6495ED" %>
+            </p>    
+        </div>
+                    
+    </div>
+
+    <hr>
+
+<% end %>
+<% end %>
+</li>
+</div>
+

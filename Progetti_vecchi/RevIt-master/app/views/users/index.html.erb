@@ -1,0 +1,14 @@
+<% provide(:title, 'All users') %>
+
+<h1>&nbsp&nbsp&nbsp<%= t(:lista)+" "+t(:user) %></h1>
+
+<% if !@users.present? %>
+<p>t:(nosearchuser)</p>
+<%end%>
+
+<ul class="users">
+   <%= render @users %>
+</ul>
+
+<%= will_paginate %>
+

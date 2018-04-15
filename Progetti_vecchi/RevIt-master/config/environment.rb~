@@ -1,0 +1,9 @@
+# Load the Rails application.
+config.action_mailer.default_url_options = { :host => 'localhost' }
+
+require File.expand_path('../application', __FILE__)
+require 'omniauth'
+require 'omniauth-facebook'
+require 'acts-as-taggable-on'
+# Initialize the Rails application.
+Rails.application.initialize!

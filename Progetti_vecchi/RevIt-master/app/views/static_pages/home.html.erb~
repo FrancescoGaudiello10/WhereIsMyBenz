@@ -1,0 +1,30 @@
+<% if logged_in? %>
+<div class="row">
+<aside class="col-md-4">
+<section class="user_info">
+<%= render 'shared/user_info' %>
+</section>
+<section class="item_form">
+<%= render 'shared/item_form' %>
+</section>
+</aside>
+</div>
+
+<% else %>
+<% if logged_in_owner? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="owner_info">
+        <%= render 'shared/owner_info' %>
+      </section>
+      <section class="add_form">
+        <%= render 'shared/add_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+
+    <%= render partial: "home" %>
+<% end %>
+
+

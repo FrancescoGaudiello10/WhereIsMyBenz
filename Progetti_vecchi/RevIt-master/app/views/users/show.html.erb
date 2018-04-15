@@ -1,0 +1,43 @@
+
+<div class="container">
+<% provide(:title, @user.name) %>
+
+<div>
+<% if @user.passive_feedbacks.empty? %>
+<% if current_user!=nil &&  @user.id!= current_user.id %>
+   <%= form_tag(feedbacks_create_path, method: :post) do%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', false %>
+     <%= submit_tag '-' %><%end%>
+      Feedback: 0
+   <%= form_tag(feedbacks_create_path, method: :post)%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', true%>
+     <%= submit_tag '+' %><%else%>Feedback:0<%end%><%else%>
+<% if current_user!=nil%>
+<% if @user.id!= current_user.id && !@user.passive_feedbacks.exists?(['giver_id LIKE ?',current_user.id])%>
+<%= form_tag(feedbacks_create_path, method: :post) do%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', false %>
+     <%= submit_tag '-' %><%end%>Feedback:
+ <%= @user.passive_feedbacks.where(value: true).count- @user.passive_feedbacks.where(value: false).count %>
+<%= form_tag(feedbacks_create_path, method: :post)%>
+      <%= hidden_field_tag 'receiver_id', @user.id %>
+      <%= hidden_field_tag 'value', true%>
+     <%= submit_tag '+' %>
+<%else%>Feedback: <%= @user.passive_feedbacks.where(value: true).count- @user.passive_feedbacks.where(value: false).count %>
+<%end%><%else%>Feedback: <%= @user.passive_feedbacks.where(value: true).count- @user.passive_feedbacks.where(value: false).count %><%end%><%end%>
+</div>
+  <div class="col-md-8">
+    <% if @user.items.any? %>
+      <h3>Items(<%= @user.items.count %>)</h3>
+      <ol class="items">
+        <%= render @items %>
+      </ol>
+      <%= will_paginate @items %>
+    <% end %>
+  </div>
+</div>
+
+
+

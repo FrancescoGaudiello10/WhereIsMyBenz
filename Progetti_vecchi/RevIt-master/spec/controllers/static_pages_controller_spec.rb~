@@ -1,0 +1,9 @@
+require 'rails_helper'
+require 'omniauth'
+
+RSpec.describe StaticPagesController, type: :controller do
+  it 'should get home' do
+    get :home
+    assert_response :success
+  end
+end

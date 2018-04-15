@@ -1,0 +1,63 @@
+require 'rails_helper'
+
+RSpec.describe EvaluationsController, type: :controller do
+  before :each do
+    @user = FactoryGirl.create(:user)
+  sign_in @user
+  end
+
+  it "should create evaluation" do
+          @evaluation = FactoryGirl.create(:evaluation)
+          post :create, evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          assert_response :redirect
+    end
+
+  describe "POST create" do
+      context "with valid attributes" do
+        
+        it "redirects to the new contact" do
+          @evaluation = FactoryGirl.create(:evaluation)
+          post :create,   evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          expect(response.status).to eq(302)
+        end
+      end
+      
+      context "with invalid attributes" do
+        
+        it "does not save the new evaluation with same giver and receiver" do
+          @evaluation = FactoryGirl.create(:evaluation)
+          @evaluation.save
+          post :create,   evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          expect{
+            post :create,   evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          }.to_not change(Evaluation,:count)
+        end
+        
+        
+        it "re-renders the new method" do
+          @evaluation = FactoryGirl.create(:evaluation)
+          post :create,  evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          post :create,  evaluation: { evaluater: @evaluation.evaluater, evaluated: @evaluation.evaluated, value: @evaluation.value }, :evaluated_id => @evaluation.evaluated 
+          expect(response).to redirect_to(root_url)
+        end
+      end 
+    end
+
+  private
+    
+    def sign_in(user)
+     session[:user_id] = user.id
+     current_user = user
+     @current_user = user
+    end
+
+    def sign_out
+     current_user = nil
+     @current_user = nil
+     cookies.delete(:remember_token)
+    end
+
+    def signed_in?
+     return !@current_user.nil?
+    end
+end

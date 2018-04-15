@@ -1,0 +1,112 @@
+require 'rails_helper'
+
+RSpec.describe ContactsController, type: :controller do
+  it "should create contact" do
+          @contact = FactoryGirl.create(:contact)
+          post :create, contact: { title: @contact.title, description: @contact.description, author: @contact.author }
+          assert_response :redirect
+    end
+
+  context "if admin" do 
+    before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      @user.admin = true
+      @user.save
+    end
+
+    it "should destroy contact" do
+        @contact = FactoryGirl.create(:contact)
+        count = Contact.count
+        delete :destroy, id: @contact
+        assert_response :redirect
+    	expect(Contact.count).not_to eq(count)
+      end
+
+    it "renders the :index view" do
+        get :index
+        expect(response).to render_template :index
+      end
+  end
+  
+  context "if not admin" do 
+    before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      
+    end
+
+    it "should not destroy contact" do
+        @contact = FactoryGirl.create(:contact)
+        count = Contact.count
+        delete :destroy, id: @contact
+        assert_response :redirect
+    	expect(Contact.count).to eq(count)
+      end
+
+    it "not renders the :index view" do
+        get :index
+        expect(response).to redirect_to root_url
+      end
+  end
+
+  describe "POST create" do
+      context "with valid attributes" do
+        
+        it "redirects to the new contact" do
+          @contact = FactoryGirl.create(:contact)
+          post :create, contact: { title: @contact.title, description: @contact.description, author: @contact.author }
+          expect(response.status).to eq(302)
+        end
+      end
+      
+      context "with invalid attributes" do
+        
+        it "does not save the new contact without title" do
+          @contact = FactoryGirl.create(:contact)
+          expect{
+            post :create, contact: { title: nil, description: @contact.description, author: @contact.author }
+          }.to_not change(Contact,:count)
+        end
+        it "does not save the new contact without description" do
+          @contact = FactoryGirl.create(:contact)
+          expect{
+            post :create, contact: { title: @contact.title, description: nil, author: @contact.author }
+          }.to_not change(Contact,:count)
+        end
+        it "does not save the new contact without author" do
+          
+          expect{
+            post :create, contact: { title: @contact.title, description: @contact.description, author: nil }
+          }.to_not change(Contact,:count)
+        end
+        
+        
+        it "re-renders the new method" do
+          @contact = FactoryGirl.create(:contact)
+          post :create, contact: { title: @contact.title, description: @contact.description, author: @contact.author }
+          expect(response).to redirect_to(root_url)
+        end
+      end 
+    end
+
+  
+
+  private
+    
+    def sign_in(user)
+     session[:user_id] = user.id
+     current_user = user
+     @current_user = user
+    end
+
+    def sign_out
+     current_user = nil
+     @current_user = nil
+     cookies.delete(:remember_token)
+    end
+
+    def signed_in?
+     return !@current_user.nil?
+    end
+end

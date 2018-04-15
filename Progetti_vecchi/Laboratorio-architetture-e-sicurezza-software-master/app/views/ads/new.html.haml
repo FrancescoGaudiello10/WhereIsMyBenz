@@ -1,0 +1,23 @@
+%h1 New Ad for #{@game.name}
+
+= form_tag game_ads_path(@game) do
+    %label Type
+    = select :ad, :tipo, options_for_select(['Prestito','Vendita'], 'Prestito')
+    %br
+    
+    %label Avaible in this area
+    %br
+    = text_area :ad, :location, size: "100x10"
+    %br
+    
+    %label Delivery mode
+    %br
+    = text_area :ad, :delivery, size: "100x10"
+    %br
+    
+    %label Annotation
+    %br
+    = text_area :ad, :description, size: "100x10"
+    %br
+    
+    = submit_tag 'Create Ad'

@@ -1,0 +1,21 @@
+require "rails_helper"
+
+RSpec.describe "routes for evaluations", :type => :routing do
+
+        it "new evaluation" do
+            expect(:get => "/evaluations/new").to route_to(
+                      :controller => "evaluations",
+                      :action => "new"
+                    )
+        end
+
+
+        it "create evaluation" do 
+           expect(:post => "/evaluations").to route_to(
+                      :controller => "evaluations",
+                      :action => "create",
+                      
+                  )
+        end 
+
+end

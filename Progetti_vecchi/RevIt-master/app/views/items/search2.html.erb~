@@ -1,0 +1,77 @@
+<h1>Search</h1>
+
+<%= form_tag search_path, method: :get do %>
+<%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <%= text_field_tag :item_name, params[:item_name] %>
+  <%= text_field_tag :client, params[:client] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
+
+
+<table class = "pretty">
+<table border="1">
+  <tr>
+    <th><%= sortable "item_name", "item name" %> </th>
+    <th><%= sortable "client", "Client" %></th>
+    <th>Exception pm</th>
+    <th>item owner</th>
+    <th>Tech</th>
+    <th>Role</th>
+    <th>Industry</th>
+    <th>Financials</th>
+    <th>Business div</th>
+    <th>Status</th>
+    <th>Start date</th>
+    <th>End date</th>
+<% if false %>
+    <th>Entry date</th>
+    <th>Edited date</th>
+    <th>Summary</th>
+    <th>Lessons learned</tStackh>
+    <th>Customer benifits</th>
+    <th>Keywords</th>
+    <!th></th>
+    <!th></th>
+    <!th></th>
+<% end %>
+  </tr>
+
+<% @item_search.each do |t| %>
+  <tr>
+    <td><%= t.item_name %></td>
+    <td><%= t.client %></td>
+    <td><%= t.exception_pm %></td>
+    <td><%= t.item_owner %></td>
+    <td><%= t.tech %></td>
+    <td><%= t.role %></td>
+    <td><%= t.industry %></td>
+    <td><%= t.financials %></td>
+    <td><%= t.business_div %></td>
+    <td><%= t.status %></td>
+    <td><%= t.start_date %></td>
+    <td><%= t.end_date %></td>
+<% if false %>
+    <td><%= t.entry_date %></td>
+    <td><%= t.edited_date %></td>
+    <td><%= t.summary %></td>
+    <td><%= t.lessons_learned %></td>
+    <td><%= t.customer_benifits %></td>
+    <td><%= t.keywords %></td>
+<% end %>
+    <!td><%#= link_to 'Show', item %></td>
+    <!td><%#= link_to 'Edit', edit_item_path(item) %></td>
+    <!td><%#= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate (@item_search) %>
+
+
+<%= button_to "Search Again?", search_path, :method => "get" %>
+
+<%# end %>
+<%= button_to "Home", items_path, :method => "get" %>

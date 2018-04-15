@@ -1,0 +1,13 @@
+<hr><h3>Link utili</h3>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Password dimenticata?", new_password_path(resource_name) %><p/>
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Non hai ricevuto le istruzioni di conferma?", new_confirmation_path(resource_name) %><p/>
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Non hai ricevuto le istruzioni di sblocco?", new_unlock_path(resource_name) %><p/>
+<% end -%>

@@ -1,0 +1,18 @@
+<div class="container">
+
+<%= form_for(@contact) do |f| %>
+  
+    <%= f.label :Title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  
+  
+    <%= f.label :Description %>
+    <%= f.text_field :description, class: 'form-control' %>
+    
+    <%= f.label :Author %>
+    <%= f.text_field :author, class: 'form-control' %>
+
+    <%= f.submit "Send", class: "btn btn-primary" %>
+  
+</div>
+<% end %>

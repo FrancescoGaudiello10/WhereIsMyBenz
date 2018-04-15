@@ -1,0 +1,61 @@
+<div class="container">
+<li id="item-<%= item.id %>">
+    <div class="row">
+        <div class="col-md-3">
+            <% if !item.picture.present? %>
+                <%= link_to image_tag("http://placehold.it/200x150"), item %> 
+            <% else %>
+                <%= link_to image_tag(item.picture.listing_items.url), item %> 
+            <% end %>
+
+        </div>
+        
+        <div class="col-md-8">
+            <h3><%= link_to item.name,  item %></h3>
+            <h4><i class="fa fa-usd" aria-hidden="true"></i> <%= item.avg_price %></h4>
+            <div class="review-rating" data-score="<%= item.avg_rating %>"></div> <%= item.avg_rating %> stars
+            <p><%= item.description %></p>
+        </div>
+        
+        <div class="col-md-1">
+            <% if current_user?(item.user) %>
+                <%= link_to "delete", item, method: :delete,
+                    data: { confirm: "You sure?" } %>
+            <i class="fa fa-times" aria-hidden="true" style="color:#DC143C"></i>
+        </div>
+                    
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2">
+            <span class="timestamp">
+                Posted <%= time_ago_in_words(item.created_at) %> ago.
+            </span>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<% end %>
+
+<% if !@items.present? %>
+  <p>There are no items.</p>
+<% end %>
+
+</li>
+</div>
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
+
+
+  

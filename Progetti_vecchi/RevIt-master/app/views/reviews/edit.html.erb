@@ -1,0 +1,29 @@
+<% provide(:title, "Edit review") %>
+<h1>Editing Review</h1>
+ 
+ <%= @item = Item.find(params[:item_id]) %>
+ <%= @review = @item.reviews.find(params[:id]) %>
+ <%= form_for([@item,@review]) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :rating %>
+      <%= f.text_field :rating, class: 'form-control' %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price, class: 'form-control' %>
+
+      <%= f.label :store%>
+      <%= f.text_field :store, class: 'form-control' %>
+
+      <%= f.label :store_location%>
+      <%= f.text_field :store_location, class: 'form-control' %>
+
+      <%= f.label :comment%>
+      <%= f.text_area :comment, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+
+<%= link_to 'Show', @review.item %> |
+<%= link_to 'Back', item_path(@review.item) %>

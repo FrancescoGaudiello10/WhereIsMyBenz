@@ -1,0 +1,94 @@
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+                <div class="thumbnail">
+                    <%= image_tag @item.picture.url if @item.picture? %>
+                        
+                        <div class="row">
+                            <div class="col-md-9">
+                                 <h3><strong><a href="#">&nbsp&nbsp&nbsp<%= @item.name %></a></strong></h3> 
+                            </div>
+                            <div class="col-md-3">
+                                <h4><strong><%= t(:bestprice)%> <i class="fa fa-usd" aria-hidden="true"></i> <%= @item.avg_price %></strong></h4>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <%= @item.description %>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2"><%= @item.reviews.count %><%= t(:reviews) %> <i class="fa fa-commenting-o" aria-hidden="true"></i></div>
+                        </div>
+                        <p></p>
+               </div>
+                
+                <div class="review-rating" data-score="<%= @item.avg_rating %>"></div> <%= @item.avg_rating stars%> 
+               
+               <div class="thumbnail">
+                    <div id="map">
+                        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@item.latitude}%2C#{@item.longitude}" %>
+                    </div>
+               </div>
+                
+                <div class="well">
+                    
+                    <div class="text-left">
+                        <h2><%= t(:reviews) %></h2>
+                    </div>
+
+                    <hr>
+                    
+                    <% if !@item.reviews.present? %>
+                    <p><%= t(:norev)%></p> 
+                    <% end %>
+                    
+                    <%= render @item.reviews %>
+                    
+                    <hr>
+                    
+                    <%= render 'reviews/form' %>
+                    <%= link_to 'Edit', edit_item_path(@item) %> |
+                    <%= link_to 'Back', items_path %>
+                        
+                </div>
+          
+          </div>      
+    </div>
+</div>
+<!-- /.container -->
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
+
+
+
+
+
+
+
+
+
