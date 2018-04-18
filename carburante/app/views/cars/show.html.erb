@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @car.user_id %>
+</p>
+
+<p>
+  <strong>Modello:</strong>
+  <%= @car.modello %>
+</p>
+
+<p>
+  <strong>Targa:</strong>
+  <%= @car.targa %>
+</p>
+
+<p>
+  <strong>Capacita serbatoio:</strong>
+  <%= @car.capacita_serbatoio %>
+</p>
+
+<p>
+  <strong>Tipo carburante:</strong>
+  <%= @car.tipo_carburante %>
+</p>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>
