@@ -12,9 +12,9 @@ class User < ApplicationRecord
     #Email obbligatoria
     validates :email, presence: true
 
-    has_attached_file :avatar, styles: { small: "200x200>", medium: "300x300>", thumb: "100x100>" }, default_url: ":style/default_user.jpg"
+    #has_attached_file :avatar, styles: { small: "200x200>", medium: "300x300>", thumb: "100x100>" }, default_url: ":style/default_user.jpg"
 
-    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+    #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
 end
