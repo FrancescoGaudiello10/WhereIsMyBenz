@@ -17,6 +17,15 @@
             <span class="input-group-addon" id="basic-addon1"> <%= label_tag(:city, "Inserisci la località:") %> </span>
             <%= text_field_tag(:city, nil, required: true, :class => "form-control", :placeholder => "Via o città") %>
         </div>
+        <br>
+        <div class="books-search">
+            <input type="text" id="books-search-txt" autofocus>
+            <div class="results" id="books-search-results"></div>
+        </div>
+
+<!--        <%#= content_for :script do %>
+            new app.Books;
+        <%# end %>-->
 
 <!--        <hr>
         <table class='correlated'>

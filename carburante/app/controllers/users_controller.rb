@@ -23,6 +23,13 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def search
+    respond_to do |format|
+      format.html
+      format.json { @user = User.search(params[:term]) }
+    end
+  end
+
   # POST /users
   # POST /users.json
   def create

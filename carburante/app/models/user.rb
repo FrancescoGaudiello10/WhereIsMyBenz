@@ -16,5 +16,8 @@ class User < ApplicationRecord
 
     #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+    def self.search(term)
+        where('LOWER(Indirizzo) LIKE :term OR LOWER(Comune) LIKE :term', term: "%#{term.downcase}%")
+    end
 
 end
