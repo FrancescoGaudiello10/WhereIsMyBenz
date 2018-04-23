@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class User < ActiveRecord::Base
 
     #Relazioni
     # un utente puo' avere piu' macchine

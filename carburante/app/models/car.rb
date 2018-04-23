@@ -1,4 +1,4 @@
-class Car < ApplicationRecord
+class Car < ActiveRecord::Base
 
     #Relazioni
     # una macchina appartiene ad 1 solo utente

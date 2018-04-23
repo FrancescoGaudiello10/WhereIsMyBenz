@@ -14,6 +14,7 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
+    @user = User.new
     @car = Car.new
   end
 
@@ -35,6 +36,7 @@ class CarsController < ApplicationController
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end
+    @car.save
   end
 
   # PATCH/PUT /cars/1
@@ -60,6 +62,7 @@ class CarsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

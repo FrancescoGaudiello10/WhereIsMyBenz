@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
     get 'pages/calculate'
 
+    match '/signup',  :to => 'users#new', :via => :get
+
     match ':controller(/:action(/:id))', :via => :get
 
     #pagina principale
