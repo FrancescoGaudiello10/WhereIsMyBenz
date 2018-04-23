@@ -1,21 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Carburante2</title>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Carburante</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if user_signed_in? %>
-    Logged in as <%= current_user.email%> [<%= link_to 'Logout',
-    destroy_user_session_path, :method => :delete%>]
-    <% end %>
+</head>
 
-  </head>
+<body>
 
-  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <li>
+                  <%= link_to welcome_index_path, class: "navbar-brand" do %>
+                    <i class="glyphicon glyphicon-s tar "> </i>
+                    <span class="glyphicons glyphicons-gas-station"></span>
+                  <% end %>
+                </li>
+
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <% if user_signed_in? %>
+                    <li><%= link_to "Profilo", welcome_index_path %></li>
+                    <li><%= link_to "Statistiche", welcome_index_path %></li>
+                    <li><%= link_to "Aggiungi stazione", welcome_index_path %></li>
+                    <li><%= link_to "Preferiti", welcome_index_path %></li>
+
+                    <!-- Conversazioni -->
+
+                    <li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
+
+
+                    <% else %>
+
+                    <li><%= link_to "Accedi", new_user_session_path %></li>
+                    <li><%= link_to "Registrati",  new_user_registration_path %></li>
+                    <% end %>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= msg %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="contact">
+        <a href="mailto:dabbraccio.francesco@gmail.com" >Contattaci</a>
+    </div>
+
+
     <%= yield %>
-  </body>
+    <% if user_signed_in? %>
+    Logged in as <%= current_user.email%> (app/views/layouts/application.html.erb)
+    [<%= link_to 'Logout',destroy_user_session_path, :method => :delete%>]
+    <% end %>
+</body>
 </html>
