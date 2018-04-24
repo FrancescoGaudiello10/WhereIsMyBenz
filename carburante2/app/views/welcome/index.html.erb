@@ -1,13 +1,73 @@
 </div>
 <div class="jumbotron">
   <div class="container">
-    <h1>Ω Benvenuto in Benza! Ω</h1>
-    <p>Descrizione</p>
+    <h1>Smart Gas Station</h1>
+    <p>Trova il prezzo più conveniente</p>
+
     <% if user_signed_in? %>
         <%= link_to "Ricerca", welcome_index_path %>
     <%else%>
         <%= link_to "Accedi", new_user_session_path %>
         <%= link_to "Registrati",  new_user_registration_path %>
     <% end %>
+
   </div>
+</div>
+
+<div class="container">
+<!--    http://guides.rubyonrails.org/form_helpers.html-->
+    <%= form_tag("/welcome/results", method: :get) do %>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                <%= label_tag(:city, "Dove ti trovi?:") %>
+            </span>
+            <%= text_field_tag(:city, nil, required: true, :class => "form-control", :placeholder => "Via o città") %>
+        </div>
+        <br>
+        <div class="input">
+            <p>
+                Raggio:
+                <%= range_field :raggio, :in => 0..100, :step => '.1' %>
+            <p>
+                Tipo carburante:
+                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante), :include_blank => true %>
+            </p>
+
+            <p>
+                Litri rimanenti:
+                <%= number_field(:price, in: 10.0..100.0, step: 1) %>
+            </p>
+
+        </div>
+
+        <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
+    <% end %>
+
+    <script>
+        function initAutocomplete() {
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('city');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQIh8MGEehUptz2u7vr8JbRvyvB6mA4M8&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
 </div>
