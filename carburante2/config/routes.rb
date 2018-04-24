@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-    match ':controller(/:action(/:id))', :via => :get
+    # match ':controller(/:action(/:id))', :via => :get
 
     root 'welcome#index'
     #root to user signin https://stackoverflow.com/a/12994856/1440037

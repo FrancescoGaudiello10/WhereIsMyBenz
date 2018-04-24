@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_23_151620) do
+ActiveRecord::Schema.define(version: 2018_04_24_093033) do
+
+  create_table "anagrafica_impianti_attivi", primary_key: "idImpianto", id: :text, force: :cascade do |t|
+    t.text "Gestore"
+    t.text "Bandiera"
+    t.text "TipoImpianto"
+    t.text "NomeImpianto"
+    t.text "Indirizzo"
+    t.text "Comune"
+    t.text "Provincia"
+    t.text "Latitudine"
+    t.text "Longitudine"
+    t.index ["idImpianto"], name: "sqlite_autoindex_anagrafica_impianti_attivi_1", unique: true
+  end
+
+  create_table "prezzo_alle_8", id: false, force: :cascade do |t|
+    t.text "idImpianto", null: false
+    t.text "descCarburante"
+    t.text "prezzo"
+    t.text "isSelf"
+    t.text "dtComu"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "Bandiera"
+    t.string "Nome"
+    t.string "Indirizzo"
+    t.string "Comune"
+    t.string "Provincia"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -1,6 +1,7 @@
 <!--http://guides.rubyonrails.org/getting_started.html#the-first-form-->
 
 <%= form_with scope: :station, url: stations_path, local: true do |form| %>
+
   <p>
     <%= form.label :Bandiera %><br>
     <%= form.text_field :Bandiera %>
