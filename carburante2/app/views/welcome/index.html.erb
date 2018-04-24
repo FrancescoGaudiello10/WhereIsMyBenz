@@ -3,5 +3,11 @@
   <div class="container">
     <h1>Ω Benvenuto in Benza! Ω</h1>
     <p>Descrizione</p>
+    <% if user_signed_in? %>
+        <%= link_to "Ricerca", welcome_index_path %>
+    <%else%>
+        <%= link_to "Accedi", new_user_session_path %>
+        <%= link_to "Registrati",  new_user_registration_path %>
+    <% end %>
   </div>
 </div>
