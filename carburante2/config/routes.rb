@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     # end
 
     resources :cars
-    resources :stations
+
+    resources :stations do
+        resources :reviews
+    end
 
 end

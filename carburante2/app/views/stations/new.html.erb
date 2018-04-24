@@ -1,36 +1,8 @@
 <!--http://guides.rubyonrails.org/getting_started.html#the-first-form-->
 
-<%= form_with scope: :station, url: stations_path, local: true do |form| %>
+    <h1>Nuova stazione </h1>
 
-  <p>
-    <%= form.label :Bandiera %><br>
-    <%= form.text_field :Bandiera %>
-  </p>
+    <%= render 'form' %>
 
-    <p>
-        <%= form.label :Nome %><br>
-        <%= form.text_field :Nome %>
-    </p>
+    <%= link_to 'Back', stations_path %>
 
-    <p>
-        <%= form.label :Indirizzo %><br>
-        <%= form.text_field :Indirizzo %>
-    </p>
-
-    <p>
-        <%= form.label :Comune %><br>
-        <%= form.text_field :Comune %>
-    </p>
-
-    <!--    Le province sono definite in helper/stations_helper.rb-->
-    <p>
-        <%= form.label :Provincia %><br>
-        <%= form.select :Provincia, province_italiane, :include_blank => true %>
-    </p>
-
-    <br>
-
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>

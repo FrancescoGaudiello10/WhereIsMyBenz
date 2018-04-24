@@ -22,3 +22,13 @@
     <strong>Provicia:</strong>
     <%= @station.Provincia %>
 </p>
+
+<!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
+<h2>Recensioni:</h2>
+<%= render @station.reviews %>
+
+<h2>Aggiungi una recensione:</h2>
+<%= render 'reviews/form' %>
+
+<%= link_to 'Edit', edit_station_path(@station) %> |
+<%= link_to 'Back', stations_path %>

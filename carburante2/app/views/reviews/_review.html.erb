@@ -1,0 +1,18 @@
+<p>
+    <strong>Commenter:</strong>
+    <%= review.commenter %>
+</p>
+
+<p>
+    <strong>Comment:</strong>
+    <%= review.body %>
+</p>
+<p>
+    <strong>Rating:</strong>
+    <%= review.stars %>
+</p>
+<p>
+    <%= link_to 'Elimina recensione', [review.station, review],
+                method: :delete,
+                data: { confirm: 'Sei sicuro?' } %>
+</p>

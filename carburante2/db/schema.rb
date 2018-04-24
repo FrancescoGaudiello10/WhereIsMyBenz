@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_093033) do
+ActiveRecord::Schema.define(version: 2018_04_24_105652) do
 
   create_table "anagrafica_impianti_attivi", primary_key: "idImpianto", id: :text, force: :cascade do |t|
     t.text "Gestore"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2018_04_24_093033) do
     t.text "prezzo"
     t.text "isSelf"
     t.text "dtComu"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.integer "stars"
+    t.integer "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_reviews_on_station_id"
   end
 
   create_table "stations", force: :cascade do |t|

@@ -1,0 +1,55 @@
+<!--PARTIAL-->
+<!--http://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views-->
+
+<%= form_with model: @station, local: true do |form| %>
+
+    <!--    gestisco errori-->
+    <% if @station.errors.any? %>
+        <div id="error_explanation">
+
+            <h2>
+                <!-- pluralize is a rails helper that takes a number and a string as its arguments. If the number is greater than one, the string will be automatically pluralized-->
+                <%= pluralize(@station.errors.count, "error") %> prohibited
+                this article from being saved:
+            </h2>
+            <ul>
+                <% @station.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+        <%= form.label :Bandiera %><br>
+        <%= form.text_field :Bandiera %>
+    </p>
+
+    <p>
+        <%= form.label :Nome %><br>
+        <%= form.text_field :Nome %>
+    </p>
+
+    <p>
+        <%= form.label :Indirizzo %><br>
+        <%= form.text_field :Indirizzo %>
+    </p>
+
+    <p>
+        <%= form.label :Comune %><br>
+        <%= form.text_field :Comune %>
+    </p>
+
+    <!--    Le province sono definite in helper/stations_helper.rb-->
+    <p>
+        <%= form.label :Provincia %><br>
+        <%= form.select :Provincia, province_italiane, :include_blank => true %>
+    </p>
+
+    <br>
+
+    <p>
+        <%= form.submit %>
+    </p>
+
+<% end %>

@@ -1,0 +1,27 @@
+<h1>Listing stations</h1>
+
+<table>
+    <tr>
+        <th>Bandiera</th>
+        <th>Nome</th>
+        <th>Indirizzo</th>
+        <th>Comune</th>
+        <th>Provincia</th>
+        <th></th>
+    </tr>
+
+    <% @station.each do |station| %>
+        <tr>
+            <td><%= station.Bandiera %></td>
+            <td><%= station.Nome %></td>
+            <td><%= station.Indirizzo %></td>
+            <td><%= station.Comune %></td>
+            <td><%= station.Provincia %></td>
+            <td><%= link_to 'Show', station_path(station) %></td>
+            <td><%= link_to 'Edit', edit_station_path(station) %></td>
+            <td><%= link_to 'Destroy', station_path(station),
+                            method: :delete,
+                            data: {confirm: 'Sei sicuro?'} %></td>
+        </tr>
+    <% end %>
+</table>

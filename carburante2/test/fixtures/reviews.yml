@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commenter: 
+  body: MyText
+  stars: 1
+  station: one
+
+two:
+  commenter: 
+  body: MyText
+  stars: 1
+  station: two
