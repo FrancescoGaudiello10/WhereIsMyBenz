@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_105652) do
+ActiveRecord::Schema.define(version: 2018_04_24_211304) do
 
-  create_table "anagrafica_impianti_attivi", primary_key: "idImpianto", id: :text, force: :cascade do |t|
+  create_table "implants", primary_key: "idImpianto", id: :text, force: :cascade do |t|
     t.text "Gestore"
     t.text "Bandiera"
     t.text "TipoImpianto"
@@ -22,15 +22,19 @@ ActiveRecord::Schema.define(version: 2018_04_24_105652) do
     t.text "Provincia"
     t.text "Latitudine"
     t.text "Longitudine"
-    t.index ["idImpianto"], name: "sqlite_autoindex_anagrafica_impianti_attivi_1", unique: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
   end
 
-  create_table "prezzo_alle_8", id: false, force: :cascade do |t|
+  create_table "prices", id: false, force: :cascade do |t|
     t.text "idImpianto", null: false
     t.text "descCarburante"
     t.text "prezzo"
     t.text "isSelf"
     t.text "dtComu"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

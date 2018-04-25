@@ -13,6 +13,15 @@ class ImplantsController < ApplicationController
                        .limit(20)
     end
 
+    def new
+        @implant = Implant.new
+    end
+
+    def create
+        @implant = Implant.new(station_params) #Station è una classe
+        @implant.save #salva nel database, valore booleano
+    end
+
     def show
         @id = params[:id]
         @implant = Implant
@@ -32,7 +41,7 @@ class ImplantsController < ApplicationController
 
     private
     def implant_params
-        params.require(:implant).permit(:Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
+        params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
     end
 
 end
