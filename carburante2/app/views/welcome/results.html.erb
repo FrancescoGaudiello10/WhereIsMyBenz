@@ -1,3 +1,11 @@
 <h1>Risultati della ricerca:</h1>
 
-<p/><%= render 'implants/show' %>
+<% if @properties.empty? %>
+
+    <h3>Nessun risultato.</h3>
+
+<% else %>
+
+    <p/><%= render 'properties/list' %>
+
+<% end %>

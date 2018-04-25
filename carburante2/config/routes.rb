@@ -3,9 +3,6 @@ Rails.application.routes.draw do
     get 'welcome/index'
     get 'welcome/results'
 
-    get 'implants/index'
-    get 'implants/show'
-
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
     # match ':controller(/:action(/:id))', :via => :get
@@ -17,10 +14,9 @@ Rails.application.routes.draw do
     # end
 
     resources :cars
+
     resources :stations do
         resources :reviews
     end
-    resources :implants
-    resources :prices
 
 end

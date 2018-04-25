@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
     def index
-        #@properties = Property.all
+        @properties = Property.all
     end
 
 end
