@@ -1,0 +1,20 @@
+<h1>Listing implants</h1>
+
+    <%= form_with scope: :implant, url: implants_path, local: true do |f| %>
+        <p>
+            <%= f.label :Gestore %>
+            <%= f.text_area :Gestore %>
+        </p>
+
+        <p>
+        <%= f.label :Bandiera %>
+        <%= f.text_area :Bandiera %>
+        </p>
+
+        <p>
+        <%= f.label :Indirizzo %>
+        <%= f.text_area :Indirizzo %>
+        </p>
+
+    <% end %>
+

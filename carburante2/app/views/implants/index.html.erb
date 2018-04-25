@@ -1,0 +1,36 @@
+<h1>Listing implants</h1>
+
+<table>
+    <tr>
+        <th>Bandiera</th>
+        <th>Nome</th>
+        <th>Indirizzo</th>
+        <th>Comune</th>
+        <th>Provincia</th>
+        <th></th>
+    </tr>
+
+<!--    <%# @implant.each do |implant| %>
+        <tr>
+            <td><%#= implant.Gestore %></td>
+            <td><%#= implant.Bandiera %></td>
+            <td><%#= implant.TipoImpianto %></td>
+            <td><%#= implant.NomeImpianto %></td>
+            <td><%#= implant.Indirizzo %></td>
+            <td><%#= implant.Comune %></td>
+            <td><%#= implant.Provincia %></td>
+            <td><%#= implant.Latitudine %></td>
+            <td><%#= implant.Longitudine %></td>
+            <td><%#= link_to 'Show', implant_path(implant) %></td>
+            <td><%#= link_to 'Edit', edit_implant_path(implant) %></td>
+        </tr>
+    <%# end %>-->
+
+    <%= form_with scope: :implant, url: implants_path, local: true do |form| %>
+        <%= f.label :Gestore %>
+        <%= f.text_field :Gestore %>
+        <%= f.submit %>
+    <% end %>
+
+</table>
+
