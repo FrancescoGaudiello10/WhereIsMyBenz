@@ -1,0 +1,29 @@
+<h1> <%= @Bandiera %> </h1>
+<h4> <%= @Indirizzo %> <%=@Comune %> (<%= @Provincia %>) </h4>
+
+Tipo di Carburante:
+<table style="width:100%">
+    <tr>
+<!--        https://stackoverflow.com/a/25611732/1440037-->
+        <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
+        <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
+    </tr>
+    <tr>
+        <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
+        <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium Diesel</td>
+    </tr>
+
+    <tr>
+        <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
+        <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano </td>
+    </tr>
+
+</table>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDm8BBMPFnGS-xL18zKDDMAjDHkCQ1pUfc
+    &q=<%= @Indirizzo %>" allowfullscreen>
+</iframe>
