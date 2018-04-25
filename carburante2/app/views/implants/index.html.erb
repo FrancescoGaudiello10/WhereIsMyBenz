@@ -1,36 +1,28 @@
 <h1>Listing implants</h1>
 
-<table>
-    <tr>
-        <th>Bandiera</th>
-        <th>Nome</th>
-        <th>Indirizzo</th>
-        <th>Comune</th>
-        <th>Provincia</th>
-        <th></th>
-    </tr>
+<!--Lo stile va tolto da qui e messo in assets/stylesheets-->
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
-<!--    <%# @implant.each do |implant| %>
+    th, td {
+        padding: 15px;
+    }
+</style>
+
+<% @implant.each do |i| %>
+    <table style="width:100%">
         <tr>
-            <td><%#= implant.Gestore %></td>
-            <td><%#= implant.Bandiera %></td>
-            <td><%#= implant.TipoImpianto %></td>
-            <td><%#= implant.NomeImpianto %></td>
-            <td><%#= implant.Indirizzo %></td>
-            <td><%#= implant.Comune %></td>
-            <td><%#= implant.Provincia %></td>
-            <td><%#= implant.Latitudine %></td>
-            <td><%#= implant.Longitudine %></td>
-            <td><%#= link_to 'Show', implant_path(implant) %></td>
-            <td><%#= link_to 'Edit', edit_implant_path(implant) %></td>
+            <td><%= i.Bandiera %></td>
+            <td><%= i.Gestore %></td>
+            <td><%= i.prezzo %></td>
+            <td><%= i.descCarburante %></td>
+            <td><%= i.Indirizzo %></td>
+            <td><%= i.Comune %></td>
+            <td><%= i.Provincia %></td>
+            <td><%= link_to 'Show', implant_path(i) %></td>
         </tr>
-    <%# end %>-->
-
-    <%= form_with scope: :implant, url: implants_path, local: true do |form| %>
-        <%= f.label :Gestore %>
-        <%= f.text_field :Gestore %>
-        <%= f.submit %>
-    <% end %>
-
-</table>
-
+    </table>
+<% end %>

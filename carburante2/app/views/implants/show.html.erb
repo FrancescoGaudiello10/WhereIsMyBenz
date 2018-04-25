@@ -1,20 +1,28 @@
-<h1>Listing implants</h1>
+<h1>Impianti trovati</h1>
 
-    <%= form_with scope: :implant, url: implants_path, local: true do |f| %>
-        <p>
-            <%= f.label :Gestore %>
-            <%= f.text_area :Gestore %>
-        </p>
+<!--Lo stile va tolto da qui e messo in assets/stylesheets-->
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 15px;
+    }
+</style>
 
-        <p>
-        <%= f.label :Bandiera %>
-        <%= f.text_area :Bandiera %>
-        </p>
-
-        <p>
-        <%= f.label :Indirizzo %>
-        <%= f.text_area :Indirizzo %>
-        </p>
-
-    <% end %>
+<% @implant.each do |i| %>
+    <table style="width:100%">
+    <tr>
+        <td><%= i.Bandiera %></td>
+        <td><%= i.Gestore %></td>
+        <td><%= i.prezzo %></td>
+        <td><%= i.descCarburante %></td>
+        <td><%= i.Indirizzo %></td>
+        <td><%= i.Comune %></td>
+        <td><%= i.Provincia %></td>
+        <td><%= link_to 'Dettagli', implant_path(i) %></td>
+    </tr>
+    </table>
+<% end %>
 
