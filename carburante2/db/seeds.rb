@@ -1,4 +1,4 @@
-# Questo file riempie le tabelle del database con i dati degli impianti e dei prezzi tramite il comando 
+# Questo file riempie le tabelle del database con i dati degli impianti e dei prezzi nei file csv tramite il comando 
 # rake db:seed
 
 require 'csv'
