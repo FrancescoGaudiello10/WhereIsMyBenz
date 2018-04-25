@@ -1,4 +1,4 @@
-<h1>Listing implants</h1>
+<h1>Impianti trovati</h1>
 
 <!--Lo stile va tolto da qui e messo in assets/stylesheets-->
 <style>
@@ -22,7 +22,7 @@
             <td><%= i.Indirizzo %></td>
             <td><%= i.Comune %></td>
             <td><%= i.Provincia %></td>
-            <td><%= link_to 'Show', implant_path(i) %></td>
+            <td><%= link_to 'Dettagli', implant_path(i) %></td>
         </tr>
     </table>
 <% end %>

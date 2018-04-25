@@ -1,28 +1,34 @@
-<h1>Impianti trovati</h1>
+<!--https://apidock.com/rails/ActiveRecord/Calculations/pluck-->
+<h1> <%= @implant.pluck(:Bandiera)[0] %> </h1>
+<h4> <%= @implant.pluck(:Indirizzo)[0] %> <%= @implant.pluck(:Comune)[0] %> (<%= @implant.pluck(:Provincia)[0] %>) </h4>
 
-<!--Lo stile va tolto da qui e messo in assets/stylesheets-->
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 15px;
-    }
-</style>
+<% @carburanti = @implant.pluck(:descCarburante) %>
 
-<% @implant.each do |i| %>
-    <table style="width:100%">
+Tipo di Carburante:
+<table style="width:100%">
     <tr>
-        <td><%= i.Bandiera %></td>
-        <td><%= i.Gestore %></td>
-        <td><%= i.prezzo %></td>
-        <td><%= i.descCarburante %></td>
-        <td><%= i.Indirizzo %></td>
-        <td><%= i.Comune %></td>
-        <td><%= i.Provincia %></td>
-        <td><%= link_to 'Dettagli', implant_path(i) %></td>
+<!--        https://stackoverflow.com/a/25611732/1440037-->
+        <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
+        <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
     </tr>
-    </table>
-<% end %>
+    <tr>
+        <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
+        <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium Diesel</td>
+    </tr>
 
+    <tr>
+        <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
+        <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano </td>
+    </tr>
+
+</table>
+
+<% @lat = @implant.pluck(:Latitudine)[0] %>
+<% @long = @implant.pluck(:Longitudine)[0] %>
+<iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDm8BBMPFnGS-xL18zKDDMAjDHkCQ1pUfc
+    &q=#{lat},#{long}" >
+</iframe>towe
