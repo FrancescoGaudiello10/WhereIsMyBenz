@@ -10,7 +10,7 @@ class ImplantsController < ApplicationController
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
                        .where('Comune = ? AND descCarburante = ?', @city, @tipo_carburante)
                        .order('prices.prezzo asc')
-                       .limit(20)
+                       .limit(30)
     end
 
     def new
@@ -22,6 +22,7 @@ class ImplantsController < ApplicationController
         @implant.save #salva nel database, valore booleano
     end
 
+    require 'httparty'
     def show
         @id = params[:id]
         @implant = Implant
@@ -29,6 +30,7 @@ class ImplantsController < ApplicationController
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
                        .where('Implants.idImpianto = ?', @id)
                        .group('prices.descCarburante')
+
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
         @Bandiera   = @implant.pluck(:Bandiera)[0]
         @Indirizzo  = @implant.pluck(:Indirizzo)[0]
@@ -37,6 +39,8 @@ class ImplantsController < ApplicationController
         @carburanti = @implant.pluck(:descCarburante)
         @lat        = @implant.pluck(:Latitudine)[0]
         @long       = @implant.pluck(:Longitudine)[0]
+
+        @weather = HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=cdcc43f188d9a63e00471c9b6b45cada').parsed_response
     end
 
     private
