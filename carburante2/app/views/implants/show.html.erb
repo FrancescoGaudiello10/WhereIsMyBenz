@@ -1,7 +1,9 @@
-<h1> <%= @Bandiera %> </h1>
+<h1> <%= @Bandiera.upcase %> </h1>
 <h4> <%= @Indirizzo %> <%=@Comune %> (<%= @Provincia %>) </h4>
 
-Tipo di Carburante:
+<br>
+
+<h5> Tipo di Carburante: </h5>
 <table style="width:100%">
     <tr>
 <!--        https://stackoverflow.com/a/25611732/1440037-->
@@ -20,9 +22,14 @@ Tipo di Carburante:
 
 </table>
 
-
-<%= @weather %>
-
+<br>
+<h5>Meteo:</h5>
+<%= @weather_description %><br>
+Temperatura: <%= @weather_temp %>° <br>
+Minima: <%= @weather_temp_min %>° <br>
+Massima: <%= @weather_temp_max %>° <br>
+Alba: <%= @weather_sunrise %> <br>
+Tramonto: <%= @weather_sunset %> <br>
 
 <div style='width: 800px;'>
     <div id="map" style='width: 800px; height: 400px;'></div>
