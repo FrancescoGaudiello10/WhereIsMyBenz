@@ -1,3 +1,4 @@
+<!--Mostro il numero di impianti-->
 <% if @implant.count('Implants.idImpianto') > 0 %>
     <h1> <%= @implant.count('Implants.idImpianto') %> impianti trovati </h1>
 <% else %>
@@ -15,6 +16,8 @@
         padding: 15px;
     }
 </style>
+
+<%= @raggio %>
 
 <% @implant.each do |i| %>
     <table style="width:100%">

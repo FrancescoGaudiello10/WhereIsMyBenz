@@ -47,6 +47,8 @@ gem 'jquery-rails'
 # autenticazione
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 #google maps
 #gem 'gmaps4rails'
 # maps

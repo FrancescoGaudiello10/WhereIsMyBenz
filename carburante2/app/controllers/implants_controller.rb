@@ -1,7 +1,11 @@
 class ImplantsController < ApplicationController
 
+    #autenticazione richiesta per poter effettuare la ricerca
+    before_action :authenticate_user!
+
     def index
         @city = params[:city].upcase
+        @raggio = params[:raggio]
         @tipo_carburante = params[:tipo_carburante]
         @litri_rimanenti = params[:litri_rimanenti]
         # https://stackoverflow.com/a/34311227/1440037
