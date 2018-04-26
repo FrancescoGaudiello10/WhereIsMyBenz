@@ -1,4 +1,8 @@
-<h1>Impianti trovati</h1>
+<% if @implant.count('Implants.idImpianto') > 0 %>
+    <h1> <%= @implant.count('Implants.idImpianto') %> impianti trovati </h1>
+<% else %>
+    <h1> Nessun impianto trovato </h1>
+<% end %>
 
 <!--Lo stile va tolto da qui e messo in assets/stylesheets-->
 <style>
