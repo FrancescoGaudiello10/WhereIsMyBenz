@@ -1,4 +1,4 @@
-# # Istruzioni (Rails 2.3.6)
+# # Istruzioni (Rails 2.3.0)
 
 ## Dopo aver clonato la repo _per la prima volta_ eseguire questi comandi
 
