@@ -31,6 +31,6 @@ Massima: <%= @weather_temp_max %>° <br>
 Alba: <%= @weather_sunrise %> <br>
 Tramonto: <%= @weather_sunset %> <br>
 
-<div style='width: 800px;'>
-    <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
+
+<br>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&center=#{@lat}%2C#{@long}&markers=#{@lat}%2C#{@long}|#{@coordinates_str}" %>

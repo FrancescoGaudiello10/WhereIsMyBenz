@@ -93,9 +93,9 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
+    geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    gmaps4rails (2.1.2)
     hashie (3.5.7)
     httparty (0.16.2)
       multi_xml (>= 0.5.2)
@@ -255,7 +255,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
-  gmaps4rails
+  geocoder
   httparty
   jbuilder (~> 2.5)
   jquery-rails

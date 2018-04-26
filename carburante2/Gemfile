@@ -48,7 +48,9 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 #google maps
-gem 'gmaps4rails'
+#gem 'gmaps4rails'
+# maps
+gem 'geocoder'
 #rails
 gem 'httparty'
 

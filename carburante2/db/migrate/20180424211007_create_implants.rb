@@ -8,8 +8,8 @@ class CreateImplants < ActiveRecord::Migration[5.2]
       t.text "Indirizzo"
       t.text "Comune"
       t.text "Provincia"
-      t.text "Latitudine"
-      t.text "Longitudine"
+      t.float "latitude"
+      t.float "longitude"
       t.timestamps
     
     end

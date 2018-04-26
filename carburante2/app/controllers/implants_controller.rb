@@ -17,6 +17,10 @@ class ImplantsController < ApplicationController
         @implant = Implant.new
     end
 
+    # def find
+    #     @implant = Implant.find(params[:id])
+    # end
+
     def create
         @implant = Implant.new(station_params) #Station è una classe
         @implant.save #salva nel database, valore booleano
@@ -36,16 +40,33 @@ class ImplantsController < ApplicationController
         @Comune     = @implant.pluck(:Comune)[0]
         @Provincia  = @implant.pluck(:Provincia)[0]
         @carburanti = @implant.pluck(:descCarburante)
-        @lat        = @implant.pluck(:Latitudine)[0]
-        @long       = @implant.pluck(:Longitudine)[0]
+        @lat        = @implant.pluck(:latitude)[0]
+        @long       = @implant.pluck(:longitude)[0]
 
+        #Impianti vicini a quello selezionato
+        get_nearby_implants_array
+
+        #Meteo per impianto selezionato
         get_weather
 
     end
 
     private
+
     def implant_params
         params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
+    end
+
+    #restituiscd array con le coordinate delle stazioni vicine a quella selezionata (nel raggio di 2 KM)
+    def get_nearby_implants_array
+        @nearby  = @implant.find(params[:id]).nearbys(2) #KM
+        #@coordinates = Array.new
+        @coordinates_str = ""
+        @nearby.each do |i|
+            #@coordinates.push([i.latitude, i.longitude])
+            @coordinates_str += "#{i.latitude},#{i.longitude}|"
+        end
+
     end
 
     def get_weather
