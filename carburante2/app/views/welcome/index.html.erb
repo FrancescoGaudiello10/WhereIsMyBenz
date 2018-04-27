@@ -43,19 +43,9 @@
 
     <script>
         function initAutocomplete() {
-            var options = {
-                componentRestrictions: {country: "it"}
-            };
             // Create the search box and link it to the UI element.
             var input = document.getElementById('city');
-            var searchBox = new google.maps.places.SearchBox(input,options);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function () {
-                searchBox.setBounds(map.getBounds());
-            });
-
+            var searchBox = new google.maps.places.SearchBox(input);
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
             searchBox.addListener('places_changed', function () {
