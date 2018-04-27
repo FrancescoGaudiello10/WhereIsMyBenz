@@ -5,6 +5,7 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:facebook]
 
+    # a ciascun utente e' associato un array con gli id degli impianti visitati
     serialize :idImpianto, Array
 
     def self.new_with_session(params, session)
