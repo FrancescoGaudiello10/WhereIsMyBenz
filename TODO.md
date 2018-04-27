@@ -5,6 +5,5 @@
 - [ ] Aggiungere mappa tra i risultati
 - [x] mappa nel dettaglio stazione
 - [x] statistiche
-- [ ] preferiti
+- [ ] Visitati
 - [ ] login con google o github o twitter
-

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+    get 'calcs/index'
     get 'welcome/index'
     get 'welcome/results'
 
     get 'implants/index'
     get 'implants/show'
     get 'implants/stats'
+
+    get 'calcs/index'
 
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -23,5 +26,6 @@ Rails.application.routes.draw do
     end
     resources :implants
     resources :prices
+    resources :calcs
 
 end

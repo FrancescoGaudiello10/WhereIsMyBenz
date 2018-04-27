@@ -9,7 +9,7 @@ class ImplantsController < ApplicationController
 
         @raggio = params[:raggio].to_s[-3] #fa schifo così ma non so come prendere il valore
         @tipo_carburante = params[:tipo_carburante]
-        @litri_rimanenti = params[:litri_rimanenti]
+        # @litri_rimanenti = params[:litri_rimanenti]
 
         # # https://stackoverflow.com/a/34311227/1440037
         # Prendo tutti gli impianti con i relativi prezzi

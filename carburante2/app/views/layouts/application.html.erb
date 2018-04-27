@@ -44,12 +44,15 @@
                         <li><%= link_to "Statistiche", implants_stats_path %></li>
                         <li><%= link_to "Stazioni", stations_path %></li>
                         <li><%= link_to "Preferiti", welcome_index_path %></li>
-                        <!-- Conversazioni -->
+
                     </ul>
+<!--                    destra-->
                     <ul class="nav navbar-nav navbar-right">
-                        <li><%= link_to current_user.email, edit_user_registration_url %></li>
+                        <% @t = current_user.admin ? " (admin)" : "" %>
+                        <li> <%= link_to current_user.email + @t, edit_user_registration_url %> </li>
                         <li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
                     </ul>
+
                 <% else %>
                     <ul class="nav navbar-nav">
                         <li>
@@ -76,9 +79,9 @@
       <% end %>
     </div>
 
-    <div id="contact">
-        <a href="test@gmail.com" >Contattaci</a>
-    </div>
+<!--    <div id="contact">-->
+<!--        <a href="test@gmail.com" >Contattaci</a>-->
+<!--    </div>-->
 
     <%= yield %>
 

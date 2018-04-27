@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_26_201715) do
+ActiveRecord::Schema.define(version: 2018_04_27_143835) do
 
 # Could not dump table "implants" because of following StandardError
 #   Unknown type 'REAL' for column 'latitude'
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_04_26_201715) do
     t.string "provider"
     t.string "uid"
     t.boolean "admin", default: false
+    t.text "idImpianto"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

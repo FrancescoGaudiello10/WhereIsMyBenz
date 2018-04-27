@@ -17,10 +17,10 @@ Mostro il numero di impianti
         <tr>
             <div class="col-md-2"> <h4> <%= i.Bandiera.upcase %> </h4> </div>
             <div class="col-md-2"> <h4> <b> €<%= i.prezzo %> </b> </h4> </div>
-<!--            <div class="col-md-2"><%#= i.Gestore.humanize %></div>-->
             <div class="col-md-2"> <h4> <%= i.descCarburante %> </h4> </div>
             <div class="col-md-2">      <%= i.Indirizzo.humanize[0..-7] %>,<%= i.Comune.humanize %> (<%= i.Provincia %>)</div>
             <div class="col-md-2"> <h4> <%= link_to 'Dettagli', implant_path(i) %> </h4> </div>
+            <div class="col-md-2"> <h4> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%> </h4></div>
         </tr>
     </table>
 <% end %>
