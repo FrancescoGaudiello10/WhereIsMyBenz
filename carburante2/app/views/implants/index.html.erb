@@ -1,35 +1,30 @@
+<br>
 <!--Mostro il numero di impianti-->
-<% if @implant.count('Implants.idImpianto') > 0 %>
-    <h1> <%= @implant.count('Implants.idImpianto') %> impianti trovati </h1>
-<% else %>
-    <h1> Nessun impianto trovato </h1>
-<% end %>
+<%# if @implant.count('Implants.idImpianto') > 0 %>
+<!--    <h1> <%#= @implant.count('Implants.idImpianto') %> impianti trovati </h1>-->
+<%# else %>
+<!--    <h1> Nessun impianto trovato </h1>-->
+<%# end %>
 
-<!--Lo stile va tolto da qui e messo in assets/stylesheets-->
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
+<h1>Impianti trovati</h1>
 
-    th, td {
-        padding: 15px;
-    }
-</style>
+<br>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x300&sensor=false&zoom=14&center=#{@coord}&markers=#{@coordinates_str}" %>
+</br>
+
+<br>
 
 <%= @raggio %>
 
 <% @implant.each do |i| %>
     <table style="width:100%">
         <tr>
-            <td><%= i.Bandiera %></td>
-            <td><%= i.Gestore %></td>
-            <td><%= i.prezzo %></td>
-            <td><%= i.descCarburante %></td>
-            <td><%= i.Indirizzo %></td>
-            <td><%= i.Comune %></td>
-            <td><%= i.Provincia %></td>
-            <td><%= link_to 'Dettagli', implant_path(i) %></td>
+            <div class="col-md-2"> <h4> <%= i.Bandiera.upcase %> </h4> </div>
+            <div class="col-md-2"> <h4> <b> €<%= i.prezzo %> </b> </h4> </div>
+<!--            <div class="col-md-2"><%#= i.Gestore.humanize %></div>-->
+            <div class="col-md-2"> <h4> <%= i.descCarburante %> </h4> </div>
+            <div class="col-md-2">      <%= i.Indirizzo.humanize[0..-7] %>,<%= i.Comune.humanize %> (<%= i.Provincia %>)</div>
+            <div class="col-md-2"> <h4> <%= link_to 'Dettagli', implant_path(i) %> </h4> </div>
         </tr>
     </table>
 <% end %>

@@ -10,6 +10,7 @@ class CreateImplants < ActiveRecord::Migration[5.2]
       t.text "Provincia"
       t.float "latitude"
       t.float "longitude"
+      t.float "distance"
       t.timestamps
     
     end

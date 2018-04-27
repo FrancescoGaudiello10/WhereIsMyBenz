@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_211304) do
+ActiveRecord::Schema.define(version: 2018_04_26_201715) do
 
-  create_table "implants", primary_key: "idImpianto", id: :text, force: :cascade do |t|
-    t.text "Gestore"
-    t.text "Bandiera"
-    t.text "TipoImpianto"
-    t.text "NomeImpianto"
-    t.text "Indirizzo"
-    t.text "Comune"
-    t.text "Provincia"
-    t.text "Latitudine"
-    t.text "Longitudine"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
-  end
+# Could not dump table "implants" because of following StandardError
+#   Unknown type 'REAL' for column 'latitude'
 
   create_table "prices", id: false, force: :cascade do |t|
     t.text "idImpianto", null: false
@@ -72,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_04_24_211304) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

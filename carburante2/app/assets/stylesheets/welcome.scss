@@ -1,3 +1,58 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+btn {
+  alignment: center;
+}
+
+.main_div {
+  padding: 20px ;
+  margin-bottom: 20px;
+  color: #000000;
+  background-color: #f0ad4e;
+
+  h1,
+  .h1 {
+    color: #ffffff;
+  }
+
+  p {
+    margin-bottom: (20px / 2);
+    font-size: 24px;
+    font-weight: 200;
+  }
+
+
+  .container &,
+  .container-fluid & {
+    border-radius: 10px; // Only round corners at higher resolutions if contained in a container
+  }
+
+  .container {
+    max-width: 100%;
+    min-height: 200px;
+  }
+
+  @media screen and (min-width: 40px) {
+    padding: (20px * 1.6) 0;
+
+    .container &,
+    .container-fluid & {
+      padding-left:  (20px * 2);
+      padding-right: (20px * 2);
+    }
+
+    h1,
+    .h1 {
+      font-size: (20px * 4.5);
+    }
+  }
+}

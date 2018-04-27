@@ -84,12 +84,12 @@
     <%= yield %>
 
     <!-- Fisso in fondo -->
-    <div style="position: absolute; bottom: 5px; padding-left:1em">
-        <% if user_signed_in? %>
-        Logged in as <%= current_user.email%> (app/views/layouts/application.html.erb)
-        [<%= link_to 'Logout',destroy_user_session_path, :method => :delete%>]
-        <% end %>
-    </div>
+<!--    <div style="position: absolute; bottom: 5px; padding-left:1em">-->
+        <%# if user_signed_in? %>
+<!--        Logged in as <%#= current_user.email%> (app/views/layouts/application.html.erb)-->
+<!--        [<%#= link_to 'Logout',destroy_user_session_path, :method => :delete%>]-->
+        <%# end %>
+<!--    </div>-->
 </div>
 
 </body>

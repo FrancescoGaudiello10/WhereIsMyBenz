@@ -4,26 +4,33 @@ class ImplantsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @city = params[:city].upcase
-        @raggio = params[:raggio]
+        @city = params[:city]
+        @coord = Geocoder.coordinates(@city)
+
+        @raggio = params[:raggio].to_s[-3] #fa schifo così ma non sapevo come prendere il valore
         @tipo_carburante = params[:tipo_carburante]
         @litri_rimanenti = params[:litri_rimanenti]
-        # https://stackoverflow.com/a/34311227/1440037
+
+        # # https://stackoverflow.com/a/34311227/1440037
+        # Prendo tutti gli impianti con i relativi prezzi
+        # che hanno il tipo di carburante cercato e sono vicini al punto cercato,
+        # ordinati per prezzo crescente
         @implant = Implant
                        .select('Implants.*, prices.*')
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                       .where('Comune = ? AND descCarburante = ?', @city, @tipo_carburante)
-                       .order('prices.prezzo asc')
+                       .where('descCarburante = ?',@tipo_carburante)
+                       .group('Implants.Indirizzo')
+                       .order('prices.prezzo ASC')
                        .limit(30)
+                       .near(@coord, @raggio, :order => :distance) #magia
+
+        get_implants_array_coord(@implant)
+
     end
 
     def new
         @implant = Implant.new
     end
-
-    # def find
-    #     @implant = Implant.find(params[:id])
-    # end
 
     def create
         @implant = Implant.new(station_params) #Station è una classe
@@ -55,6 +62,7 @@ class ImplantsController < ApplicationController
 
     end
 
+
     private
 
     def implant_params
@@ -64,13 +72,18 @@ class ImplantsController < ApplicationController
     #restituiscd array con le coordinate delle stazioni vicine a quella selezionata (nel raggio di 2 KM)
     def get_nearby_implants_array
         @nearby  = @implant.find(params[:id]).nearbys(2) #KM
-        #@coordinates = Array.new
         @coordinates_str = ""
         @nearby.each do |i|
-            #@coordinates.push([i.latitude, i.longitude])
             @coordinates_str += "#{i.latitude},#{i.longitude}|"
         end
+    end
 
+    #restituiscd array con le coordinate delle stazioni risultato della ricerca
+    def get_implants_array_coord(implant)
+        @coordinates_str = ""
+        implant.each do |i|
+            @coordinates_str += "#{i.latitude},#{i.longitude}|"
+        end
     end
 
     def get_weather
