@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
     get 'implants/index'
     get 'implants/show'
+    get 'implants/stats'
 
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

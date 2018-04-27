@@ -1,0 +1,46 @@
+<h1>Statistiche</h1>
+
+<%= form_tag("/implants/stats", method: :get) do %>
+<div class="input">
+    <p>
+        Tipo carburante:
+        <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
+                       :include_blank => '-- Seleziona --', required: true %>
+    </p>
+
+    <p>
+        Ordinamento:
+        <%= select_tag :order, options_for_select(ordine),
+                       :include_blank => '-- Seleziona --', required: true %>
+    </p>
+
+</div>
+    <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
+<% end %>
+
+<br>
+
+<h3>
+In Italia, queste tre stazioni di rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
+</h3>
+
+<div>
+    <% @prezzi.each do |i| %>
+        <table style="width:100%">
+            <tr>
+                <div class="col-md-2"><h4> <%= i.Bandiera.upcase %> </h4></div>
+                <div class="col-md-2"><h4><b> €<%= i.prezzo %> </b></h4></div>
+                <!--            <div class="col-md-2"><%#= i.Gestore.humanize %></div>-->
+                <div class="col-md-2"><h4> <%= i.descCarburante %> </h4></div>
+                <div class="col-md-2">      <%= i.Indirizzo.humanize[0..-7] %>,<%= i.Comune.humanize %>
+                    (<%= i.Provincia %>)
+                </div>
+                <div class="col-md-2"><h4> <%= link_to 'Dettagli', implant_path(i) %> </h4></div>
+            </tr>
+        </table>
+    <% end %>
+</div>
+
+<br>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x800&sensor=false&zoom=6&center=42.433516,13.003216&markers=#{@coordinates_str}" %>
+</br>
