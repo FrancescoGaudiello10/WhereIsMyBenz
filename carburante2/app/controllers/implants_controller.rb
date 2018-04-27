@@ -47,6 +47,7 @@ class ImplantsController < ApplicationController
 
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
         @Bandiera   = @implant.pluck(:Bandiera)[0]
+        @Gestore    = @implant.pluck(:Gestore)[0]
         @Indirizzo  = @implant.pluck(:Indirizzo)[0]
         @Comune     = @implant.pluck(:Comune)[0]
         @Provincia  = @implant.pluck(:Provincia)[0]

@@ -1,42 +1,69 @@
-<!--<br>-->
-<!--<h2> <%#= @Bandiera.upcase %> </h2>-->
-<!--<h4> <%#= @Indirizzo.humanize %> <%#=@Comune.humanize %> (<%#= @Provincia %>) </h4>-->
+<body>
 
-<br>
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
 
-<h5> Tipo di Carburante: </h5>
+    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+            <h2 class="display-5"> <%= @Bandiera.upcase %> </h2>
+            <p class="lead"> <%= @Gestore.humanize %>  </p>
+        </div>
 
-<% @carburanti_possibili = ["Benzina", "Gasolio", "Blue Super", "Excellium Diesel", "GPL", "Metano"] %>
-<% @carburanti_possibili.each do |c| %>
-    <table style="width:100%">
-        <tr>
-            <div class="col-md-2"> <%= check_box_tag c, 1, @carburanti.include?(c) %> <h4> <%=c%> </h4> </div>
-        </tr>
-    </table>
-<% end %>
+        <h5> Tipo di Carburante: </h5>
 
-<!--<h5>Meteo:</h5>-->
-<%= @weather_description %><br>
-Temperatura: <%= @weather_temp %>° <br>
-Minima: <%= @weather_temp_min %>° <br>
-Massima: <%= @weather_temp_max %>° <br>
-Alba: <%= @weather_sunrise %> <br>
-Tramonto: <%= @weather_sunset %> <br>
+        <table style="width:100%">
+            <tr>
+                <!--        https://stackoverflow.com/a/25611732/1440037-->
+                <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
+                <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
+            </tr>
+            <tr>
+                <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
+                <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium
+                    Diesel
+                </td>
+            </tr>
 
-<!--Mappa-->
-<iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="//www.google.com/maps/embed/v1/place?q=<%=@Indirizzo%>
+            <tr>
+                <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
+                <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano</td>
+            </tr>
+
+        </table>
+
+        <h5>Meteo:</h5>
+        <%= @weather_description %><br>
+        Temperatura: <%= @weather_temp %>° <br>
+        Minima: <%= @weather_temp_min %>° <br>
+        Massima: <%= @weather_temp_max %>° <br>
+        Alba: <%= @weather_sunrise %> <br>
+        Tramonto: <%= @weather_sunset %> <br>
+
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+
+    <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+            <h2 class="display-5">Maps</h2>
+            <p class="lead"> <%= @Indirizzo.humanize %> <%=@Comune.humanize %> (<%= @Provincia %>) </p>
+        </div>
+
+        <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="//www.google.com/maps/embed/v1/place?q=<%=@Indirizzo%>
       &zoom=18
       &key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
-</iframe>
+        </iframe>
 
-Street view
-<iframe width="600" height="450" frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/streetview?location=<%=@lat%>%2C<%=@long%>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
-        allowfullscreen>
-</iframe>
+        <iframe width="600" height="450" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/streetview?location=<%=@lat%>%2C<%=@long%>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
+                allowfullscreen>
+        </iframe>
 
-<!--<iframe src="http://maps.google.com/maps?q=12.927923,77.627108&z=15&output=embed"></iframe>-->
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+
+</div>
+
+</body>
