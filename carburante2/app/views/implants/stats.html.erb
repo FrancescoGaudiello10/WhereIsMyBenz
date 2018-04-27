@@ -20,27 +20,28 @@
 
 <br>
 
-<h3>
-In Italia, queste tre stazioni di rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
-</h3>
-
 <div>
-    <% @prezzi.each do |i| %>
-        <table style="width:100%">
-            <tr>
-                <div class="col-md-2"><h4> <%= i.Bandiera.upcase %> </h4></div>
-                <div class="col-md-2"><h4><b> €<%= i.prezzo %> </b></h4></div>
-                <!--            <div class="col-md-2"><%#= i.Gestore.humanize %></div>-->
-                <div class="col-md-2"><h4> <%= i.descCarburante %> </h4></div>
-                <div class="col-md-2">      <%= i.Indirizzo.humanize[0..-7] %>,<%= i.Comune.humanize %>
-                    (<%= i.Provincia %>)
-                </div>
-                <div class="col-md-2"><h4> <%= link_to 'Dettagli', implant_path(i) %> </h4></div>
-            </tr>
-        </table>
+    <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order)) %>
+        <h3>
+            In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
+        </h3>
+
+        <% @prezzi.each do |i| %>
+            <table style="width:100%">
+                <tr>
+                    <div class="col-md-2"><h4> <%= i.Bandiera.upcase %> </h4></div>
+                    <div class="col-md-2"><h4><b> €<%= i.prezzo %> </b></h4></div>
+                    <div class="col-md-2"><h4> <%= i.descCarburante %> </h4></div>
+                    <div class="col-md-2"> <%= i.Indirizzo.humanize[0..-7] %>,<%= i.Comune.humanize %>(<%= i.Provincia %>)</div>
+                    <div class="col-md-2"><h4> <%= link_to 'Dettagli', implant_path(i) %> </h4></div>
+                </tr>
+            </table>
+        <% end %>
+
+        <br>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=900x900&sensor=false&zoom=6&center=42.433516,13.003216&markers=#{@coordinates_str}" %>
+        </br>
+
     <% end %>
 </div>
 
-<br>
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x800&sensor=false&zoom=6&center=42.433516,13.003216&markers=#{@coordinates_str}" %>
-</br>

@@ -13,6 +13,8 @@ Tutto questo avverrà con **informazioni reali ed aggiornate ogni giorno**.
 
 Le pagine delle stazioni sono provviste di interessanti e statistiche utili, ma nel caso non ci fosse la propria stazione preferita sarà possibile aggiungerne una, insieme alle relative recensioni.
 
+Se un utente è un gestore di un impianto di rifornimento può aggiungere la sua stazione al database.
+
 
 
 
@@ -47,4 +49,4 @@ I ruoli previsti sono tre:
 
 - **Utente non registrato** - Questo ruolo permette di visualizzare solo la pagina inziale, dove sarà fornita un ampia illustrazione del servizio. l'unica operazione che può compiere è *Registrarsi*.
 - **Utente registrato** - Questo ruolo è per gli utenti che si sono iscritti al servizio. Possono utilizzare ogni funzionalità a disposizione ed hanno una loro proflo personale.
-- **Gestore della Stazione** (Admin) -  E' un ruolo particolare, dedicato solo ai proprietari delle stazioni di rifornimento. Tramite un CODICE ID UNIVOCO possono accedere ad alcune funzionalità extra, come l'aggiunta di note riguardanti la propria stazione (es: esaurimento carburante) o la rimozione di commenti offensivi. 
+- **Gestore della Stazione** (Admin) -  E' un ruolo particolare, dedicato solo ai proprietari delle stazioni di rifornimento. Possono accedere ad alcune funzionalità extra, come l'aggiunta di note riguardanti la propria stazione (es: esaurimento carburante) o la rimozione di commenti offensivi o la creazione di nuove stazioni.

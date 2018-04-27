@@ -1,5 +1,8 @@
 class StationsController < ApplicationController
 
+    #autenticazione richiesta, solo gli amministratori possono aggiungere stazioni
+    before_action :authenticate_user! , :admin_user, only: :index
+
     def index
         @station = Station.all
     end
@@ -49,6 +52,10 @@ class StationsController < ApplicationController
     private
     def station_params
         params.require(:station).permit(:Bandiera, :Nome, :Indirizzo, :Comune, :Provincia)
+    end
+
+    def admin_user
+        redirect_to(new_user_session_path) unless current_user.admin?
     end
 
 end

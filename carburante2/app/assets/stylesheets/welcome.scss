@@ -38,11 +38,10 @@ btn {
 
   .container {
     max-width: 100%;
-    min-height: 200px;
   }
 
   @media screen and (min-width: 40px) {
-    padding: (20px * 1.6) 0;
+    padding: (60px * 1.6) 0;
 
     .container &,
     .container-fluid & {

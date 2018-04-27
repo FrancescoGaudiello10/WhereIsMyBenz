@@ -63,22 +63,20 @@ class ImplantsController < ApplicationController
     end
 
     def stats
-        @tipo_carburante = "Benzina"
-        @order = "ASC"
         if(params.has_key?(:tipo_carburante) && params.has_key?(:order))
             @tipo_carburante = params[:tipo_carburante]
             @order = params[:order]
-        end
-        @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
-        @prezzi = Implant
-                      .select('Implants.*, prices.*')
-                      .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                      .where('descCarburante = ?',@tipo_carburante)
-                      .group('Implants.Indirizzo')
-                      .order("prices.prezzo #{@order}")
-                      .limit(3)
+            @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
+            @prezzi = Implant
+                          .select('Implants.*, prices.*')
+                          .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                          .where('descCarburante = ?',@tipo_carburante)
+                          .group('Implants.Indirizzo')
+                          .order("prices.prezzo #{@order}")
+                          .limit(8)
 
-        @coordinates_str = get_implants_array_coord(@prezzi)
+            @coordinates_str = get_implants_array_coord(@prezzi)
+        end
 
     end
 
