@@ -35,7 +35,7 @@ Il primo servizio esterno con cui comunicheremo è **Facebook**, noto *Social Ne
 
 Inoltre vengono utilizzate le API di [OpenWeatherMap](https://openweathermap.org/current) per ottenere in tempo reale le informazioni meteo di un determinato impianto di rifornimento.
 
-Infine vengono utilizzate le API di **Google Maps** per trovare i distributori più vicini al luogo cercato. In particolare, grazie a [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete), vengono suggeriti i luoghi nella barra di ricerca. L'indirizzo cercato viene poi convertito in coordinate (latidutine,longidutine) tramite [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start?hl=it) e le stazioni di rifornimento vicine vengono mostrate tramite [Google Maps Embed API](https://developers.google.com/maps/documentation/embed/?hl=it).
+Infine vengono utilizzate le API di **Google Maps** per trovare i distributori più vicini al luogo cercato. In particolare, grazie a [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete), vengono suggeriti i luoghi nella barra di ricerca. L'indirizzo cercato viene poi convertito in coordinate (latidutine,longidutine) tramite [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start?hl=it) e le stazioni di rifornimento vicine vengono mostrate tramite [Google Maps Embed API](https://developers.google.com/maps/documentation/embed/?hl=it). Infine viene mostrata la mappa Street view della stazione selezionata.
 
 
 

@@ -7,7 +7,7 @@ class ImplantsController < ApplicationController
         @city = params[:city]
         @coord = Geocoder.coordinates(@city)
 
-        @raggio = params[:raggio].to_s[-3] #fa schifo così ma non sapevo come prendere il valore
+        @raggio = params[:raggio].to_s[-3] #fa schifo così ma non so come prendere il valore
         @tipo_carburante = params[:tipo_carburante]
         @litri_rimanenti = params[:litri_rimanenti]
 

@@ -1,29 +1,21 @@
-<h1> <%= @Bandiera.upcase %> </h1>
-<h4> <%= @Indirizzo %> <%=@Comune %> (<%= @Provincia %>) </h4>
+<!--<br>-->
+<!--<h2> <%#= @Bandiera.upcase %> </h2>-->
+<!--<h4> <%#= @Indirizzo.humanize %> <%#=@Comune.humanize %> (<%#= @Provincia %>) </h4>-->
 
 <br>
 
 <h5> Tipo di Carburante: </h5>
-<table style="width:100%">
-    <tr>
-<!--        https://stackoverflow.com/a/25611732/1440037-->
-        <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
-        <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
-    </tr>
-    <tr>
-        <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
-        <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium Diesel</td>
-    </tr>
 
-    <tr>
-        <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
-        <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano </td>
-    </tr>
+<% @carburanti_possibili = ["Benzina", "Gasolio", "Blue Super", "Excellium Diesel", "GPL", "Metano"] %>
+<% @carburanti_possibili.each do |c| %>
+    <table style="width:100%">
+        <tr>
+            <div class="col-md-2"> <%= check_box_tag c, 1, @carburanti.include?(c) %> <h4> <%=c%> </h4> </div>
+        </tr>
+    </table>
+<% end %>
 
-</table>
-
-<br>
-<h5>Meteo:</h5>
+<!--<h5>Meteo:</h5>-->
 <%= @weather_description %><br>
 Temperatura: <%= @weather_temp %>° <br>
 Minima: <%= @weather_temp_min %>° <br>
@@ -31,6 +23,22 @@ Massima: <%= @weather_temp_max %>° <br>
 Alba: <%= @weather_sunrise %> <br>
 Tramonto: <%= @weather_sunset %> <br>
 
+<!--Mappa-->
+<iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="//www.google.com/maps/embed/v1/place?q=<%=@Indirizzo%>
+      &zoom=18
+      &key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
+</iframe>
 
-<br>
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&center=#{@lat}%2C#{@long}&markers=#{@lat}%2C#{@long}|#{@coordinates_str}" %>
+Street view
+<iframe width="600" height="450" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/streetview?location=<%=@lat%>%2C<%=@long%>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
+        allowfullscreen>
+</iframe>
+
+<iframe src="http://maps.google.com/maps?q=12.927923,77.627108&z=15&output=embed"></iframe>
+
+<!--<div id="map"></div>-->

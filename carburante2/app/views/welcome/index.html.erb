@@ -33,7 +33,7 @@
 
             <p>
                 Litri rimanenti:
-                <%= number_field(:litri_rimanenti, in: 10.0..100.0, step: 1) %>
+                <%= number_field(:litri_rimanenti, nil, required: false, min: 1.0, max: 50.0) %>
             </p>
 
         </div>
@@ -42,8 +42,6 @@
     <% end %>
 
     <script>
-
-
         function initAutocomplete() {
             var options = {
                 componentRestrictions: {country: "it"}
