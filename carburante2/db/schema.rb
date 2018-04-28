@@ -12,8 +12,21 @@
 
 ActiveRecord::Schema.define(version: 2018_04_27_143835) do
 
-# Could not dump table "implants" because of following StandardError
-#   Unknown type 'REAL' for column 'latitude'
+  create_table "implants", primary_key: "idImpianto", id: :text, force: :cascade do |t|
+    t.text "Gestore"
+    t.text "Bandiera"
+    t.text "TipoImpianto"
+    t.text "NomeImpianto"
+    t.text "Indirizzo"
+    t.text "Comune"
+    t.text "Provincia"
+    t.float "latitude"
+    t.float "longitude"
+    t.float "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
+  end
 
   create_table "prices", id: false, force: :cascade do |t|
     t.text "idImpianto", null: false
