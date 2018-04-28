@@ -1,5 +1,15 @@
+<head>
+<style>
+h5 {
+    border: 5px solid black;
+    border-radius: 25px;
+    background-color: green;
+}
+</style>
+
+
 <br>
-Mostro il numero di impianti
+
 <% if @implant.count('Implants.idImpianto').length > 0 %>
     <h1> <%= @implant.count('Implants.idImpianto').length %> impianti trovati </h1>
 <% else %>
@@ -7,7 +17,9 @@ Mostro il numero di impianti
 <% end %>
 
 <br>
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x300&sensor=false&zoom=14&center=#{@coord}&markers=#{@coordinates_str}" %>
+<h5 align="center">
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x300&sensor=false&zoom=14&center=#{@coord}&markers=#{@coordinates_str}"%>
+</h5>
 </br>
 
 
@@ -24,3 +36,4 @@ Mostro il numero di impianti
         </tr>
     </table>
 <% end %>
+
