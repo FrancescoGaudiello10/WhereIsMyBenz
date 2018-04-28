@@ -3,6 +3,8 @@
 
 require 'csv'
 
+puts "Sto creando il database con tutti gli impianti, ci vorra' un po' di tempo (5/10 minuti)..."
+
 CSV.foreach(Rails.root.join('db/csv/implants.csv'), headers: true, :col_sep => ";") do |row|
 	Implant.create!(
 		:idImpianto		=> row['idImpianto'],
@@ -17,6 +19,9 @@ CSV.foreach(Rails.root.join('db/csv/implants.csv'), headers: true, :col_sep => "
 		:longitude		=> row['Longitudine']
 		)
 end
+
+
+puts "Sto creando il database con tutti i prezzi, ci vorra' un po' di tempo (5/10 minuti)..."
 
 CSV.foreach(Rails.root.join('db/csv/prices.csv'), headers: true, :col_sep => ";") do |row|
 	Price.create!(
