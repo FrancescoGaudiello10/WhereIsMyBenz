@@ -13,8 +13,8 @@ CSV.foreach(Rails.root.join('db/csv/implants.csv'), headers: true, :col_sep => "
 		:Indirizzo		=> row['Indirizzo'], 	
 		:Comune			=> row['Comune'],
 		:Provincia		=> row['Provincia'],
-		:latitude		=> row['latitude'],
-		:longitude		=> row['longitude']
+		:latitude		=> row['Latitudine'],
+		:longitude		=> row['Longitudine']
 		)
 end
 
