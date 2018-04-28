@@ -3,46 +3,59 @@
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
 
     <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-        <div class="my-3 py-3">
-            <h2 class="display-5"> <%= @Bandiera.upcase %> </h2>
+
+        <div class="bg-primary my-3 py-3">
+            <h1 class="display-5"> <%= @Bandiera.upcase %> </h1>
             <p class="lead"> <%= @Gestore.humanize %>  </p>
         </div>
 
-        <h5> Tipo di Carburante: </h5>
 
-        <table style="width:100%">
-            <tr>
-                <!--        https://stackoverflow.com/a/25611732/1440037-->
-                <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
-                <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
-            </tr>
-            <tr>
-                <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
-                <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium
-                    Diesel
-                </td>
-            </tr>
+<!--        https://stackoverflow.com/a/31591260/1440037-->
+        <div class="modal-body row">
+            <div class="col-md-6">
+                <!-- Your first column here -->
+                <h3> Tipi di Carburante </h3>
 
-            <tr>
-                <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
-                <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano</td>
-            </tr>
+                <table style="width:100%">
+                    <tr>
+                        <!--        https://stackoverflow.com/a/25611732/1440037-->
+                        <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
+                        <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
+                    </tr>
+                    <tr>
+                        <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
+                        <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium Diesel </td>
+                    </tr>
 
-        </table>
+                    <tr>
+                        <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
+                        <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano</td>
+                    </tr>
 
-        <h5>Meteo:</h5>
-        <%= @weather_description %><br>
-        Temperatura: <%= @weather_temp %>° <br>
-        Minima: <%= @weather_temp_min %>° <br>
-        Massima: <%= @weather_temp_max %>° <br>
-        Alba: <%= @weather_sunrise %> <br>
-        Tramonto: <%= @weather_sunset %> <br>
+                </table>
+
+            </div>
+            <div class="col-md-6">
+                <!-- Your second column here -->
+                <h3>Meteo</h3>
+                <%= image_tag(@weather_icon) %> <br>
+                <h4> <%= @weather_description.humanize %> </h4>
+                Temperatura: <%= @weather_temp %>° <br>
+                Minima: <%= @weather_temp_min %>° <br>
+                Massima: <%= @weather_temp_max %>° <br>
+                Alba: <%= @weather_sunrise %> <br>
+                Tramonto: <%= @weather_sunset %> <br>
+
+            </div>
+        </div>
+
 
         <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
     </div>
 
     <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
         <div class="my-3 py-3">
+            <br>
             <h2 class="display-5">Maps</h2>
             <p class="lead"> <%= @Indirizzo.humanize %> <%=@Comune.humanize %> (<%= @Provincia %>) </p>
         </div>

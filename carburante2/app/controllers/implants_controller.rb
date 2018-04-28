@@ -74,7 +74,7 @@ class ImplantsController < ApplicationController
                           .where('descCarburante = ?',@tipo_carburante)
                           .group('Implants.Indirizzo')
                           .order("prices.prezzo #{@order}")
-                          .limit(8)
+                          .limit(5)
 
             @coordinates_str = get_implants_array_coord(@prezzi)
         end
@@ -111,6 +111,7 @@ class ImplantsController < ApplicationController
             :query => {:output => 'json'}
         )
         @weather_description = @weather["weather"][0]["description"]
+        @weather_icon = "http://openweathermap.org/img/w/#{@weather["weather"][0]["icon"]}.png"
         @weather_temp = @weather["main"]["temp"]
         @weather_temp_min = @weather["main"]["temp_min"]
         @weather_temp_max = @weather["main"]["temp_max"]
