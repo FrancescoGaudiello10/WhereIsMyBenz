@@ -1,0 +1,55 @@
+<h1>Impostazioni Profilo</h1>
+<h1> <%= current_user.email %></h1>
+
+<%= link_to "Impostazioni account", edit_user_registration_url %>
+
+<%= form_for @user, :url => {:action => "update"}, :html => {:method => "get"} do |f| %>
+
+    <div class="field">
+        <%= f.label "Gestore" %>
+        <%= check_box_tag :admin, 1, :admin %>
+    </div>
+
+    <div class="input-group">
+        <%= f.label :luogo_preferito %><br/>
+        <%= text_field_tag(:luogo_preferito, nil, required: true, :class => "form-control", :placeholder => current_user.luogo_preferito) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :stazione_preferita %><br/>
+        <%#= f.text_field(:stazione_preferita, :value => current_user.stazione_preferita) %>
+        <%= select_tag :stazione_preferita, options_for_select(@stazioni, current_user.stazione_preferita), :include_blank => '-- Seleziona --', required: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label :carburante_preferito %><br/>
+        <%= select_tag :carburante_preferito, options_for_select(tipo_carburante, current_user.carburante_preferito), :include_blank => '-- Seleziona --', required: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label :litri_serbatoio %><br/>
+        <%= number_field(:litri_serbatoio, nil, required: true, min: 1.0, :value => current_user.litri_serbatoio) %>
+    </div>
+
+    <br><div class="actions">
+        <%= f.submit "Aggiorna" %>
+    </div>
+
+<% end %>
+
+
+<script>
+    function initAutocomplete() {
+        var input = document.getElementById('luogo_preferito');
+        var searchBox = new google.maps.places.SearchBox(input);
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+            if (places.length == 0) {
+                return;
+            }
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
+        async defer></script>

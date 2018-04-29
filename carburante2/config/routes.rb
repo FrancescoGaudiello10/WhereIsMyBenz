@@ -1,31 +1,29 @@
 Rails.application.routes.draw do
 
-    get 'calcs/index'
-    get 'welcome/index'
-    get 'welcome/results'
+  get 'welcome/index'
+  get 'welcome/results'
 
-    get 'implants/index'
-    get 'implants/show'
-    get 'implants/stats'
+  get 'implants/index'
+  get 'implants/show'
+  get 'implants/stats'
 
-    get 'calcs/index'
+  get 'calcs/index'
 
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  get 'profiles/index'
+  get 'profiles/update'
 
-    # match ':controller(/:action(/:id))', :via => :get
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-    root 'welcome#index'
-    #root to user signin https://stackoverflow.com/a/12994856/1440037
-    # devise_scope :user do
-    #     root to: "devise/sessions#new"
-    # end
+  # match ':controller(/:action(/:id))', :via => :get
 
-    resources :cars
-    resources :stations do
-        resources :reviews
-    end
-    resources :implants
-    resources :prices
-    resources :calcs
+  root 'welcome#index'
+
+  resources :stations do
+    resources :reviews
+  end
+  resources :implants
+  resources :prices
+  resources :calcs
+  resources :profiles
 
 end

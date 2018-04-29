@@ -48,8 +48,10 @@
                     </ul>
 <!--                    destra-->
                     <ul class="nav navbar-nav navbar-right">
-                        <% @t = current_user.admin ? " (admin)" : "" %>
-                        <li> <%= link_to current_user.email + @t, edit_user_registration_url %> </li>
+<!--                        se l'utente corrente e' admin faccio vedere la scritta, altrimenti no-->
+                        <% @a = current_user.admin ? " (admin)" : "" %>
+<!--                        <li> <%#= link_to current_user.email + @a, edit_user_registration_url %> </li>-->
+                        <li> <%= link_to current_user.email + @a, profiles_index_path %> </li>
                         <li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
                     </ul>
 

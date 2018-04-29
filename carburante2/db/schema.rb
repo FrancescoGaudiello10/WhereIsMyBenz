@@ -10,22 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_27_143835) do
+ActiveRecord::Schema.define(version: 2018_04_29_082459) do
 
-  create_table "implants", primary_key: "idImpianto", id: :text, force: :cascade do |t|
-    t.text "Gestore"
-    t.text "Bandiera"
-    t.text "TipoImpianto"
-    t.text "NomeImpianto"
-    t.text "Indirizzo"
-    t.text "Comune"
-    t.text "Provincia"
-    t.float "latitude"
-    t.float "longitude"
-    t.float "distance"
+  create_table "average_caches", force: :cascade do |t|
+    t.integer "rater_id"
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "avg", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
+    t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_average_caches_on_rater_id"
+  end
+
+# Could not dump table "implants" because of following StandardError
+#   Unknown type 'REAL' for column 'latitude'
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "overall_avg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable_type_and_rateable_id"
   end
 
   create_table "prices", id: false, force: :cascade do |t|
@@ -36,6 +43,31 @@ ActiveRecord::Schema.define(version: 2018_04_27_143835) do
     t.text "dtComu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer "rater_id"
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "stars", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
+    t.index ["rateable_type", "rateable_id"], name: "index_rates_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_rates_on_rater_id"
+  end
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.string "cacheable_type"
+    t.integer "cacheable_id"
+    t.float "avg", null: false
+    t.integer "qty", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
+    t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -75,6 +107,10 @@ ActiveRecord::Schema.define(version: 2018_04_27_143835) do
     t.string "uid"
     t.boolean "admin", default: false
     t.text "idImpianto"
+    t.string "luogo_preferico"
+    t.string "stazione_preferita"
+    t.string "carburante_preferito"
+    t.integer "litri_serbatorio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
