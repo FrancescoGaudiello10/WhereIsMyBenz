@@ -54,6 +54,7 @@ class ImplantsController < ApplicationController
         @carburanti = @implant.pluck(:descCarburante)
         @lat        = @implant.pluck(:latitude)[0]
         @long       = @implant.pluck(:longitude)[0]
+        @prezzi     = @implant.pluck(:prezzo)
 
         #Impianti vicini a quello selezionato
         get_nearby_implants_array

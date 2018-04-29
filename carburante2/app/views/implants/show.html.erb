@@ -9,27 +9,25 @@
             <p class="lead"> <%= @Gestore.humanize %>  </p>
         </div>
 
-
 <!--        https://stackoverflow.com/a/31591260/1440037-->
         <div class="modal-body row">
             <div class="col-md-6">
                 <!-- Your first column here -->
                 <h3> Tipi di Carburante </h3>
-
+                <!--        https://stackoverflow.com/a/25611732/1440037-->
                 <table style="width:100%">
                     <tr>
-                        <!--        https://stackoverflow.com/a/25611732/1440037-->
-                        <td> <%= check_box_tag 'benzina', 1, @carburanti.include?("Benzina") %> Benzina</td>
-                        <td> <%= check_box_tag 'gasolio', 1, @carburanti.include?("Gasolio") %> Gasolio</td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Benzina") %> Benzina (€<%=@prezzi[0]%>) </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Gasolio") %> Gasolio (€<%=@prezzi[1]%>) </td>
                     </tr>
                     <tr>
-                        <td> <%= check_box_tag 'blue_super', 1, @carburanti.include?("Blue Super") %> Blue Super</td>
-                        <td> <%= check_box_tag 'excellium_diesel', 1, @carburanti.include?("Excellium Diesel") %> Excellium Diesel </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Blue Super") %> Blue Super </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Excellium Diesel") %> Excellium Diesel</td>
                     </tr>
 
                     <tr>
-                        <td> <%= check_box_tag 'GPL', 1, @carburanti.include?("GPL") %> GPL</td>
-                        <td> <%= check_box_tag 'Metano', 1, @carburanti.include?("Metano") %> Metano</td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("GPL") %> GPL </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Metano") %> Metano</td>
                     </tr>
 
                 </table>
@@ -64,9 +62,7 @@
             width="600"
             height="450"
             frameborder="0" style="border:0"
-            src="//www.google.com/maps/embed/v1/place?q=<%=@Indirizzo%>
-      &zoom=18
-      &key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
+            src="//www.google.com/maps/embed/v1/place?q=<%=@lat%>%2C<%=@long%>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
         </iframe>
 
         <iframe width="600" height="450" frameborder="0" style="border:0"
