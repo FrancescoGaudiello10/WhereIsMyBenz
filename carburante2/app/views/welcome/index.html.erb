@@ -15,7 +15,13 @@
             <span class="input-group-addon" id="basic-addon1">
                 <%= label_tag(:city, "Dove ti trovi?:") %>
             </span>
-            <%= text_field_tag(:city, nil, required: true, :class => "form-control", :value => current_user.luogo_preferito) %>
+
+            <% if user_signed_in? %>
+                <%= text_field_tag(:city, nil, required: true, :class => "form-control", :value => current_user.luogo_preferito) %>
+            <% else %>
+                <%= text_field_tag(:city, nil, required: true, :class => "form-control") %>
+            <% end %>
+
         </div>
 
         <br>
@@ -27,8 +33,14 @@
                 KM
             <p>
                 Tipo carburante:
-                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                               :include_blank => '-- Seleziona --' , required: true %>
+                <% if user_signed_in? %>
+                    <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
+                                   :include_blank => '-- Seleziona --', required: true %>
+                <% else %>
+                    <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
+                                   :include_blank => '-- Seleziona --', required: true %>
+                <% end %>
+
             </p>
 
 <!--            <p>-->
