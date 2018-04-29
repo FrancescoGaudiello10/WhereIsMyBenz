@@ -12,7 +12,7 @@
 
     <div class="input-group">
         <%= f.label :luogo_preferito %><br/>
-        <%= text_field_tag(:luogo_preferito, nil, required: true, :class => "form-control", :placeholder => current_user.luogo_preferito) %>
+        <%= text_field_tag(:luogo_preferito, nil, required: true, :class => "form-control", :value => current_user.luogo_preferito) %>
     </div>
 
     <div class="field">
