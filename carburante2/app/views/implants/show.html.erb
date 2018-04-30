@@ -17,17 +17,19 @@
                 <!--        https://stackoverflow.com/a/25611732/1440037-->
                 <table style="width:100%">
                     <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Benzina") %> Benzina (€<%=@prezzi[0]%>) </td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Gasolio") %> Gasolio (€<%=@prezzi[1]%>) </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Benzina") %> 
+							Benzina (€<%=@prezzi["Benzina"]%>) 
+						</td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Gasolio") %> Gasolio (€<%=@prezzi["Gasolio"]%>) </td>
                     </tr>
                     <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Blue Super") %> Blue Super </td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Excellium Diesel") %> Excellium Diesel</td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Blue Super") %> Blue Super (€<%=@prezzi["Blue Super"]%>) </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Excellium Diesel") %> Excellium Diesel (€<%=@prezzi["Excellium Diesel"]%>) </td>
                     </tr>
 
                     <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("GPL") %> GPL </td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Metano") %> Metano</td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("GPL") %> GPL (€<%=@prezzi["GPL"]%>) </td>
+                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Metano") %> Metano (€<%=@prezzi["Metano"]%>) </td>
                     </tr>
 
                 </table>

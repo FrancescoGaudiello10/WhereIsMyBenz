@@ -9,7 +9,7 @@
 
 <div class="container">
 <!--    http://guides.rubyonrails.org/form_helpers.html-->
-    <%= form_tag("/implants/index", method: :get) do %>
+    <%= form_tag("/implants/index", method: :get, html: { autocomplete: "off" }) do %>
 
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">

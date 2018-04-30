@@ -25,7 +25,6 @@ class ImplantsController < ApplicationController
                        .near(@coord, @raggio, :order => :distance) #magia
 
         get_implants_array_coord(@implant)
-
     end
 
     def new
@@ -33,7 +32,7 @@ class ImplantsController < ApplicationController
     end
 
     def create
-        @implant = Implant.new(station_params) #Station è una classe
+        @implant = Implant.new(station_params) #Implant è una classe
         @implant.save #salva nel database, valore booleano
     end
 
@@ -54,7 +53,7 @@ class ImplantsController < ApplicationController
         @carburanti = @implant.pluck(:descCarburante)
         @lat        = @implant.pluck(:latitude)[0]
         @long       = @implant.pluck(:longitude)[0]
-        @prezzi     = @implant.pluck(:prezzo)
+        @prezzi     = @implant.pluck(:descCarburante,:prezzo).to_h #hash
 
         #Impianti vicini a quello selezionato
         get_nearby_implants_array
