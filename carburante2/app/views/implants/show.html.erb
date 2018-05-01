@@ -1,79 +1,73 @@
+
 <body>
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
 
-    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <!-- PRIMO GRUPPO -->
+        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+            <!-- TITOLO -->
+            <div class="bg-primary my-3 py-3">
+                <h1 class="display-5"> <%= @Bandiera.upcase %> </h1>
+                <p class="lead"> <%= @Gestore.humanize %>  </p>
+            </div>
 
-        <div class="bg-primary my-3 py-3">
-            <h1 class="display-5"> <%= @Bandiera.upcase %> </h1>
-            <p class="lead"> <%= @Gestore.humanize %>  </p>
-        </div>
-
-<!--        https://stackoverflow.com/a/31591260/1440037-->
-        <div class="modal-body row">
-            <div class="col-md-6">
-                <!-- Your first column here -->
+            <div class="py-3">
                 <h3> Tipi di Carburante </h3>
-                <!--        https://stackoverflow.com/a/25611732/1440037-->
-                <table style="width:100%">
-                    <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Benzina") %> 
-							Benzina (€<%=@prezzi["Benzina"]%>) 
-						</td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Gasolio") %> Gasolio (€<%=@prezzi["Gasolio"]%>) </td>
-                    </tr>
-                    <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Blue Super") %> Blue Super (€<%=@prezzi["Blue Super"]%>) </td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Excellium Diesel") %> Excellium Diesel (€<%=@prezzi["Excellium Diesel"]%>) </td>
-                    </tr>
-
-                    <tr>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("GPL") %> GPL (€<%=@prezzi["GPL"]%>) </td>
-                        <td> <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Metano") %> Metano (€<%=@prezzi["Metano"]%>) </td>
-                    </tr>
-
-                </table>
-
+                <%= render 'prices_form' %>
             </div>
-            <div class="col-md-6">
-                <!-- Your second column here -->
+
+            <div class="py-3">
                 <h3>Meteo</h3>
-                <%= image_tag(@weather_icon) %> <br>
-                <h4> <%= @weather_description.humanize %> </h4>
-                Temperatura: <%= @weather_temp %>° <br>
-                Minima: <%= @weather_temp_min %>° <br>
-                Massima: <%= @weather_temp_max %>° <br>
-                Alba: <%= @weather_sunrise %> <br>
-                Tramonto: <%= @weather_sunset %> <br>
-
+                <%= render 'weather_form' %>
             </div>
+
         </div>
 
 
-        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
-    </div>
+        <!-- SECONDO GRUPPO -->
+        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
 
-    <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-        <div class="my-3 py-3">
-            <br>
-            <h2 class="display-5">Maps</h2>
-            <p class="lead"> <%= @Indirizzo.humanize %> <%=@Comune.humanize %> (<%= @Provincia %>) </p>
+            <div class="py-3">
+                <h3> Stazioni vicine </h3>
+                <%= render 'nearby_stations_form' %>
+            </div>
+            <!-- Your second column here -->
+            <div class="py-3">
+                <h3>Recensioni</h3>
+                da implementare...
+            </div>
+            <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
         </div>
 
-        <iframe
+
+        <!-- TERZO GRUPPO -->
+        <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+
+            <!-- Titolo -->
+            <div class="my-3 py-3">
+                <br>
+                <h2 class="display-5">Maps</h2>
+                <p class="lead"> <%= @Indirizzo.humanize %> <%=@Comune.humanize %> (<%= @Provincia %>) </p>
+            </div>
+
+            <!-- MAPPA 1 -->
+            <!-- <iframe
             width="600"
             height="450"
             frameborder="0" style="border:0"
             src="//www.google.com/maps/embed/v1/place?q=<%=@lat%>%2C<%=@long%>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
-        </iframe>
+            </iframe> -->
 
-        <iframe width="600" height="450" frameborder="0" style="border:0"
-                src="https://www.google.com/maps/embed/v1/streetview?location=<%=@lat%>%2C<%=@long%>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
-                allowfullscreen>
-        </iframe>
+        <!-- MAPPA 2 -->
+        <!-- <iframe width="600" height="450" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/streetview?location=<%=@lat%>%2C<%=@long%>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
+        allowfullscreen>
+        </iframe> -->
 
-        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
-    </div>
+    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
+
+</div>
+
 
 </div>
 

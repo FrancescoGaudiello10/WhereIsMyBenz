@@ -1,56 +1,26 @@
+
+<body class="intro">
+
+<div class="HomeBanner">
+
+    <h1 class="intro"> Smart Gas Station </h1>
+    <h4 class="intro">Trova il prezzo più conveniente</h4>
+
+    <div class="myDivForm" >
+    <%= form_tag("/implants/index", method: :get, html: { autocomplete: "off" }, :class => 'myForm') do %>
+
+        <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
+    <%= number_field_tag :raggio, nil, required:true, min:1.0, max:50.0, :placeholder => "KM", :class => "myRadius"  %>
+    <% if user_signed_in? %>
+        <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
+                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown" %>
+    <% else %>
+        <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
+                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown" %>
+    <% end %>
+        <%= submit_tag("Cerca", :class => 'myButton') %>
 </div>
-<div class="main_div">
-  <div class="container">
-    <h1>Smart Gas Station</h1>
-    <p>Trova il prezzo più conveniente</p>
 
-  </div>
-</div>
-
-<div class="container">
-<!--    http://guides.rubyonrails.org/form_helpers.html-->
-    <%= form_tag("/implants/index", method: :get, html: { autocomplete: "off" }) do %>
-
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">
-                <%= label_tag(:city, "Dove ti trovi?:") %>
-            </span>
-
-            <% if user_signed_in? %>
-                <%= text_field_tag(:city, nil, required: true, :class => "form-control", :value => current_user.luogo_preferito) %>
-            <% else %>
-                <%= text_field_tag(:city, nil, required: true, :class => "form-control") %>
-            <% end %>
-
-        </div>
-
-        <br>
-
-        <div class="input">
-            <p>
-                Raggio:
-                <%= number_field(:raggio, nil, required:true, min:1.0, max:50.0) %>
-                KM
-            <p>
-                Tipo carburante:
-                <% if user_signed_in? %>
-                    <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                                   :include_blank => '-- Seleziona --', required: true %>
-                <% else %>
-                    <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
-                                   :include_blank => '-- Seleziona --', required: true %>
-                <% end %>
-
-            </p>
-
-<!--            <p>-->
-<!--                Litri rimanenti:-->
-                <%#= number_field(:litri_rimanenti, nil, required: false, min: 1.0, max: 50.0) %>
-<!--            </p>-->
-
-        </div>
-
-        <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
     <% end %>
 
     <script>
@@ -74,4 +44,4 @@
 
 </div>
 
-
+</body>

@@ -13,27 +13,6 @@
  *= require_self
  */
 
-.rating_star {
-    background: url('star-off.png');
-    width: 15px;
-    height: 15px;
-    display: block;
-    float: left;
-    margin-bottom: 5px;
-}
-
-.rating_star_review {
-    background: url('star-off.png');
-    width: 15px;
-    height: 15px;
-    display: block;
-    float: left;
-}
-
-.on {
-    background: url('star-on.png');
-}
-
 .rating {
     padding-left: 0px;
 }
@@ -43,37 +22,10 @@
     float: left;
     margin-right: 15px;
 }
-
-.vote {
-    float: left;
-    list-style-type: none;
-}
-.clear {
-    clear: left;
-}
-
-#contact {
-    float: right;
-    margin-right: 52px;
-}
-
-.badge-notify{
-    background-color:red!important;
-    position:relative;
-    top: -50px;
-    left: 24px;
-}
-
 .ratings {
     float: left;
     width: 48%
 }
-
-.question {
-  float: right;
-  width: 48%
-}
-
 
 .list_question {
     padding-left: 5px;
@@ -90,10 +42,7 @@
 /* navbar */
 .navbar-default {
     background-color: #4a4e51;
-    border-color: #E7E7E7;	
+    border-color: #E7E7E7;
 }
 
-
 /* MODIFICHE - PERSONALI SULLA GRAFICA */
-
-

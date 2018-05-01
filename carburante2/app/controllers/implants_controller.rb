@@ -45,7 +45,7 @@ class ImplantsController < ApplicationController
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
                        .where('Implants.idImpianto = ?', id)
                        .group('prices.descCarburante')
-                           
+
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
         @Bandiera   = @implant.pluck(:Bandiera).first
         @Gestore    = @implant.pluck(:Gestore).first
@@ -59,6 +59,8 @@ class ImplantsController < ApplicationController
 
         #Meteo per impianto selezionato
         get_weather
+
+        @stazioniVicine = Implant.find(id).nearbys(3, :order => 'distance').limit(3)
 
     end
 
@@ -76,7 +78,7 @@ class ImplantsController < ApplicationController
                           .limit(5)
 
             #@coordinates_str = get_implants_array_coord(@prezzi)
-            load_markers(@prezzi) 
+            load_markers(@prezzi)
         end
 
     end
@@ -106,27 +108,27 @@ class ImplantsController < ApplicationController
         #https://stackoverflow.com/a/3964560/1440037
         Time.at(timestamp).utc.in_time_zone(+2).strftime("%H:%M:%S")
     end
-    
-    #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
-    def load_markers(implant)  
-         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
-          marker.lat i.latitude  
-          marker.lng i.longitude  
 
-          marker.picture({ 
+    #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
+    def load_markers(implant)
+         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
+          marker.lat i.latitude
+          marker.lng i.longitude
+
+          marker.picture({
             "url" => "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png",
-            "width" => 48,  
-            "height" => 48  
-          })  
+            "width" => 48,
+            "height" => 48
+          })
 
           marker.infowindow render_to_string(
           :partial => "/implants/station_info",
           :locals => {
-              :bandiera => i.Bandiera.upcase, :indirizzo => i.Indirizzo.humanize, 
+              :bandiera => i.Bandiera.upcase, :indirizzo => i.Indirizzo.humanize,
               :prezzo => i.prezzo, :i => i, :carburante => i.descCarburante.humanize
               }
           )
-       end  
+       end
      end
 
 end

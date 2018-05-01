@@ -1,57 +1,124 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-h1 {
-  text-align: center;
+
+//Custom font
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+.HomeBanner {
+    height: 100%;
+    width: 100%;
+    margin:0 auto;
+    padding-top: 60px;
+
+    text-align: center;
+    font-family: "Open Sans";
+
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
 }
 
-p {
-  text-align: center;
+.myDivForm {
+    width: 100%;
 }
 
-btn {
-  alignment: center;
+.myForm {
+    min-width: inherit !important;
 }
 
-.main_div {
-  padding: 20px ;
-  margin-bottom: 20px;
-  color: #000000;
-  background-color: #f0ad4e;
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: lightgray;
+    opacity: 1; /* Firefox */
+}
 
-  h1,
-  .h1 {
-    color: #ffffff;
-  }
+.mySearchBar {
+    border: 1px solid #fff !important;
+    min-width: inherit !important;
+    background-color: rgba(255, 255, 255, .19) !important;
+    color: white;
+    border: 1px solid #fff !important;
+    opacity: 1 !important;
+    font-size: 24px !important;
+    // border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
+    padding-left: 20px;
+    width: 800px;
+    height: 60px;
+    margin: 100px auto 50px;
+    padding-bottom: 6px;
+}
 
-  p {
-    margin-bottom: (20px / 2);
-    font-size: 24px;
-    font-weight: 200;
-  }
+.myRadius {
+    background-color: rgba(255, 255, 255, .19) !important;
+    color: white;
+    border: 1px solid #fff !important;
+    opacity: 1 !important;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    height:60px;
+    width: 110px;
+}
 
 
-  .container &,
-  .container-fluid & {
-    border-radius: 10px; // Only round corners at higher resolutions if contained in a container
-  }
+.myButton {
+    background-color: #CE6450;
+    border: 1px solid #fff !important;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 0px 10px 10px 0px;
+}
 
-  .container {
-    max-width: 100%;
-  }
+.myButton:hover {
+    background-color: #d0513e;
+}
 
-  @media screen and (min-width: 40px) {
-    padding: (60px * 1.6) 0;
+.myDropdown {
+    background-color: rgba(255, 255, 255, .19) !important;
+    border: 1px solid #fff !important;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 0px 0px 0px 0px;
+    height:60px
+}
 
-    .container &,
-    .container-fluid & {
-      padding-left:  (20px * 2);
-      padding-right: (20px * 2);
-    }
+body.intro {
+    background-color: black;
+}
 
-    h1,
-    .h1 {
-      font-size: (20px * 4.5);
-    }
-  }
+h1.intro {
+    color: white;
+    text-align: center;
+    font-size: 64px !important;
+
+}
+
+h4.intro {
+    color: lightgray;
+    text-align: center;
+    font-size: 24px !important;
+    padding-top: 30px;
+}
+
+p.intro {
+    color: white;
+}
+
+//Style autocomplete
+//https://google-developers.appspot.com/maps/documentation/javascript/places-autocomplete#style_autocomplete
+.pac-container, .pac-item, .pac-item-query{
+    background-color: rgba(255, 255, 255, .1) !important;
+    font-size: 20px !important;
+    color: white;
 }
