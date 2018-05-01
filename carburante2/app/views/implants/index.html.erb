@@ -18,11 +18,28 @@
 
 <br>
 <h5 align="center">
-<!-- <%= image_tag "http://maps.google.com/maps/api/staticmap?size=800x300&sensor=false&zoom=13&center=#{@coord}&markers=#{@coordinates_str}"%> -->
-<iframe src="https://www.google.com/maps/embed/v1/search?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&q=gas+stations+near+<%=@city%>" width="800" height="300"></iframe>
+    
+<!-- https://melvinchng.github.io/rails/GoogleMap.html#64-add-google-map-to-view -->
+<div style='width: 100%;'>  
+  <div id="map" style='width: 100%; height: 450px;'></div>  
+</div> 
+
 </h5>
 </br>
 
+<script type="text/javascript">  
+handler = Gmaps.build('Google');  
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
+    markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
+    
+    circle = [{lng: <%= @coord[1] %>, lat: <%= @coord[0]%>, radius: <%= @raggio %> * 1410  }] //1400 e' fattore di correzione per il raggio
+    circle_options = { strokeColor:"#FF0000",strokeOpacity: 1, strokeWeight: 3, fillColor: 'transparent' }
+    
+    handler.bounds.extendWith(markers); 
+    handler.addCircles(circle, circle_options);         
+    handler.fitMapToBounds();  
+});  
+</script>
 
 <br>
 <% @implant.each do |i| %>

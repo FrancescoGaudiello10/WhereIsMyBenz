@@ -26,6 +26,10 @@
             In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
         </h3>
 
+<div style='width: 100%;'>  
+  <div id="map" style='width: 100%; height: 450px;'></div>  
+</div>
+
         <% @prezzi.each do |i| %>
             <table style="width:100%">
                 <tr>
@@ -36,12 +40,16 @@
                     <div class="col-md-2"><h4> <%= link_to 'Dettagli', implant_path(i) %> </h4></div>
                 </tr>
             </table>
-        <% end %>
-
-        <br>
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=900x900&sensor=false&zoom=6&center=42.433516,13.003216&markers=#{@coordinates_str}" %>
-        </br>
+        <% end %> 
 
     <% end %>
 </div>
 
+        <script type="text/javascript">  
+        handler = Gmaps.build('Google');  
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
+            markers = handler.addMarkers(<%=raw @routers_default.to_json %>);  
+            handler.bounds.extendWith(markers);  
+            handler.fitMapToBounds();  
+        });  
+        </script>

@@ -4,11 +4,12 @@ class ImplantsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @city = params[:city]
-        @coord = Geocoder.coordinates(@city)
+        @city            = params[:city]
+        @coord           = Geocoder.coordinates(@city)
 
-        @raggio = params[:raggio][0]
+        @raggio          = params[:raggio][0]
         @tipo_carburante = params[:tipo_carburante]
+
         # @litri_rimanenti = params[:litri_rimanenti]
 
         # # https://stackoverflow.com/a/34311227/1440037
@@ -21,10 +22,11 @@ class ImplantsController < ApplicationController
                        .where('descCarburante = ?',@tipo_carburante)
                        .group('Implants.Indirizzo')
                        .order('prices.prezzo ASC')
-                       .limit(30)
                        .near(@coord, @raggio, :order => :distance) #magia
+                       #.limit(30)
 
-        get_implants_array_coord(@implant)
+        # carico i marker delle stazioni sulla mappa
+        load_markers(@implant)
     end
 
     def new
@@ -37,26 +39,23 @@ class ImplantsController < ApplicationController
     end
 
     def show
-        @id = params[:id]
-        @implant = Implant
+        id       = params[:id]
+        @implant  = Implant
                        .select('Implants.*, prices.*')
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                       .where('Implants.idImpianto = ?', @id)
+                       .where('Implants.idImpianto = ?', id)
                        .group('prices.descCarburante')
-
+                           
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
-        @Bandiera   = @implant.pluck(:Bandiera)[0]
-        @Gestore    = @implant.pluck(:Gestore)[0]
-        @Indirizzo  = @implant.pluck(:Indirizzo)[0]
-        @Comune     = @implant.pluck(:Comune)[0]
-        @Provincia  = @implant.pluck(:Provincia)[0]
+        @Bandiera   = @implant.pluck(:Bandiera).first
+        @Gestore    = @implant.pluck(:Gestore).first
+        @Indirizzo  = @implant.pluck(:Indirizzo).first
+        @Comune     = @implant.pluck(:Comune).first
+        @Provincia  = @implant.pluck(:Provincia).first
         @carburanti = @implant.pluck(:descCarburante)
-        @lat        = @implant.pluck(:latitude)[0]
-        @long       = @implant.pluck(:longitude)[0]
+        @lat        = @implant.pluck(:latitude).first
+        @long       = @implant.pluck(:longitude).first
         @prezzi     = @implant.pluck(:descCarburante,:prezzo).to_h #hash
-
-        #Impianti vicini a quello selezionato
-        get_nearby_implants_array
 
         #Meteo per impianto selezionato
         get_weather
@@ -76,7 +75,8 @@ class ImplantsController < ApplicationController
                           .order("prices.prezzo #{@order}")
                           .limit(5)
 
-            @coordinates_str = get_implants_array_coord(@prezzi)
+            #@coordinates_str = get_implants_array_coord(@prezzi)
+            load_markers(@prezzi) 
         end
 
     end
@@ -87,27 +87,9 @@ class ImplantsController < ApplicationController
         params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
     end
 
-    #restituiscd array con le coordinate delle stazioni vicine a quella selezionata (nel raggio di 2 KM)
-    def get_nearby_implants_array
-        @nearby  = @implant.find(params[:id]).nearbys(2) #KM
-        @coordinates_str = ""
-        @nearby.each do |i|
-            @coordinates_str += "#{i.latitude},#{i.longitude}|"
-        end
-    end
-
-    #restituiscd array con le coordinate delle stazioni risultato della ricerca
-    def get_implants_array_coord(implant)
-        @coordinates_str = ""
-        implant.each do |i|
-            @coordinates_str += "#{i.latitude},#{i.longitude}|"
-        end
-        return @coordinates_str
-    end
-
     def get_weather
         @weather = HTTParty.get(
-            "http://api.openweathermap.org/data/2.5/weather?q=#{@Comune}&appid=cdcc43f188d9a63e00471c9b6b45cada&lang=it&units=metric",
+        "http://api.openweathermap.org/data/2.5/weather?q=#{@Comune}&appid=cdcc43f188d9a63e00471c9b6b45cada&lang=it&units=metric",
             :query => {:output => 'json'}
         )
         @weather_description = @weather["weather"][0]["description"]
@@ -124,5 +106,27 @@ class ImplantsController < ApplicationController
         #https://stackoverflow.com/a/3964560/1440037
         Time.at(timestamp).utc.in_time_zone(+2).strftime("%H:%M:%S")
     end
+    
+    #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
+    def load_markers(implant)  
+         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
+          marker.lat i.latitude  
+          marker.lng i.longitude  
+
+          marker.picture({ 
+            "url" => "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png",
+            "width" => 48,  
+            "height" => 48  
+          })  
+
+          marker.infowindow render_to_string(
+          :partial => "/implants/station_info",
+          :locals => {
+              :bandiera => i.Bandiera.upcase, :indirizzo => i.Indirizzo.humanize, 
+              :prezzo => i.prezzo, :i => i, :carburante => i.descCarburante.humanize
+              }
+          )
+       end  
+     end
 
 end
