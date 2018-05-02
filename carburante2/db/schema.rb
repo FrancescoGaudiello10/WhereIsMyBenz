@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.string "uid"
     t.boolean "admin", default: false
     t.text "idImpianto"
-    t.string "luogo_preferico"
+    t.string "luogo_preferito"
     t.string "stazione_preferita"
     t.string "carburante_preferito"
-    t.integer "litri_serbatorio"
+    t.integer "litri_serbatoio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
