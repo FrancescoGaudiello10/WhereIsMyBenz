@@ -1,14 +1,14 @@
 <h1>Stazioni di Rifornimento (Gestore)</h1> </br>
-<body style="background-color: #C8D3F0">
+<body style="background-color: #C5ECC3">
 <% if current_user.admin? %>
     <h3> <td><%= link_to 'Aggiungi stazione', new_station_path %></td> </h3>
 <% end %>
 <!-- TABELLA -->
-<div class="container-table100">
+<div class="container-table100" style="background: #C5ECC3; ">
     <div class="wrap-table100">
         <div class="table">
 
-            <div class="row header">
+            <div class="row header" style="background: #68BA42">
                 <div class="cell"> Bandiera </div>
                 <div class="cell"> Nome </div>
                 <div class="cell"> Indirizzo </div>
@@ -28,7 +28,8 @@
                     <div class="cell" data-title="Provincia">  <%= s.Provincia %> </div>
                     <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', station_path(s) %>  </div>
                     <div class="cell" data-title="Vado qui"> <%= link_to 'Modifica', edit_station_path(s) %> </div>
-                    <div class="cell" data-title="Vado qui"> <%= link_to 'Elimina', station_path(s), method: :delete,
+                    <div class="cell" data-title="Vado qui"> <%= link_to 'Elimina', station_path(s),
+                                                                         method: :delete,
                                                                          data: {confirm: 'Sei sicuro?'}%> </div>
                 </div>
             <% end %>
