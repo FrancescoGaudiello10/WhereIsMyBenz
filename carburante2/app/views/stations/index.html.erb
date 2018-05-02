@@ -1,32 +1,39 @@
-<h1>Listing stations</h1>
-
+<h1>Stazioni di Rifornimento (Gestore)</h1> </br>
+<body style="background-color: #C8D3F0">
 <% if current_user.admin? %>
     <h3> <td><%= link_to 'Aggiungi stazione', new_station_path %></td> </h3>
 <% end %>
+<!-- TABELLA -->
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table">
 
-<table>
-    <tr>
-        <th>Bandiera</th>
-        <th>Nome</th>
-        <th>Indirizzo</th>
-        <th>Comune</th>
-        <th>Provincia</th>
-        <th></th>
-    </tr>
+            <div class="row header">
+                <div class="cell"> Bandiera </div>
+                <div class="cell"> Nome </div>
+                <div class="cell"> Indirizzo </div>
+                <div class="cell"> Comune </div>
+                <div class="cell"> Provincia </div>
+                <div class="cell"> Dettagli </div>
+                <div class="cell"> Modifica </div>
+                <div class="cell"> Elimina </div>
+            </div>
 
-    <% @station.each do |station| %>
-        <tr>
-            <td><%= station.Bandiera %></td>
-            <td><%= station.Nome %></td>
-            <td><%= station.Indirizzo %></td>
-            <td><%= station.Comune %></td>
-            <td><%= station.Provincia %></td>
-            <td><%= link_to 'Show', station_path(station) %></td>
-            <td><%= link_to 'Edit', edit_station_path(station) %></td>
-            <td><%= link_to 'Destroy', station_path(station),
-                            method: :delete,
-                            data: {confirm: 'Sei sicuro?'} %></td>
-        </tr>
-    <% end %>
-</table>
+            <% @station.each do |s| %>
+                <div class="row">
+                    <div class="cell" data-title="Bandiera"> <%= s.Bandiera.upcase %> </div>
+                    <div class="cell" data-title="Nome"> <%= s.Nome %> </div>
+                    <div class="cell" data-title="Indirizzo">  <%= s.Indirizzo %> </div>
+                    <div class="cell" data-title="Comune">  <%= s.Comune %> </div>
+                    <div class="cell" data-title="Provincia">  <%= s.Provincia %> </div>
+                    <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', station_path(s) %>  </div>
+                    <div class="cell" data-title="Vado qui"> <%= link_to 'Modifica', edit_station_path(s) %> </div>
+                    <div class="cell" data-title="Vado qui"> <%= link_to 'Elimina', station_path(s), method: :delete,
+                                                                         data: {confirm: 'Sei sicuro?'}%> </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
 
+</body>

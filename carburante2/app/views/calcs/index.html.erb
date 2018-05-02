@@ -1,15 +1,29 @@
 
-<h2>Impianti Visitati</h2>
+<body style="background-color: #C8D3F0">
+<h1>Impianti Visitati</h1>
+<!-- TABELLA -->
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table">
 
-<% @visitati.each do |i| %>
-    <% @implant = Implant.find(i) %>
-    <table style="width:100%">
-        <tr>
-            <div class="col-md-2"><h4> <%= @implant.Bandiera.upcase %> </h4></div>
-            <div class="col-md-2">      <%= @implant.Indirizzo.humanize[0..-7] %>,<%= @implant.Comune.humanize %> (<%= @implant.Provincia %>
-                )
+            <div class="row header">
+                <div class="cell"> Bandiera </div>
+                <div class="cell"> Indirizzo </div>
+                <div class="cell"> Dettagli </div>
+                <div class="cell"> Vado qui </div>
             </div>
-            <div class="col-md-2"><h4> <%= link_to 'Dettagli', implant_path(i) %> </h4></div>
-        </tr>
-    </table>
-<% end %>
+
+            <% @visitati.each do |i| %>
+                <% @implant = Implant.find(i) %>
+                <div class="row">
+                    <div class="cell" data-title="Bandiera"> <%= @implant.Bandiera.upcase %> </div>
+                    <div class="cell" data-title="Indirizzo">  <%= @implant.Indirizzo.humanize[0..-7] %> ,<%= @implant.Comune.humanize %> (<%= @implant.Provincia %>) </div>
+                    <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
+                    <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%> </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+</body>
