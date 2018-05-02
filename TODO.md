@@ -1,12 +1,18 @@
 # Cose da Fare
 
-- [ ] ricerca in base alla **posizione** attuale
-- [ ] sistemare **grafica**
-- [ ] **login** con github o twitter
-- [ ] **Statistiche**
-- [ ] **calcolo** costo pieno
+- [ ] sistemare **grafica** (impostazioni, signup, statistiche, ...)
+- [ ] **calcolo** costi
 - [ ] **recensioni** in dettaglio stazione
+- [ ] **opzioni** quando si aggiunge una nuova stazione
+
+
+
 - [ ] sistemare tema **navigation bar**
+- [ ] ricerca in base alla **posizione** attuale
+- [ ] **login** con github o twitter
+
+
+
 - [x] [Aggiungere ruolo utente gestore](https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role#option-2-adding-an-admin-attribute)
 - [x] aggiungere profilo utente
 - [x] gestire ruolo admin

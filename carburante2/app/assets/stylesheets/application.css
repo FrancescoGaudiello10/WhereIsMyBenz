@@ -55,6 +55,9 @@
     color: black;
 }
 
+.nav.navbar-nav li a{
+    color: black;   /*colore testo navbar*/
+}
 
 .largerCheckbox
 {

@@ -5,18 +5,32 @@
 //Custom font
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
+//body {
+//  padding-top: 0px;
+//}
+
+
+body.intro {
+  padding-top: 0px;
+  //background-color: black;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
+  overflow: hidden  /*blocca lo scorrimento della pagina*/
+}
+
 .HomeBanner {
     height: 100%;
     width: 100%;
     margin:0 auto;
-    padding-top: 60px;
+    padding-top: 100px;
 
     text-align: center;
     font-family: "Open Sans";
 
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
+    //background-repeat: no-repeat;
+    //background-size: 100%;
+    //background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
 }
 
 .myDivForm {
@@ -92,10 +106,6 @@
     font-size: 18px;
     border-radius: 0px 0px 0px 0px;
     height:60px
-}
-
-body.intro {
-    background-color: black;
 }
 
 h1.intro {

@@ -1,5 +1,6 @@
 .luogopref{
     color: blue;
+    width: 220px;
 }
 
 .fotosfondo{
@@ -14,6 +15,7 @@
 .bordi{
 	border: 3px solid #004352;
 	width: 250px;
+    //background-color: rgba(0,0,0,0.2);
 }
 
 .button {
@@ -58,4 +60,9 @@
 
 .profileCheckBox{
   zoom: 1.5;
+}
+
+.number_field_profiles{
+  text-align: center;
+
 }
