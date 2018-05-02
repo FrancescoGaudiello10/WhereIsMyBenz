@@ -116,10 +116,22 @@ p.intro {
     color: white;
 }
 
-//Style autocomplete
+//google autocomplete
 //https://google-developers.appspot.com/maps/documentation/javascript/places-autocomplete#style_autocomplete
 .pac-container, .pac-item, .pac-item-query{
     background-color: rgba(255, 255, 255, .1) !important;
     font-size: 20px !important;
     color: white;
+}
+
+//allineare su una sola riga
+div.inline {
+  float:left;
+}
+.clearBoth {
+  clear:both;
+}
+
+.myCheckBox{
+  zoom: 1.5;
 }
