@@ -6,6 +6,7 @@
 - [ ] **Statistiche**
 - [ ] **calcolo** costo pieno
 - [ ] **recensioni** in dettaglio stazione
+- [ ] sistemare tema **navigation bar**
 - [x] [Aggiungere ruolo utente gestore](https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role#option-2-adding-an-admin-attribute)
 - [x] aggiungere profilo utente
 - [x] gestire ruolo admin
