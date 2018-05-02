@@ -23,7 +23,7 @@ class ImplantsController < ApplicationController
                        .group('Implants.Indirizzo')
                        .order('prices.prezzo ASC')
                        .near(@coord, @raggio, :order => :distance) #magia
-                       #.limit(30)
+        #.limit(30)
 
         # carico i marker delle stazioni sulla mappa
         load_markers(@implant)
@@ -41,10 +41,10 @@ class ImplantsController < ApplicationController
     def show
         id       = params[:id]
         @implant  = Implant
-                       .select('Implants.*, prices.*')
-                       .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                       .where('Implants.idImpianto = ?', id)
-                       .group('prices.descCarburante')
+                        .select('Implants.*, prices.*')
+                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                        .where('Implants.idImpianto = ?', id)
+                        .group('prices.descCarburante')
 
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
         @Bandiera   = @implant.pluck(:Bandiera).first
@@ -68,28 +68,36 @@ class ImplantsController < ApplicationController
         if(params.has_key?(:tipo_carburante) && params.has_key?(:order))
             @tipo_carburante = params[:tipo_carburante]
             @order = params[:order]
-            
-            if(@order == "MEDIA") ###Occhio se se fotte
-            @prezzi = Implant
-                                .select('avg(prices.prezzo) as media, Implants.*, prices.*')
-                                .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                                .where('prices.descCarburante = ?', @tipo_carburante)
-                                .group('Implants.Provincia')
-                                .order('avg(prices.prezzo) desc')
+
+            if(@order == "MEDIA")
+
+                @provincia = params[:provincia]
+                @prezzi_media = Implant
+                              .select('Implants.*, prices.*')
+                              .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                              .where('prices.descCarburante = ? AND Implants.Provincia = ?', @tipo_carburante, @provincia)
+                              .group('Implants.Provincia')
+                              .average('prices.prezzo')
+                @prezzo_medio_italia = Implant
+                                           .select('Implants.*, prices.*')
+                                           .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                                           .where('prices.descCarburante = ?', @tipo_carburante)
+                                           .average('prices.prezzo')
 
             else
-            @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
-            @prezzi = Implant
-                          .select('Implants.*, prices.*')
-                          .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                          .where('descCarburante = ?',@tipo_carburante)
-                          .group('Implants.Indirizzo')
-                          .order("prices.prezzo #{@order}")
-                          .limit(5)
+                @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
+                @prezzi = Implant
+                              .select('Implants.*, prices.*')
+                              .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                              .where('descCarburante = ?',@tipo_carburante)
+                              .group('Implants.Indirizzo')
+                              .order("prices.prezzo #{@order}")
+                              .limit(5)
 
-            #@coordinates_str = get_implants_array_coord(@prezzi)
-            load_markers(@prezzi)
-          end
+                load_markers(@prezzi)
+
+            end
+
         end
 
     end
@@ -102,7 +110,7 @@ class ImplantsController < ApplicationController
 
     def get_weather
         @weather = HTTParty.get(
-        "http://api.openweathermap.org/data/2.5/weather?q=#{@Comune}&appid=cdcc43f188d9a63e00471c9b6b45cada&lang=it&units=metric",
+            "http://api.openweathermap.org/data/2.5/weather?q=#{@Comune}&appid=cdcc43f188d9a63e00471c9b6b45cada&lang=it&units=metric",
             :query => {:output => 'json'}
         )
         @weather_description = @weather["weather"][0]["description"]
@@ -122,24 +130,24 @@ class ImplantsController < ApplicationController
 
     #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
     def load_markers(implant)
-         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
-          marker.lat i.latitude
-          marker.lng i.longitude
+        @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
+            marker.lat i.latitude
+            marker.lng i.longitude
 
-          marker.picture({
-            "url" => "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png",
-            "width" => 48,
-            "height" => 48
-          })
+            marker.picture({
+                               "url" => "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png",
+                               "width" => 48,
+                               "height" => 48
+                           })
 
-          marker.infowindow render_to_string(
-          :partial => "/implants/station_info",
-          :locals => {
-              :bandiera => i.Bandiera.upcase, :indirizzo => i.Indirizzo.humanize,
-              :prezzo => i.prezzo, :i => i, :carburante => i.descCarburante.humanize
-              }
-          )
-       end
-     end
+            marker.infowindow render_to_string(
+                                  :partial => "/implants/station_info",
+                                  :locals => {
+                                      :bandiera => i.Bandiera.upcase, :indirizzo => i.Indirizzo.humanize,
+                                      :prezzo => i.prezzo, :i => i, :carburante => i.descCarburante.humanize
+                                  }
+                              )
+        end
+    end
 
 end
