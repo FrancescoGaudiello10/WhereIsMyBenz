@@ -68,6 +68,16 @@ class ImplantsController < ApplicationController
         if(params.has_key?(:tipo_carburante) && params.has_key?(:order))
             @tipo_carburante = params[:tipo_carburante]
             @order = params[:order]
+            
+            if(@order == "MEDIA") ###Occhio se se fotte
+            @prezzi = Implant
+                                .select('avg(prices.prezzo), Implants.*, prices.*')
+                                .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                                .where('prices.descCarburante = ?', @tipo_carburante)
+                                .group('Implants.Provincia')
+                                .order('avg(prices.prezzo) desc')
+
+            else
             @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
             @prezzi = Implant
                           .select('Implants.*, prices.*')
@@ -79,6 +89,7 @@ class ImplantsController < ApplicationController
 
             #@coordinates_str = get_implants_array_coord(@prezzi)
             load_markers(@prezzi)
+          end
         end
 
     end

@@ -15,7 +15,8 @@ module ImplantsHelper
     def ordine
         [
             ['Prezzo migliore', 'ASC'],
-            ['Prezzo peggiore', 'DESC']
+            ['Prezzo peggiore', 'DESC'],
+            ['Prezzo Medio', 'MEDIA']
         ]
     end
 end
