@@ -71,7 +71,7 @@ class ImplantsController < ApplicationController
             
             if(@order == "MEDIA") ###Occhio se se fotte
             @prezzi = Implant
-                                .select('avg(prices.prezzo), Implants.*, prices.*')
+                                .select('avg(prices.prezzo) as media, Implants.*, prices.*')
                                 .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
                                 .where('prices.descCarburante = ?', @tipo_carburante)
                                 .group('Implants.Provincia')

@@ -46,3 +46,9 @@
 }
 
 /* MODIFICHE - PERSONALI SULLA GRAFICA */
+
+.largerCheckbox
+{
+    width: 30px;
+    height: 30px;
+}
