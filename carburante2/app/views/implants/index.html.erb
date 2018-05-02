@@ -22,11 +22,11 @@
         handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
             markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
 
-            circle = [{lng: <%= @coord[1] %>, lat: <%= @coord[0]%>, radius: <%= @raggio %> * 1410  }] //1400 e' fattore di correzione per il raggio
+            circle = [{lng: <%= @coord[1] %>, lat: <%= @coord[0]%>, radius: <%= @raggio %> * 1410 }] //1410 e' fattore di correzione per il raggio
             circle_options = { strokeColor:"#FF0000",strokeOpacity: 1, strokeWeight: 3, fillColor: 'transparent' }
 
-            handler.bounds.extendWith(markers);
             handler.addCircles(circle, circle_options);
+            handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
         });
     </script>

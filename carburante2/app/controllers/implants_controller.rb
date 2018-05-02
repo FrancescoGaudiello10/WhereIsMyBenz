@@ -4,8 +4,8 @@ class ImplantsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @city            = params[:city]
-        @coord           = Geocoder.coordinates(@city)
+        @city            = params[:city]                #indirizzo cercato
+        @coord           = Geocoder.coordinates(@city)  #coordinate dell'indirizzo cercato
 
         @raggio          = params[:raggio][0]
         @tipo_carburante = params[:tipo_carburante]
@@ -26,7 +26,7 @@ class ImplantsController < ApplicationController
         #.limit(30)
 
         # carico i marker delle stazioni sulla mappa
-        load_markers(@implant)
+        load_markers(@implant,@city, @coord)
     end
 
     def new
@@ -129,13 +129,14 @@ class ImplantsController < ApplicationController
     end
 
     #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
-    def load_markers(implant)
+    def load_markers(implant, center_address=nil, center_coords=nil)
         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
             marker.lat i.latitude
             marker.lng i.longitude
 
+            marker_pic = "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png"
             marker.picture({
-                               "url" => "https://cdn3.iconfinder.com/data/icons/map/500/gasstation-48.png",
+                               "url" => marker_pic,
                                "width" => 48,
                                "height" => 48
                            })
@@ -148,6 +149,15 @@ class ImplantsController < ApplicationController
                                   }
                               )
         end
+
+        #aggiungo l'indirizzo cercato, il centro della mappa
+        if center_address!=nil and center_coords!=nil
+        @routers_default.append({:lat=>center_coords[0], :lng=>center_coords[1],
+                                 :picture=>{"url"=>"/blue-marker.png",
+                                            "width"=>30, "height"=>48},
+                                 :infowindow=>"<b>#{center_address}</b> <br>\n"})
+        end
+
     end
 
 end
