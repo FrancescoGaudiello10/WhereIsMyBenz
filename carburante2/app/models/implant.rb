@@ -5,6 +5,7 @@ class Implant < ApplicationRecord
 
     #Database relations
     has_many :prices
+    has_many :reviews, dependent: :destroy
 
     #Location https://www.youtube.com/watch?v=4iAjdTrgAvs
     geocoded_by :full_address, :latitude  => :latitude, :longitude => :longitude

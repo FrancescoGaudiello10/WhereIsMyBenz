@@ -1,8 +1,16 @@
 <h1>Stazioni di Rifornimento (Gestore)</h1> </br>
 <body style="background-color: #C5ECC3">
+
+
 <% if current_user.admin? %>
     <h3> <td><%= link_to 'Aggiungi stazione', new_station_path %></td> </h3>
 <% end %>
+
+<% if @station.count == 0 %>
+    <br><br><br><br><br><br>
+    <h1 style="color: gray">Nessuna stazione aggiunta.</h1>
+<% else %>
+
 <!-- TABELLA -->
 <div class="container-table100" style="background: #C5ECC3; ">
     <div class="wrap-table100">
@@ -12,8 +20,6 @@
                 <div class="cell"> Bandiera </div>
                 <div class="cell"> Nome </div>
                 <div class="cell"> Indirizzo </div>
-                <div class="cell"> Comune </div>
-                <div class="cell"> Provincia </div>
                 <div class="cell"> Dettagli </div>
                 <div class="cell"> Modifica </div>
                 <div class="cell"> Elimina </div>
@@ -24,8 +30,6 @@
                     <div class="cell" data-title="Bandiera"> <%= s.Bandiera.upcase %> </div>
                     <div class="cell" data-title="Nome"> <%= s.Nome %> </div>
                     <div class="cell" data-title="Indirizzo">  <%= s.Indirizzo %> </div>
-                    <div class="cell" data-title="Comune">  <%= s.Comune %> </div>
-                    <div class="cell" data-title="Provincia">  <%= s.Provincia %> </div>
                     <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', station_path(s) %>  </div>
                     <div class="cell" data-title="Vado qui"> <%= link_to 'Modifica', edit_station_path(s) %> </div>
                     <div class="cell" data-title="Vado qui"> <%= link_to 'Elimina', station_path(s),
@@ -36,5 +40,7 @@
         </div>
     </div>
 </div>
+
+<% end %>
 
 </body>

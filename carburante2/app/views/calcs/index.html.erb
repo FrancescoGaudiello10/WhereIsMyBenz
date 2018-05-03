@@ -7,6 +7,13 @@
 
 <body style="background-color: #E9C6BF">
 <h1>Impianti Visitati</h1>
+
+
+<% if @visitati.count == 0 %>
+    <br><br><br><br><br><br>
+    <h1>Nessun impianto visitato.</h1>
+<% else %>
+
 <!-- TABELLA -->
 <div class="container-table100" style="background: #E9C6BF">
     <div class="wrap-table100">
@@ -31,5 +38,7 @@
         </div>
     </div>
 </div>
+
+<% end %>
 
 </body>

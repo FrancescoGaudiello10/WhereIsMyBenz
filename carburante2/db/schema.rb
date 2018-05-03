@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_082459) do
+ActiveRecord::Schema.define(version: 2018_05_03_094939) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer "rater_id"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.string "Provincia"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "Benzina"
+    t.float "Diesel"
+    t.float "Super"
+    t.float "Excellium"
+    t.float "Metano"
+    t.float "GPL"
+    t.boolean "allDay"
+    t.boolean "Self"
+    t.boolean "autoLavaggio"
   end
 
   create_table "users", force: :cascade do |t|

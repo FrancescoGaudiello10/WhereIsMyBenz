@@ -24,8 +24,8 @@
 </div>
 <div class="bordi">
     <div class="field">
-        <%= f.label "Gestore" %>
-        <%= check_box_tag :admin, 1, :admin, :class => 'profileCheckBox' %>
+        <%= f.label "Gestore" , :for => "checkbox" %>
+        <%= check_box_tag :admin, 1, :admin, :class => 'profileCheckBox', :id => "checkbox" %>
     </div>
 
     <br>
@@ -36,7 +36,6 @@
     <br>
     <div class="field">
         <%= f.label :stazione_preferita %><br/>
-        <%#= f.text_field(:stazione_preferita, :value => current_user.stazione_preferita) %>
         <%= select_tag :stazione_preferita, options_for_select(@stazioni, current_user.stazione_preferita), :include_blank => '-- Seleziona --', required: true %>
     </div>
     <br>

@@ -8,11 +8,20 @@ class StationsController < ApplicationController
     end
 
     def show
-        @station = Station.find(params[:id])
+        @station    = Station.find(params[:id])
+        @coord      = Geocoder.coordinates(@station.Indirizzo)
+        @lat        = @coord[0]
+        @long       = @coord[1]
     end
 
     def new
         @station = Station.new
+        @stazioni = Implant
+                        .select('Bandiera')
+                        .from('implants')
+                        .group('Bandiera')
+                        .order('Bandiera ASC')
+                        .pluck("Bandiera") #converte in array
     end
 
     def edit
@@ -21,7 +30,6 @@ class StationsController < ApplicationController
 
     # http://guides.rubyonrails.org/getting_started.html#saving-data-in-the-controller
     def create
-        # render plain: params[:station].inspect #The params method is the object which represents the parameters (or fields) coming in from the form
         @station = Station.new(station_params) #Station è una classe
 
         if @station.save #salva nel database, valore booleano
@@ -51,7 +59,7 @@ class StationsController < ApplicationController
 
     private
     def station_params
-        params.require(:station).permit(:Bandiera, :Nome, :Indirizzo, :Comune, :Provincia)
+        params.require(:station).permit(:Bandiera, :Nome, :Indirizzo, :Benzina, :Diesel, :Super, :Excellium, :Metano, :GPL, :allDay, :Self, :autoLavaggio)
     end
 
     def admin_user

@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
     def create
         @station = Station.find(params[:station_id])
         @review = @station.reviews.create(comment_params)
@@ -16,4 +17,5 @@ class ReviewsController < ApplicationController
     def comment_params
         params.require(:review).permit(:commenter, :body, :stars)
     end
+
 end

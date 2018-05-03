@@ -40,6 +40,8 @@ gem 'gmaps4rails'
 gem 'httparty'
 #progress bar
 gem 'ruby-progressbar'
+#rspec
+gem 'rspec'
 
 # GROUPS #
 group :development, :test do
