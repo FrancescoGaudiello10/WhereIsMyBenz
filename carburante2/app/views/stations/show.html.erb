@@ -10,6 +10,13 @@
             margin: 0px 100px 0px 100px;
         }
 
+        .columnDivComments{
+            background-color: whitesmoke;
+            margin: 0px 40px 20px 100px;
+            border-radius: 10px;
+
+        }
+
         h1.titolo, h4.titolo {
             text-align: left;
             padding: 25px 0px 0px 80px;
@@ -153,14 +160,23 @@
          <%= render 'servizi_form' %>
 
     </div>
-    <div class="columnDiv" align="right">
+    <div class="columnDivComments" align="right">
+
+        <div style="margin: 30px 30px 0px 0px">
 
         <!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
-        <h2>Commenti:</h2>
-        <%= render @station.comments %>
 
-        <h2>Aggiungi un commento:</h2>
-        <%= render 'comments/form' %>
+            <div>
+                <h2>Commenti:</h2><br>
+                <%= render @station.comments %>
+            </div>
+            <br>
+            <div>
+                <h2>Aggiungi un commento:</h2>
+                <%= render 'comments/form' %>
+            </div>
+
+        </div>
 
     </div>
 </div>
