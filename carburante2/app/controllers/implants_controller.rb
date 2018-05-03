@@ -59,6 +59,7 @@ class ImplantsController < ApplicationController
 
         #Meteo per impianto selezionato
         get_weather
+        get_implant_logo(@Bandiera)
 
         @stazioniVicine = Implant.find(id).nearbys(3, :order => 'distance').limit(3)
 
@@ -108,6 +109,7 @@ class ImplantsController < ApplicationController
         params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
     end
 
+    #ottiene il meteo della stazione di rifornimento cercata
     def get_weather
         @weather = HTTParty.get(
             "http://api.openweathermap.org/data/2.5/weather?q=#{@Comune}&appid=cdcc43f188d9a63e00471c9b6b45cada&lang=it&units=metric",
@@ -120,6 +122,15 @@ class ImplantsController < ApplicationController
         @weather_temp_max = @weather["main"]["temp_max"]
         @weather_sunrise = unixToHuman(@weather["sys"]["sunrise"])
         @weather_sunset = unixToHuman(@weather["sys"]["sunset"])
+    end
+
+    #ottiene il logo della stazione di rifornimento cercata
+    def get_implant_logo(query)
+        @res = HTTParty.get(
+            "https://api.qwant.com/api/search/images?q=#{query}%20logo",
+            :query => {:output => 'json'}
+        )
+        @logo = @res["data"]["result"]["items"][0]["media"]
     end
 
     #converte timestamp unix in orario normale
