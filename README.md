@@ -1,4 +1,4 @@
-# **Istruzioni (Rails 2.3.0)**
+# Istruzioni (Rails 2.3.0)
 
 
 
