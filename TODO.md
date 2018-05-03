@@ -3,13 +3,13 @@
 - [ ] sistemare **grafica** (impostazioni, signup, statistiche, ...)
 - [ ] **calcolo** costi
 - [ ] **recensioni** in dettaglio stazione
-- [ ] **opzioni** quando si aggiunge una nuova stazione
+- [x] **opzioni** quando si aggiunge una nuova stazione
 
 
 
-- [ ] sistemare tema **navigation bar**
-- [ ] ricerca in base alla **posizione** attuale
-- [ ] **login** con github o twitter
+- [ ] ~~sistemare tema **navigation bar**~~
+- [ ] ~~ricerca in base alla **posizione** attuale~~
+- [ ] ~~**login** con github o twitter~~
 
 
 

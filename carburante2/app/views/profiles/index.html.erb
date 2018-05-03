@@ -25,7 +25,7 @@
 <div class="bordi">
     <div class="field">
         <%= f.label "Gestore" , :for => "checkbox" %>
-        <%= check_box_tag :admin, 1, :admin, :class => 'profileCheckBox', :id => "checkbox" %>
+        <%= check_box_tag(:admin, value = "1", checked = current_user.admin, :class => 'profileCheckBox', :id => "checkbox") %>
     </div>
 
     <br>
@@ -49,7 +49,11 @@
         <%= number_field(:litri_serbatoio, nil, required: true, min: 1.0, :value => current_user.litri_serbatoio, :class => "number_field_profiles") %>
     </div>
 
-    <br><button class="button"><span> Aggiorna</span>     
+    <br>
+    <button class="button"> <span><%= f.submit "Aggiorna" %></span>  </button>
+
+
+
 <% end %>
     </div>
 

@@ -19,10 +19,8 @@
 }
 
 .button {
-  border-radius: 2px;
-  background-color: #0020C2;
-  border: none;
-  color: #FFFFFF;
+  //background-color: #0020C2;
+  color: black;
   text-align: center;
   font-size: 18px;
   padding: 20px;
@@ -30,7 +28,9 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  border: 2px solid red
+  border: 2px solid red;
+  border-radius: 100px;
+
 }
 
 .button span {
