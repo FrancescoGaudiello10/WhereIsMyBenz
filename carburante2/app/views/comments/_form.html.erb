@@ -1,4 +1,4 @@
-<%= form_with(model: [ @station, @station.reviews.build ], local: true) do |form| %>
+<%= form_with(model: [ @station, @station.comments.build ], local: true) do |form| %>
     <p>
         <%= form.label :commenter %><br>
         <%= form.text_field :commenter %>
@@ -11,6 +11,7 @@
         <%= form.label :stars %><br>
         <%= form.text_field :stars %>
     </p>
+    <br>
     <p>
         <%= form.submit %>
     </p>

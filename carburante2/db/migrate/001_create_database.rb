@@ -38,7 +38,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
         #         t.text "dtComu"
         #     end
         #
-        #     create_table "reviews", force: :cascade do |t|
+        #     create_table "comments", force: :cascade do |t|
         #         t.string "commenter"
         #         t.text "body"
         #         t.integer "stars"

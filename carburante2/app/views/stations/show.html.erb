@@ -7,7 +7,7 @@
 
         .columnDiv {
             flex: 50%;
-            margin: 0px 80px 0px 80px;
+            margin: 0px 100px 0px 100px;
         }
 
         h1.titolo, h4.titolo {
@@ -154,14 +154,13 @@
 
     </div>
     <div class="columnDiv" align="right">
-        <h3 class="meteo">Recensioni Utenti</h3><br/>
 
         <!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
-        <h2>Recensioni:</h2>
-        <%= render @station.reviews %>
+        <h2>Commenti:</h2>
+        <%= render @station.comments %>
 
-        <h2>Aggiungi una recensione:</h2>
-        <%= render 'reviews/form' %>
+        <h2>Aggiungi un commento:</h2>
+        <%= render 'comments/form' %>
 
     </div>
 </div>

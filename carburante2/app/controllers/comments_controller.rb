@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class CommentsController < ApplicationController
 
     def create
         @station = Station.find(params[:station_id])

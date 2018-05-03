@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_03_094939) do
+ActiveRecord::Schema.define(version: 2018_05_03_135418) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer "rater_id"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2018_05_03_094939) do
     t.datetime "updated_at", null: false
     t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable_type_and_rateable_id"
     t.index ["rater_id"], name: "index_average_caches_on_rater_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.integer "stars"
+    t.integer "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_comments_on_station_id"
   end
 
 # Could not dump table "implants" because of following StandardError
@@ -68,16 +78,6 @@ ActiveRecord::Schema.define(version: 2018_05_03_094939) do
     t.datetime "updated_at", null: false
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
     t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.integer "stars"
-    t.integer "station_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["station_id"], name: "index_reviews_on_station_id"
   end
 
   create_table "stations", force: :cascade do |t|

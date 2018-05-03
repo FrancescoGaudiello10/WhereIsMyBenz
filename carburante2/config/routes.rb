@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :stations do
-    resources :reviews
+    resources :comments
   end
   resources :implants
   resources :prices
