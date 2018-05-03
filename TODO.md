@@ -3,7 +3,6 @@
 - [ ] sistemare **grafica** (impostazioni, signup, statistiche, ...)
 - [ ] **calcolo** costi
 - [ ] **recensioni** in dettaglio stazione
-- [x] **opzioni** quando si aggiunge una nuova stazione
 
 
 
@@ -21,3 +20,4 @@
 - [x] mappa nel dettaglio stazione
 - [x] statistiche
 - [x] Visitati
+- [x] **opzioni** quando si aggiunge una nuova stazione
