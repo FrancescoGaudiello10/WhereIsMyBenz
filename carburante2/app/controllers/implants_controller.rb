@@ -23,10 +23,12 @@ class ImplantsController < ApplicationController
                        .group('Implants.Indirizzo')
                        .order('prices.prezzo ASC')
                        .near(@coord, @raggio, :order => :distance) #magia
-        #.limit(30)
-
+                       #.limit(30)
+                       
+        @titolo_impianti = calcola_numero_impianti_trovati(@implant)
+        
         # carico i marker delle stazioni sulla mappa
-        load_markers(@implant,@city, @coord)
+        load_markers(@implant, @city, @coord)
     end
 
     def new
@@ -109,6 +111,12 @@ class ImplantsController < ApplicationController
         params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :Latitudine, :Longitudine)
     end
 
+    #converte timestamp unix in orario normale
+    def unixToHuman (timestamp)
+        #https://stackoverflow.com/a/3964560/1440037
+        Time.at(timestamp).utc.in_time_zone(+2).strftime("%H:%M:%S")
+    end
+    
     #ottiene il meteo della stazione di rifornimento cercata
     def get_weather
         @weather = HTTParty.get(
@@ -132,11 +140,18 @@ class ImplantsController < ApplicationController
         )
         @logo = @res["data"]["result"]["items"][0]["media"]
     end
-
-    #converte timestamp unix in orario normale
-    def unixToHuman (timestamp)
-        #https://stackoverflow.com/a/3964560/1440037
-        Time.at(timestamp).utc.in_time_zone(+2).strftime("%H:%M:%S")
+    
+    def calcola_numero_impianti_trovati(implant)
+      titolo = ""
+      num = @implant.count('Implants.idImpianto').length
+      if num == 0
+        titolo = "Nessun impianto trovato."
+      elsif num == 1
+        titolo = "1 impianto trovato"
+      else 
+        titolo = "#{num} impianti trovati"
+      end
+      return titolo
     end
 
     #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker

@@ -1,8 +1,10 @@
 class StationsController < ApplicationController
 
-    #autenticazione richiesta, solo gli amministratori possono aggiungere stazioni
-    before_action :authenticate_user! , :admin_user, only: :index
-
+    #autenticazione richiesta
+    before_action   :authenticate_user! #, :admin_user, only: :index
+    #solo gli amministratori possono modificare o cancellare stazioni
+    before_action   :admin_user, only:[:new, :edit, :update, :destroy]
+      
     def index
         @station = Station.all
     end
@@ -57,13 +59,17 @@ class StationsController < ApplicationController
         redirect_to stations_path
     end
 
+
     private
+    
     def station_params
         params.require(:station).permit(:Bandiera, :Nome, :Indirizzo, :Benzina, :Diesel, :Super, :Excellium, :Metano, :GPL, :allDay, :Self, :autoLavaggio)
     end
-
+    
+    # https://stackoverflow.com/a/18821972/1440037
     def admin_user
-        redirect_to(new_user_session_path) unless current_user.admin?
+        redirect_to stations_path, notice: "Solo i gestori possono compiere questa azione."  unless current_user.admin?
+        #flash[:error] = "Solo i gestori possono compiere questa azione."  unless current_user.admin?
     end
 
 end

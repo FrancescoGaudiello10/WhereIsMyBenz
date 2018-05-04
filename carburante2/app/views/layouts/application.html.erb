@@ -43,7 +43,6 @@
                     <ul class="nav navbar-nav">
                         <li>
                           <%= link_to welcome_index_path, class: "navbar-brand" do %>
-                            <!-- <i class="glyphicon glyphicon-star "> </i> -->
                             <%= image_tag("gas-station.png", :size => "22x22") %>
                           <% end %>
                         </li>
@@ -56,8 +55,7 @@
 <!--                    destra-->
                     <ul class="nav navbar-nav navbar-right">
 <!--                        se l'utente corrente e' admin faccio vedere la scritta, altrimenti no-->
-                        <% @a = current_user.admin ? " (admin)" : "" %>
-<!--                        <li> <%#= link_to current_user.email + @a, edit_user_registration_url %> </li>-->
+                        <% @a = current_user.try(:admin?) ? " (admin)" : "" %>
                         <li> <%= link_to current_user.email + @a, profiles_index_path %> </li>
                         <li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
                     </ul>
@@ -66,7 +64,6 @@
                     <ul class="nav navbar-nav">
                         <li>
                           <%= link_to welcome_index_path, class: "navbar-brand" do %>
-                            <!-- <i class="glyphicon glyphicon-star "> </i> -->
                             <%= image_tag("gas-station.png", :size => "22x22") %>
                           <% end %>
                         </li>

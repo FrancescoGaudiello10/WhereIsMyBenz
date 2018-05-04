@@ -9,7 +9,7 @@
     <div class="myDivForm" >
     <%= form_tag("/implants/index", method: :get, html: { autocomplete: "off" }, :class => 'myForm') do %>
 
-        <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
+    <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
     <%= number_field_tag :raggio, nil, required:true, min:1.0, max:50.0, :placeholder => "KM", :class => "myRadius"  %>
     <% if user_signed_in? %>
         <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
