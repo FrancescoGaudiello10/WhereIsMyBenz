@@ -7,8 +7,8 @@ class Implant < ApplicationRecord
     has_many :prices
 
     #Location https://www.youtube.com/watch?v=4iAjdTrgAvs
-    geocoded_by :full_address, :latitude  => :latitude, :longitude => :longitude
-    after_validation :geocode#, if: :address_changed?
+    geocoded_by :full_address #, :latitude  => :Latitudine, :longitude => :Longitudine
+    after_validation :geocode #, if: :address_changed?
 
     private
     def full_address

@@ -1,5 +1,6 @@
 # Questo file riempie le tabelle del database con i dati degli impianti e dei prezzi nei file csv tramite il comando 
 # rake db:seed
+# NON CONSIGLIATO, troppo lento
 
 require 'csv'
 
@@ -9,15 +10,15 @@ progressbar = ProgressBar.create(:title => "Impianti", :starting_at => 0, :total
 CSV.foreach(Rails.root.join('db/csv/implants.csv'), headers: true, :col_sep => ";") do |row|
     Implant.create!(
         :idImpianto		=> row['idImpianto'],
-        :Gestore 		=> row['Gestore'],
+        :Gestore 		  => row['Gestore'],
         :Bandiera 		=> row['Bandiera'],
         :TipoImpianto	=> row['TipoImpianto'],
         :NomeImpianto	=> row['NomeImpianto'],
         :Indirizzo		=> row['Indirizzo'],
-        :Comune			=> row['Comune'],
+        :Comune			  => row['Comune'],
         :Provincia		=> row['Provincia'],
-        :latitude		=> row['Latitudine'],
-        :longitude		=> row['Longitudine']
+        :latitude		  => row['Latitudine'],
+        :longitude	  => row['Longitudine']
     )
     progressbar.increment
 end

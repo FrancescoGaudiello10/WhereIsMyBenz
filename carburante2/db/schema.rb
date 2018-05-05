@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.float "latitude"
     t.float "longitude"
     t.float "distance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
   end
 
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.text "prezzo"
     t.text "isSelf"
     t.text "dtComu"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stations", force: :cascade do |t|
