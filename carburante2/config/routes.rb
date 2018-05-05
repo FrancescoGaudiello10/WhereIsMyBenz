@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'visits/index'
+  get 'visits/show'
   get 'welcome/index'
   get 'welcome/results'
 
@@ -7,7 +9,9 @@ Rails.application.routes.draw do
   get 'implants/show'
   get 'implants/stats'
 
-  get 'calcs/index'
+  get 'visits/index'
+  
+  get 'calcs/show'
 
   get 'profiles/index'
   get 'profiles/update'
@@ -28,5 +32,6 @@ Rails.application.routes.draw do
   resources :prices
   resources :calcs
   resources :profiles
+  resources :visits
 
 end
