@@ -22,12 +22,14 @@ echo "--> Sostituisco \" in anagrafica-temp.csv creando implants.csv..."
 echo " "
 sed 's/"//g' csv/anagrafica-temp.csv  > csv/implants.csv
 
-# echo "--> Aggiungo intestazione a implants.csv..."
-# echo 'idImpianto;Gestore;Bandiera;Tipo Impianto;NomeImpianto;Indirizzo;Comune;Provincia;Latitudine;Longitudine;distance;created_at;updated_at' | cat - csv/implants.csv > csv/temp && mv csv/temp csv/implants.csv
+echo "--> Aggiungo ; alla fine di ogni riga in implants.csv..."
+echo " "
+sed -e 's/$/;/' -i csv/implants.csv
 
 echo "--> Cancello i file inutili..."
 rm csv/anagrafica_impianti_attivi.csv
 rm csv/anagrafica-temp.csv
+
 
 echo "--> Scarico prezzo_alle_8.csv dal Ministero..."
 echo " "
@@ -36,6 +38,10 @@ wget -U "Opera" -O csv/prezzo_alle_8.csv http://www.sviluppoeconomico.gov.it/ima
 echo "--> Rimuovo le prime due righe da prezzo_alle_8.csv creando prices.csv..."
 echo " "
 sed '1,2d' csv/prezzo_alle_8.csv > csv/prices.csv
+
+echo "--> Aggiungo ; alla fine di ogni riga in prices.csv..."
+echo " "
+sed -e 's/$/;/' -i csv/prices.csv
 
 echo "--> Cancello i file inutili..."
 rm csv/prezzo_alle_8.csv
@@ -50,5 +56,5 @@ rails db:migrate
 
 echo "--> Importo i .csv nel database..."
 echo " "
-/usr/local/bin/sqlite3 development.sqlite3 < csv/create_table_from_csv.sql
+/usr/bin/sqlite3 development.sqlite3 < csv/create_table_from_csv.sql
 
