@@ -37,10 +37,10 @@ class ProfilesController < ApplicationController
     veicolo = JSON.parse(
         HTTParty.get(  "http://app.segugio.it/doJsonCommand.bl?pstjsn=%7B%22directive%22:%22GDT%22,%22parameters%22:%7B%22vehicleType%22:A,%20%22plate%22:#{targa},%20%22ver%22:%22tu2Ah%22%7D%7D&_=1517504750001")
     )["jsonDaTarga"]
-    
-    @immatricolazione  = veicolo["registration_date"]
-    @auto              = veicolo["brands"][0]["brand_description"] + " " + veicolo["models"][0]["model_description"]
-
+    if veicolo != nil
+        @immatricolazione  = veicolo["registration_date"]
+        @auto              = veicolo["brands"][0]["brand_description"] + " " + veicolo["models"][0]["model_description"]
+    end
   end
 
 end

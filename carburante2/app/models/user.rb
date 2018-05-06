@@ -4,12 +4,6 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:facebook]
-
-    validates :luogo_preferito,       presence: true
-    validates :stazione_preferita,    presence: true
-    validates :carburante_preferito,  presence:true
-    validates :litri_serbatoio,       presence:true, numericality: {greater_than: 0}
-    validates :targa,                 length: { is: 7 }
     
     # a ciascun utente e' associato un array con gli id degli impianti visitati
     # converto valore nel DB in array

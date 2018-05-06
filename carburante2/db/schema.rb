@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.float "latitude"
     t.float "longitude"
     t.float "distance"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["idImpianto"], name: "sqlite_autoindex_implants_1", unique: true
   end
 
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.text "prezzo"
     t.text "isSelf"
     t.text "dtComu"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stations", force: :cascade do |t|
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_04_29_082459) do
     t.string "stazione_preferita"
     t.string "carburante_preferito"
     t.integer "litri_serbatoio"
+    t.string "targa"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

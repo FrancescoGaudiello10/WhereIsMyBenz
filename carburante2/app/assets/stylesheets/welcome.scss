@@ -5,32 +5,59 @@
 //Custom font
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-//body {
-//  padding-top: 0px;
-//}
-
-
 body.intro {
   padding-top: 0px;
-  //background-color: black;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
-  overflow: hidden  /*blocca lo scorrimento della pagina*/
+  overflow: hidden;  /*blocca lo scorrimento della pagina*/
+  //  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
+  //  background-size: 100%;
+}
+
+.videoContainer {
+width: 100%;
+height: 100%;
+position: absolute;
+padding:0;
+margin:0;
+left: 0px;
+top: 0px;
+z-index: -1000;
+overflow:hidden;
+
+}
+
+.videoContainer .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background: black;
+    opacity: 0.4;
+}
+
+.videoContainer .videoPlayer {
+    min-height: 100%;
+    min-width:100%;
+position:absolute;
+bottom:0;
+left:0;
+width: auto;
+height: auto;
 }
 
 .HomeBanner {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    
     height: 100%;
     width: 100%;
     margin:0 auto;
-    padding-top: 100px;
-
+    padding-top: 150px;
     text-align: center;
     font-family: "Open Sans";
-
-    //background-repeat: no-repeat;
-    //background-size: 100%;
-    //background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
 }
 
 .myDivForm {
@@ -54,10 +81,9 @@ body.intro {
     border: 1px solid #fff !important;
     opacity: 1 !important;
     font-size: 24px !important;
-    // border-radius: 10px 0px 0px 10px;
     border-radius: 10px 10px 10px 10px;
     padding-left: 20px;
-    width: 800px;
+    width: 700px;
     height: 60px;
     margin: 100px auto 50px;
     padding-bottom: 6px;

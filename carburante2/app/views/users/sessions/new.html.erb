@@ -1,10 +1,13 @@
-<h2>Log in</h2>
+
+<h2 align="center">Log in</h2>
 
 <body align="center">
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
 
-    <img class="mb-4" src="/gas-station-black.png" alt="" width="72" height="72">
+    <div align="center">
+        <img class="mb-4" src="/gas-station-black.png" alt="" width="72" height="72" >
+    </div>
 
     <br><br>
 
@@ -17,7 +20,7 @@
     </div>
 
     <% if devise_mapping.rememberable? %>
-        <div class="field">
+        <div class="field" align="center">
             <%= f.label :remember_me %>
             <%= f.check_box :remember_me%>
             <br>
@@ -30,6 +33,8 @@
     </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div align="center">
+    <%= render "users/shared/links" %>
+</div>
 
 </body>
