@@ -3,6 +3,9 @@
 
 <head>
     <style>
+        #bandiera{
+            text-transform:uppercase;
+         }
         table.blueTable {
             border: 1px solid #1C6EA4;
             background-color: #EEEEEE;
@@ -95,7 +98,7 @@
     <p>
         <%= form.label :Bandiera %><br>
         <%#= select_tag :Bandiera, options_for_select(@stazioni), :include_blank => '-- Seleziona --', required: true %>
-        <%= form.text_field :Bandiera %>
+        <%= form.text_field :Bandiera, :id => "bandiera" %>
     </p>
 
     <p>
@@ -121,27 +124,27 @@
         <tbody>
         <tr>
             <td>Benzina</td>
-            <td> <%= form.text_field(:Benzina, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:Benzina, :placeholder => "€" , :type => "number", :step => "any") %> </td>
         </tr>
         <tr>
             <td>Gasolio</td>
-            <td> <%= form.text_field(:Diesel, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:Diesel, :placeholder => "€", :type => "number", :step => "any") %> </td>
         </tr>
         <tr>
             <td>Super</td>
-            <td> <%= form.text_field(:Super, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:Super, :placeholder => "€", :type => "number", :step => "any") %> </td>
         </tr>
         <tr>
             <td>Excellium Diesel</td>
-            <td> <%= form.text_field(:Excellium, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:Excellium, :placeholder => "€", :type => "number", :step => "any") %> </td>
         </tr>
         <tr>
             <td>Metano</td>
-            <td> <%= form.text_field(:Metano, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:Metano, :placeholder => "€", :type => "number", :step => "any") %> </td>
         </tr>
         <tr>
             <td>GPL</td>
-            <td> <%= form.text_field(:GPL, :placeholder => "€") %> </td>
+            <td> <%= form.text_field(:GPL, :placeholder => "€", :type => "number", :step => "any") %> </td>
         </tr>
         </tbody>
         </tr>

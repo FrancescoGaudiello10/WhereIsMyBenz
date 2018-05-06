@@ -5,6 +5,13 @@
             font-size: 14px !important;
             color: white;
         }
+        #targa{
+            text-transform:uppercase;
+            text-align: center;
+         }
+         .profileCheckBox{
+               transform: scale(1.5);
+         }
     </style>
 </head>
 
@@ -12,14 +19,13 @@
 
 <div class="fotosfondo" align="center">
 
-<h1> <strong> Impostazioni Profilo </strong></h1>
+<h1> <strong> Profilo </strong></h1>
 <br>
 <!-- questo dovrebbe essere rosso ma rimane blu -->
 <h3 style="color: red; font-family: Comic Sans MS"> <%= link_to current_user.email.upcase, edit_user_registration_url %> </h3>
 
 <br>
 <div style="position: absolute; top:80px; right:100px">
- <!-- <%= link_to "Impostazionin account", edit_user_registration_url %> -->
 <%= link_to(image_tag("/cog.png"), edit_user_registration_url,  :method => :get) %>
 </div>
 
@@ -31,7 +37,7 @@
     </div>
 
     <br>
-    <div class="input-group">
+    <div class="field">
         <%= f.label :luogo_preferito %><br/>
         <%= text_field_tag(:luogo_preferito, nil, required: true, :class => 'luogopref', :value => current_user.luogo_preferito) %>
     </div>
@@ -53,6 +59,21 @@
         <%= number_field(:litri_serbatoio, nil, required: true, min: 1.0, :value => current_user.litri_serbatoio, 
         :class => "number_field_profiles") %>
     </div>
+    <br>
+    <div class="field">
+        <%= f.label :targa %><br/>
+        <%= text_field_tag(:targa, nil, required: false, :maxlength => 7, :value => current_user.targa, :id => "targa") %>
+    </div>
+    
+    <% if current_user.targa != nil %>    
+        <br>
+        <div class="field">
+            <%= f.label "Modello" %>:
+            <%= @auto %> <br/>
+            <%= f.label "Immatricolazione" %>:
+            <%= @immatricolazione %> <br/>
+        </div> 
+    <% end %>
 
     <br>
     <button class="button"> <span><%= f.submit "Aggiorna" %></span>  </button>
@@ -60,7 +81,7 @@
 <% end %>
     </div>
 
-<script>
+<script type="text/javascript">
     function initAutocomplete() {
         var input = document.getElementById('luogo_preferito');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -76,5 +97,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
         async defer></script>
 
-<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
-    </div>
+</div>
+</body>
