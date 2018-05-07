@@ -7,7 +7,6 @@
 
 
 - [ ] ~~sistemare tema **navigation bar**~~
-- [ ] ~~ricerca in base alla **posizione** attuale~~
 - [ ] ~~**login** con github o twitter~~
 
 
@@ -21,3 +20,4 @@
 - [x] statistiche
 - [x] Visitati
 - [x] **opzioni** quando si aggiunge una nuova stazione
+- [x] ricerca in base alla **posizione** attuale
