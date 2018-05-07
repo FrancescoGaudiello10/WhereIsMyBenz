@@ -73,6 +73,18 @@ height: auto;
     opacity: 1; /* Firefox */
 }
 
+.Locationinput { 
+    position: relative; 
+    width:580px; 
+    margin:0 
+    auto; 
+}
+.Locationinput img { 
+    position: absolute; 
+    top: 15px; 
+    right: 2px 
+}
+
 .mySearchBar {
     border: 1px solid #fff !important;
     min-width: inherit !important;
@@ -83,7 +95,7 @@ height: auto;
     font-size: 24px !important;
     border-radius: 10px 10px 10px 10px;
     padding-left: 20px;
-    width: 700px;
+    width: 600px;
     height: 60px;
     margin: 100px auto 50px;
     padding-bottom: 6px;
@@ -167,4 +179,7 @@ p.intro {
     color: white;
 }
 
+.locationImg {
+cursor:pointer;
+}
 
