@@ -9,9 +9,9 @@ class ProfilesController < ApplicationController
                      .group('Bandiera')
                      .order('Bandiera ASC')
                      .pluck("Bandiera") #converte in array
-    if current_user.targa != nil                  
-        infoAuto(current_user.targa)
-    end
+    # if current_user.targa != nil
+    #     infoAuto(current_user.targa)
+    # end
   end
 
   def update
@@ -34,10 +34,10 @@ class ProfilesController < ApplicationController
   private 
   
   def infoAuto(targa)
-    veicolo = JSON.parse(
+    @veicolo = JSON.parse(
         HTTParty.get(  "http://app.segugio.it/doJsonCommand.bl?pstjsn=%7B%22directive%22:%22GDT%22,%22parameters%22:%7B%22vehicleType%22:A,%20%22plate%22:#{targa},%20%22ver%22:%22tu2Ah%22%7D%7D&_=1517504750001")
     )["jsonDaTarga"]
-    if veicolo != nil
+    if @veicolo != nil
         @immatricolazione  = veicolo["registration_date"]
         @auto              = veicolo["brands"][0]["brand_description"] + " " + veicolo["models"][0]["model_description"]
     end

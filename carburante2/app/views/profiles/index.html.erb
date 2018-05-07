@@ -62,12 +62,12 @@
         :class => "number_field_profiles") %>
     </div>
     <br>
-    <div class="field">
-        <%= f.label :targa %><br/>
-        <%= text_field_tag(:targa, nil, required: false, :maxlength => 7, :value => current_user.targa, :id => "targa") %>
-    </div>
+    <!-- <div class="field"> -->
+        <%#= f.label :targa %><br/>
+        <%#= text_field_tag(:targa, nil, required: false, :maxlength => 7, :value => current_user.targa, :id => "targa") %>
+    <!-- </div> -->
     
-    <% if current_user.targa != nil %>    
+    <% if @veicolo != nil %>    
         <br>
         <div class="field">
             <%= f.label "Modello" %>:

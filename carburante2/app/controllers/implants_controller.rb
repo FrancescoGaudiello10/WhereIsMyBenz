@@ -179,9 +179,9 @@ class ImplantsController < ApplicationController
         #aggiungo l'indirizzo cercato, il centro della mappa
         if center_address!=nil and center_coords!=nil
         @routers_default.append({:lat=>center_coords[0], :lng=>center_coords[1],
-                                 :picture=>{"url"=>"/blue-marker.png",
-                                            "width"=>30, "height"=>48},
-                                 :infowindow=>"<b>#{center_address}</b> <br>\n"})
+                                 :picture=>{"url"=>"/blue-marker.png","width"=>30, "height"=>48},
+                                 :infowindow=>"<b>#{center_address}</b> <br>\n"
+                                 })
         end
 
     end
