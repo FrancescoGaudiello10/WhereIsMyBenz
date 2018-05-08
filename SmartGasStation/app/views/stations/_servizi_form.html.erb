@@ -1,0 +1,157 @@
+<head>
+    <style>
+        .rowDiv {
+            display: flex;
+        }
+
+        .columnDiv {
+            flex: 50%;
+        }
+
+        h1.titolo, h4.titolo {
+            text-align: left;
+            padding: 25px 0px 0px 80px;
+        }
+
+        h3.meteo {
+            text-align: right;
+            padding: 15px 80px 0px 0px;
+        }
+
+        h3.tipiCarburante {
+            text-align: left;
+            padding: 15px 0px 0px 60px;
+        }
+
+        .weather_div {
+            padding: 15px 80px 20px 0px;
+        }
+
+        .row {
+            border-bottom: 1px solid #f2f2f2;
+            padding-bottom: 18px;
+            padding-top: 30px;
+            padding-right: 15px;
+            margin: 0;
+        }
+
+        .row .cell {
+            border: none;
+            padding-left: 30px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .row .cell:nth-child(1) {
+            padding-left: 30px;
+        }
+
+        .row .cell {
+            font-family: "Poppins";
+            font-size: 18px;
+            color: #555555;
+            line-height: 1.2;
+            font-weight: unset !important;
+        }
+
+        .table, .row, .cell {
+            width: 100% !important;
+        }
+
+        .table {
+            display: block;
+        }
+
+        .row {
+            display: table-row;
+            background: #fff;
+        }
+
+        .row.header {
+            color: #ffffff;
+            background: #6c7ae0;
+        }
+
+        .row {
+            display: block;
+        }
+
+        .row.header {
+            padding: 0;
+            height: 0px;
+        }
+
+        .row.header .cell {
+            display: none;
+        }
+
+        .row .cell:before {
+            font-family: "Poppins";
+            font-size: 12px;
+            color: #808080;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: unset !important;
+
+            margin-bottom: 13px;
+            content: attr(data-title);
+            min-width: 98px;
+            display: block;
+        }
+
+        .cell {
+            display: table-cell;
+        }
+
+        .row .cell:nth-child(1) {
+            width: 360px;
+            padding-left: 40px;
+        }
+
+        .row .cell:nth-child(2) {
+            width: 160px;
+        }
+
+        .row .cell:nth-child(3) {
+            width: 250px;
+        }
+
+        .row .cell:nth-child(4) {
+            width: 190px;
+        }
+
+        .table, .row {
+            width: 100% !important;
+        }
+
+        .row:hover {
+            background-color: #ececff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell"> Servizio</div>
+                <div class="cell"> Disponibilità </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" data-title="24/7">
+                    <%= check_box_tag :allDay, nil, @station.allDay %>
+                </div>
+                <div class="cell" data-title="Self Service">
+                    <%= check_box_tag :Self, nil, @station.Self%>
+                </div>
+                <div class="cell" data-title="Autolavaggio">
+                    <%= check_box_tag :autoLavaggio, nil, @station.autoLavaggio%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

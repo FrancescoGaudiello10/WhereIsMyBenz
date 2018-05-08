@@ -1,0 +1,24 @@
+<!--http://guides.rubyonrails.org/getting_started.html#the-first-form-->
+
+<head>
+    <style>
+        .pac-container, .pac-item, .pac-item-query {
+            background-color: white !important;
+            font-size: 14px !important;
+            color: black;
+        }
+    </style>
+</head>
+<body style="background-color: #C8D3F0">
+
+<div style="margin-left: 50px">
+
+    <h1>Nuova stazione </h1>
+
+    <%= render 'form' %>
+
+    <br><%= link_to 'Indietro', stations_path %>
+
+</div>
+
+</body>

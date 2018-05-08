@@ -1,0 +1,72 @@
+<%= form_with(model: implant, local: true) do |form| %>
+  <% if implant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(implant.errors.count, "error") %> prohibited this implant from being saved:</h2>
+
+      <ul>
+      <% implant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :idImpianto %>
+    <%= form.text_field :idImpianto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Gestore %>
+    <%= form.text_field :Gestore %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Bandiera %>
+    <%= form.text_field :Bandiera %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TipoImpianto %>
+    <%= form.text_field :TipoImpianto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :NomeImpianto %>
+    <%= form.text_field :NomeImpianto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Indirizzo %>
+    <%= form.text_field :Indirizzo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Comune %>
+    <%= form.text_field :Comune %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Provincia %>
+    <%= form.text_field :Provincia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distance %>
+    <%= form.text_field :distance %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
