@@ -306,7 +306,7 @@ Then /^my property has GPS coordinates$/ do
   Property.last.latitude != nil && Property.last.longitude != nil
 end
 
-And /^I follow "([^"]*)" to the new window$/ do |link|
+And /^I follow '([^"]*)' to the new window$/ do |link|
   new_window = window_opened_by { click_link link }
   switch_to_window new_window
 end
