@@ -32,7 +32,7 @@
    <br>
   <div class="field">
           <%= f.label "Gestore" , :for => "checkbox" %>
-          <%= f.check_box(:admin, {value: "1",checked: current_user.admin , :class => 'profileCheckBox', :id => "checkbox"}) %>
+          <%= f.check_box(:admin, {value: "1",checked: current_user.admin , :class => 'profileCheckBox', :id => "admin_checkbox"}) %>
       </div>
 
       <br>
@@ -44,19 +44,20 @@
       <div class="field">
           <%= f.label :stazione_preferita %><br/>
           <%= f.select :stazione_preferita, options_for_select(get_list_stazioni, current_user.stazione_preferita), 
-          :include_blank => '-- Seleziona --', required: true %>
+          :include_blank => '-- Seleziona --', required: true, :class => "stazione_preferita", :id => "stazione_preferita" %>
+
       </div>
       <br>
       <div class="field">
           <%= f.label :carburante_preferito %><br/>
           <%= f.select :carburante_preferito, options_for_select(tipo_carburante, current_user.carburante_preferito), 
-          :include_blank => '-- Seleziona --', required: true %>
+          :include_blank => '-- Seleziona --', required: true, :id => "carburante_preferito" %>
       </div>
   
   <div class="field">
     <%= f.label :litri_serbatoio %><br />
     <%= f.number_field(:litri_serbatoio, required: true, min: 1.0, :value => current_user.litri_serbatoio, 
-        :class => "number_field_profiles") %>
+        :class => "number_field_profiles", :id => "litri_serbatoio") %>
   </div>
 
 
@@ -67,7 +68,7 @@
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Aggiorna" %>
   </div>
 <% end %>
 

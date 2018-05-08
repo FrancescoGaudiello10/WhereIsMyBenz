@@ -51,7 +51,22 @@ When /^(?:|I )fill in the following:$/ do |fields|
     end
 end
 
-# Action
+When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
+    select(value, :from => field)
+end
+
+When /^(?:|I )check "([^"]*)"$/ do |field|
+    check(field)
+end
+
+When /^(?:|I )uncheck "([^"]*)"$/ do |field|
+    uncheck(field)
+end
+
+When /^(?:|I )choose "([^"]*)"$/ do |field|
+    choose(field)
+end
+
 And(/^I press "([^"]*)"$/) do |button|
     click_button(button)
 end
@@ -74,11 +89,10 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
     end
 end
 
-# Steps
+# Action
 When /^I log in$/ do
     steps %Q{
-      Given I am a registered user
-      And I am on the login page
+      Given I am on the login page
       When I fill in "Email" with "lollo@diag.uniroma1.it"
       And I fill in "Password" with "123456"
       And I press "Log in"

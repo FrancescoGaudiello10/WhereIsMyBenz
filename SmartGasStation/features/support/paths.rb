@@ -20,6 +20,9 @@ module NavigationHelpers
     when /^the login page$/
       '/users/sign_in'
 
+    when /^the add station page$/
+      '/stations/new'
+
     when /^the last insertion page$/
       property_path(Property.last)
 

@@ -3,7 +3,7 @@
 
 
 <% if current_user.admin? %>
-    <h3> <td><%= link_to 'Aggiungi stazione', new_station_path %></td> </h3>
+    <h3> <%= link_to 'Aggiungi stazione', new_station_path %> </h3>
 <% end %>
 
 <% if @station.count == 0 %>

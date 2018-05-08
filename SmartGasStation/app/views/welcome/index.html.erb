@@ -24,18 +24,17 @@
     <img class="locationImg" src="/locate.png" onclick="getLocation()">
 </div>
 
-   
     
-    <%= number_field_tag :raggio, nil, required:true, min:1.0, max:50.0, :placeholder => "KM", :class => "myRadius"  %>
+    <%= number_field_tag :raggio, nil, required:true, min:1.0, max:50.0, :placeholder => "KM", :class => "myRadius", :id => "myRadius"  %>
     <% if user_signed_in? %>
         <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown" %>
+                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
     <% else %>
         <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
-                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown" %>
+                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
     <% end %>
         
-    <%= submit_tag("Cerca", :class => 'myButton') %>
+    <%= submit_tag("Cerca", :class => 'myButton', :id => "myButton") %>
 </div>
 
     <% end %>
