@@ -1,0 +1,30 @@
+
+<body class="text-center">
+
+<h1>Calcola costi</h1>
+
+<%= form_tag("/calcs/show", method: :get, :class => 'form-signin') do %>
+
+<!--    <img class="mb-4" src="http://cdn.onlinewebfonts.com/svg/download_403829.png" alt="" width="72" height="72">-->
+
+    <div class="input">
+        <p> Vuoi fare il pieno? </p>
+        <%= label_tag(:pieno_si, "Si") %>
+        <%= radio_button_tag(:pieno, true) %>
+        <%= label_tag(:pieno_no, "No") %>
+        <%= radio_button_tag(:pieno, false) %>
+    </div>
+
+    <div class="input">
+        <p>
+            Quanti litri ti rimangono?
+            <%= number_field(:litri_rimanenti, nil, required:true, min:0.0, max:50.0) %> L
+    </div>
+
+    <div class="actions">
+        <%= submit_tag("Calcola", :class => 'btn btn-lg btn-primary btn-block') %>
+    </div>
+
+<% end %>
+
+</body>

@@ -1,7 +1,0 @@
-<% provide(:title, 'All owners') %>
-<h1><%= t(:lista)+" "+t(:owners) %></h1>
-<%= will_paginate %>
-<ul class="owners">
-   <%= render @owners %>
-</ul>
-<%= will_paginate %>

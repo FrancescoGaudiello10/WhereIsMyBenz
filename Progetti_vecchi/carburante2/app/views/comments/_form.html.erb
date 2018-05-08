@@ -1,0 +1,22 @@
+<%= form_with(model: [ @station, @station.comments.build ], local: true) do |form| %>
+    <p>
+        <%= form.label :commenter %><br>
+        <% if current_user.try(:admin?) %>
+        <%= form.text_field :commenter, value: current_user.email + " (gestore)" %>
+        <% else %>        
+        <%= form.text_field :commenter, value: current_user.email %>
+        <% end %>
+    </p>
+    <p>
+        <%= form.label :body %><br>
+        <%= form.text_area :body %>
+    </p>
+    <p>
+        <%= form.label :stars %><br>
+        <%= form.text_field :stars %>
+    </p>
+    <br>
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>

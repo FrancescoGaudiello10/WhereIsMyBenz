@@ -1,0 +1,195 @@
+<head>
+    <style>
+        .rowDiv {
+            display: flex;
+        }
+        .columnDiv {
+            flex: 50%;
+        }
+        h1.titolo, h4.titolo {
+            text-align: left;
+            padding: 25px 0px 0px 80px;
+        }
+        h3.meteo {
+            text-align: right;
+            padding: 15px 80px 0px 0px;
+        }
+        h3.tipiCarburante {
+            text-align: left;
+            padding: 15px 0px 0px 60px;
+        }
+
+        .weather_div {
+            padding: 15px 80px 20px 0px;
+        }
+
+
+
+        .row {
+            border-bottom: 1px solid #f2f2f2;
+            padding-bottom: 18px;
+            padding-top: 30px;
+            padding-right: 15px;
+            margin: 0;
+        }
+
+        .row .cell {
+            border: none;
+            padding-left: 30px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .row .cell:nth-child(1) {
+            padding-left: 30px;
+        }
+
+        .row .cell {
+            font-family: "Poppins";
+            font-size: 18px;
+            color: #555555;
+            line-height: 1.2;
+            font-weight: unset !important;
+        }
+
+        .table, .row, .cell {
+            width: 100% !important;
+        }
+
+        .table {
+            display: block;
+        }
+
+        .row {
+            display: table-row;
+            background: #fff;
+        }
+
+        .row.header {
+            color: #ffffff;
+            background: #6c7ae0;
+        }
+
+        .row {
+            display: block;
+        }
+
+        .row.header {
+            padding: 0;
+            height: 0px;
+        }
+
+        .row.header .cell {
+            display: none;
+        }
+
+        .row .cell:before {
+            font-family: "Poppins";
+            font-size: 12px;
+            color: #808080;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: unset !important;
+
+            margin-bottom: 13px;
+            content: attr(data-title);
+            min-width: 98px;
+            display: block;
+        }
+
+
+        .cell {
+            display: table-cell;
+        }
+
+        .row .cell:nth-child(1) {
+            width: 360px;
+            padding-left: 40px;
+        }
+
+        .row .cell:nth-child(2) {
+            width: 160px;
+        }
+
+        .row .cell:nth-child(3) {
+            width: 250px;
+        }
+
+        .row .cell:nth-child(4) {
+            width: 190px;
+        }
+
+        .table, .row {
+            width: 100% !important;
+        }
+
+        .row:hover {
+            background-color: #ececff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style="background-color: #C8D3F0">
+
+    <div class="rowDiv" style="background-color: whitesmoke; border-radius: 18px; margin: 0px 30px 0px 30px;">
+        <div class="columnDiv">
+            <img src="<%= @logo %>" height="72" width="72" style="margin: 25px 0px 0px 100px">
+            <h1 class="titolo TitoloBandiera"> <%= @Bandiera.upcase %> </h1>
+            <h4 class="titolo"> <%= @Gestore.humanize %>  </h4>
+        </div>
+        <div class="columnDiv" align="right">
+            <h3 class="meteo">Meteo</h3>
+            <div class="weather_div"> <%= render 'weather_form' %> </div>
+        </div>
+    </div>
+    <br>
+    <div class="rowDiv">
+        <div class="columnDiv">
+
+            <h3 class="tipiCarburante"> Tipi di Carburante </h3>
+            <%= render 'prices_form' %>
+
+            <h3 class="tipiCarburante">Stazioni vicine</h3>
+            <%= render 'nearby_stations_form' %>
+
+        </div>
+        <div class="columnDiv" align="right">
+            <h3 class="meteo">Recensioni Utenti</h3>
+            <br><br><br><br><br><br>
+            <h3 class="meteo">DA IMPLEMENTARE</h3>
+        </div>
+    </div>
+    <br>
+        <!-- MAPPA -->
+        <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+
+            <!-- Titolo -->
+            <div class="my-3 py-3">
+                <br>
+                <h2 class="display-5">Maps</h2>
+                <p class="lead"> <%= @Indirizzo.humanize %>, <%=@Comune.humanize %> (<%= @Provincia %>) </p>
+            </div>
+
+            <!-- MAPPA 1 -->
+            <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="//www.google.com/maps/embed/v1/place?q=<%= @lat %>%2C<%= @long %>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
+            </iframe>
+
+            <!-- MAPPA 2 -->
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/streetview?location=<%= @lat %>%2C<%= @long %>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
+                    allowfullscreen>
+            </iframe>
+
+    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
+
+</div>
+
+
+</div>
+
+</body>

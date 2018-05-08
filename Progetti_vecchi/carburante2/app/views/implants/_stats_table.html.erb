@@ -1,0 +1,30 @@
+<!-- TABELLA -->
+<div class="container-table100" style="background: #FFFBCE">
+    <div class="wrap-table100">
+        <div class="table">
+
+            <div class="row header" style="background: #EFD84F">
+                <div class="cell"> Bandiera</div>
+                <div class="cell"> Prezzo</div>
+                <div class="cell"> Carburante</div>
+                <div class="cell"> Indirizzo</div>
+                <div class="cell"> Dettagli</div>
+            </div>
+
+            <% @prezzi.each do |i| %>
+                <div class="row">
+                    <div class="cell" data-title="Bandiera"> <%= i.Bandiera.upcase %> </div>
+                    <% if @order != "MEDIA" %>
+                        <div class="cell" data-title="Prezzo"> € <%= i.prezzo %> </div>
+                    <%elsif @order == "MEDIA"%>
+                        <div class="cell" data-title="Prezzo"> € <%= i.inspect %> </div>
+                    <% end %>
+
+                    <div class="cell" data-title="Carburante"> <%= i.descCarburante %> </div>
+                    <div class="cell" data-title="Indirizzo"> <%= i.Indirizzo.humanize[0..-7] %>, <%= i.Comune.humanize %>(<%= i.Provincia %>)</div>
+                    <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

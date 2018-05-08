@@ -1,0 +1,220 @@
+
+<head>
+  <style>
+
+  .timeline .timeline-item::after, .timeline .timeline-item::before {
+    clear: both;
+    content: '';
+    display: block;
+    width: 100%;
+  }
+
+  .timeline {
+    margin: 30px auto;
+    padding: 0 10px;
+    position: relative;
+    transition: all 0.25s ease-in;
+    width: 100%;
+  }
+
+  .timeline::before {
+    background: #fefefe;
+    content: '';
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 3px;
+  }
+
+  .timeline::after {
+    clear: both;
+    content: '';
+    display: table;
+    width: 100%;
+  }
+
+  .timeline a {
+    color: #fefefe;
+    font-weight: bold;
+    transition: all 0.25s ease-in;
+  }
+
+  .timeline a:hover {
+    box-shadow: 0 1px 0px 0px #fefefe;
+    transition: all 0.25s ease-in;
+  }
+
+  .timeline .timeline-item {
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .timeline .timeline-item .timeline-icon {
+    background: #fefefe;
+    border-radius: 50%;
+    height: 50px;
+    left: 50%;
+    margin-left: -23px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 50px;
+  }
+
+  .timeline .timeline-item .timeline-icon img,
+  .timeline .timeline-item .timeline-icon svg {
+    left: 14px;
+    position: relative;
+    top: 11px;
+  }
+
+  .timeline .timeline-item .timeline-icon svg {
+    top: 14px;
+  }
+
+  .timeline .timeline-item .timeline-content {
+    padding: 20px;
+    text-align: right;
+    transition: all 0.25s ease-in;
+    width: 45%;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+
+  .timeline .timeline-item .timeline-content p {
+    color: #fefefe;
+  }
+
+  .timeline .timeline-item .timeline-content p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .timeline .timeline-item .timeline-content .timeline-content-date {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .timeline .timeline-item .timeline-content .timeline-content-month {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .timeline .timeline-item .timeline-content.right {
+    float: right;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 39.9375em) {
+    .timeline {
+      margin: 30px;
+      padding: 0;
+      width: 90%;
+    }
+    .timeline::before {
+      left: 0;
+    }
+    .timeline .timeline-item .timeline-content {
+      float: right;
+      text-align: left;
+      width: 90%;           
+    }
+    .timeline .timeline-item .timeline-content::before, .timeline .timeline-item .timeline-content.right::before {
+      border-left: 0;
+      border-right: 7px solid #fefefe;
+      left: 10%;
+      margin-left: -6px;
+    }
+    .timeline .timeline-item .timeline-icon {
+      left: 0;
+    }
+  }
+
+  
+</style>
+</head>
+
+<body style="background-color: #E9C6BF">
+  <h1>Impianti Visitati</h1>
+
+
+  <% if @visitati.count == 0 %>
+  <br><br><br><br><br><br>
+  <h1 style="color: gray;">Nessun impianto visitato.</h1>
+  <% else %>
+
+  <!-- TABELLA -->
+<!-- <div class="container-table100" style="background: #E9C6BF">
+    <div class="wrap-table100">
+        <div class="table">
+
+            <div class="row header" style="background: #DE5F52">
+                <div class="cell"> Bandiera </div>
+                <div class="cell"> Indirizzo </div>
+                <div class="cell"> Dettagli </div>
+                <div class="cell"> Vado qui </div>
+            </div>
+
+            <% @visitati.each do |i| %>
+                <% @implant = Implant.find(i) %>
+                <div class="row">
+                    <div class="cell" data-title="Bandiera"> <%= @implant.Bandiera.upcase %> </div>
+                    <div class="cell" data-title="Indirizzo">  <%= @implant.Indirizzo.humanize[0..-7] %> ,<%= @implant.Comune.humanize %> (<%= @implant.Provincia %>) </div>
+                    <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
+                    <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%> </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+  </div> -->
+
+  <!-- <% end %> -->
+
+
+  <div class="timeline">
+    
+    <% @visitati.each_with_index do |i, index| %>
+    <% @implant = Implant.find(i) %>
+    
+    <% if index%2==0 %>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">
+           <img width="24" height="24" fill-rule="evenodd" clip-rule="evenodd" src="/gas-station-black.png">
+         </div>
+         <div class="timeline-content">
+          <p class="timeline-content-date"><%= @implant.Bandiera.upcase %></h2>
+            <p> 
+                <%= @implant.Indirizzo.humanize[0..-7] %> ,<%= @implant.Comune.humanize %> (<%= @implant.Provincia %>) <br/>
+                <%= link_to 'Dettagli', implant_path(i) %> <br/>
+                <%= link_to 'Calcola costi', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%>
+            </p>
+          </div>
+        </div>
+        
+    <% else %>
+    
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <img width="24" height="24" fill-rule="evenodd" clip-rule="evenodd" src="/gas-station-black.png">
+          </div>
+          <div class="timeline-content right">
+            <p class="timeline-content-date"><%= @implant.Bandiera.upcase %></h2>
+              <p> 
+                  <%= @implant.Indirizzo.humanize[0..-7] %> ,<%= @implant.Comune.humanize %> (<%= @implant.Provincia %>) <br/>
+                  <%= link_to 'Dettagli', implant_path(i) %> <br/>
+                  <%= link_to 'Calcola Costi', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%>
+              </p>
+            </div>
+          </div>
+          
+    <% end %>
+  <% end %>
+</div>
+
+
+  </body>

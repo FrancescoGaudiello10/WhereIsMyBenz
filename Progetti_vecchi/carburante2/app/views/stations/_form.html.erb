@@ -1,0 +1,202 @@
+<!--PARTIAL-->
+<!--http://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views-->
+
+<head>
+    <style>
+        #bandiera{
+            text-transform:uppercase;
+         }
+        table.blueTable {
+            border: 1px solid #1C6EA4;
+            background-color: #EEEEEE;
+            width: 100px;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        table.blueTable td, table.blueTable th {
+            border: 1px solid #AAAAAA;
+            padding: 3px 2px;
+        }
+
+        table.blueTable tbody td {
+            font-size: 13px;
+        }
+
+        table.blueTable tr:nth-child(even) {
+            background: #D0E4F5;
+        }
+
+        table.blueTable thead {
+            background: #1C6EA4;
+            background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            border-bottom: 2px solid #444444;
+        }
+
+        table.blueTable thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            border-left: 2px solid #D0E4F5;
+        }
+
+        table.blueTable thead th:first-child {
+            border-left: none;
+        }
+
+        table.blueTable tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #D0E4F5;
+            background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            border-top: 2px solid #444444;
+        }
+
+        table.blueTable tfoot td {
+            font-size: 14px;
+        }
+
+        table.blueTable tfoot .links {
+            text-align: right;
+        }
+
+        table.blueTable tfoot .links a {
+            display: inline-block;
+            background: #1C6EA4;
+            color: #FFFFFF;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<%= form_with model: @station, local: true do |form| %>
+
+    <!--    gestisco errori-->
+    <% if @station.errors.any? %>
+        <div id="error_explanation">
+
+            <h2>
+                <!-- pluralize is a rails helper that takes a number and a string as its arguments. If the number is greater than one, the string will be automatically pluralized-->
+                <%= pluralize(@station.errors.count, "error") %> prohibited this article from being saved:
+            </h2>
+            <ul>
+                <% @station.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+        <%= form.label :Bandiera %><br>
+        <%#= select_tag :Bandiera, options_for_select(@stazioni), :include_blank => '-- Seleziona --', required: true %>
+        <%= form.text_field :Bandiera, :id => "bandiera" %>
+    </p>
+
+    <p>
+        <%= form.label :Nome %><br>
+        <%= form.text_field :Nome %>
+    </p>
+
+    <p>
+        <%= form.label :Indirizzo %><br>
+        <%= form.text_field(:Indirizzo, required: true, :placeholder => "Inserisci indirizzo", :id => "Indirizzo") %>
+    </p>
+
+    <p>
+        <%= form.label :Carburante %><br>
+
+    <table class="blueTable">
+        <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Prezzo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Benzina</td>
+            <td> <%= form.text_field(:Benzina, :placeholder => "€" , :type => "number", :step => "any") %> </td>
+        </tr>
+        <tr>
+            <td>Gasolio</td>
+            <td> <%= form.text_field(:Diesel, :placeholder => "€", :type => "number", :step => "any") %> </td>
+        </tr>
+        <tr>
+            <td>Super</td>
+            <td> <%= form.text_field(:Super, :placeholder => "€", :type => "number", :step => "any") %> </td>
+        </tr>
+        <tr>
+            <td>Excellium Diesel</td>
+            <td> <%= form.text_field(:Excellium, :placeholder => "€", :type => "number", :step => "any") %> </td>
+        </tr>
+        <tr>
+            <td>Metano</td>
+            <td> <%= form.text_field(:Metano, :placeholder => "€", :type => "number", :step => "any") %> </td>
+        </tr>
+        <tr>
+            <td>GPL</td>
+            <td> <%= form.text_field(:GPL, :placeholder => "€", :type => "number", :step => "any") %> </td>
+        </tr>
+        </tbody>
+        </tr>
+    </table>
+
+    </p>
+
+    <p>
+        <%= form.label :Servizi %><br>
+
+    <table class="blueTable">
+        <tbody>
+        <tr>
+            <td>24/7</td>
+            <td> <%= form.check_box :allDay, {}, 'true', '' %> </td>
+        </tr>
+        <tr>
+            <td>Self Service</td>
+            <td> <%= form.check_box :Self, {}, 'true', '' %></td>
+        </tr>
+        <tr>
+            <td>Autolavaggio</td>
+            <td> <%= form.check_box :autoLavaggio, {}, 'true', '' %> </td>
+        </tr>
+        <tr>
+        </tbody>
+        </tr>
+    </table>
+
+    </p>
+
+    <br>
+    <p>
+        <%= form.submit %>
+    </p>
+
+<% end %>
+
+<script>
+    function initAutocomplete() {
+        var input = document.getElementById('Indirizzo');
+        var searchBox = new google.maps.places.SearchBox(input);
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+            if (places.length == 0) {
+                return;
+            }
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+</body>

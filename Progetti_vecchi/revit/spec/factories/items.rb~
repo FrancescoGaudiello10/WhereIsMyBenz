@@ -1,9 +1,0 @@
-FactoryGirl.define do
-  factory :item do |f|
-    f.name "prova"
-    f.description "proviamo gli items"
-    f.store_location "velletri"
-    f.tags.name "bookaudible"
-    f.user { FactoryGirl.create(:user) }
-  end
-end

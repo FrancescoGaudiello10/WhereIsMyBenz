@@ -1,0 +1,16 @@
+<head>
+    <!-- redirect home dopo 2 secondi -->
+    <meta HTTP-EQUIV="REFRESH" content="2; url=<%= welcome_index_url %>">
+</head>
+<body>
+    
+<h1>Dati salvati correttamente.</h1>
+
+<%= current_user.admin %></br>
+<%= current_user.luogo_preferito %></br>
+<%= current_user.stazione_preferita %></br>
+<%= current_user.carburante_preferito %></br>
+<%= current_user.litri_serbatoio %></br>
+<%= current_user.targa %></br>
+
+</body>

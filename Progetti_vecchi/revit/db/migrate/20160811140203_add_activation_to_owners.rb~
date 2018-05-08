@@ -1,4 +1,0 @@
-class AddActivationToOwners < ActiveRecord::Migration
-  def change
-  end
-end

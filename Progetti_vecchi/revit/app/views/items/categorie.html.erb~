@@ -1,2 +1,0 @@
-
-@items=Item.tagged_with("booksaudible").all

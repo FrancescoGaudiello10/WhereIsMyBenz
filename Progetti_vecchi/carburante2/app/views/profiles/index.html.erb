@@ -1,0 +1,103 @@
+<head>
+    <style>
+        .pac-container, .pac-item, .pac-item-query {
+            background-color: rgb(0, 0, 0) !important;
+            font-size: 14px !important;
+            color: white;
+        }
+        #targa{
+            text-transform:uppercase;
+            text-align: center;
+         }
+         .profileCheckBox{
+               transform: scale(1.5);
+         }
+    </style>
+</head>
+
+<body style="background-color: white">
+
+<div class="fotosfondo" align="center">
+
+<h1> <strong> Profilo </strong></h1>
+<br>
+<!-- questo dovrebbe essere rosso ma rimane blu -->
+<h3 style="color: red; font-family: Comic Sans MS"> <%= link_to current_user.email.upcase, edit_user_registration_url %> </h3>
+
+<br>
+<div style="position: absolute; top:80px; right:100px">
+<%= link_to(image_tag("/cog.png"), edit_user_registration_url,  :method => :get) %>
+</div>
+
+<%#= form_with model: @profile, local: true do |f| %>
+<%= form_for @user, :url => {:action => "update"}, :html => {:method => "get"} do |f| %>
+
+<div class="bordi">
+    <div class="field">
+        <%= f.label "Gestore" , :for => "checkbox" %>
+        <%= check_box_tag(:admin, value = "1", checked = current_user.admin, :class => 'profileCheckBox', :id => "checkbox") %>
+    </div>
+
+    <br>
+    <div class="field">
+        <%= f.label :luogo_preferito %><br/>
+        <%= text_field_tag(:luogo_preferito, nil, required: true, :class => 'luogopref', :value => current_user.luogo_preferito) %>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.label :stazione_preferita %><br/>
+        <%= select_tag :stazione_preferita, options_for_select(@stazioni, current_user.stazione_preferita), 
+        :include_blank => '-- Seleziona --', required: true %>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.label :carburante_preferito %><br/>
+        <%= select_tag :carburante_preferito, options_for_select(tipo_carburante, current_user.carburante_preferito), 
+        :include_blank => '-- Seleziona --', required: true %>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.label :litri_serbatoio %><br/>
+        <%= number_field(:litri_serbatoio, nil, required: true, min: 1.0, :value => current_user.litri_serbatoio, 
+        :class => "number_field_profiles") %>
+    </div>
+    <br>
+    <!-- <div class="field"> -->
+        <%#= f.label :targa %><br/>
+        <%#= text_field_tag(:targa, nil, required: false, :maxlength => 7, :value => current_user.targa, :id => "targa") %>
+    <!-- </div> -->
+    
+    <% if @veicolo != nil %>    
+        <br>
+        <div class="field">
+            <%= f.label "Modello" %>:
+            <%= @auto %> <br/>
+            <%= f.label "Immatricolazione" %>:
+            <%= @immatricolazione %> <br/>
+        </div> 
+    <% end %>
+
+    <br>
+    <button class="button"> <span><%= f.submit "Aggiorna" %></span>  </button>
+
+<% end %>
+    </div>
+
+<script type="text/javascript">
+    function initAutocomplete() {
+        var input = document.getElementById('luogo_preferito');
+        var searchBox = new google.maps.places.SearchBox(input);
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+            if (places.length == 0) {
+                return;
+            }
+        });
+    }
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+</div>
+</body>
