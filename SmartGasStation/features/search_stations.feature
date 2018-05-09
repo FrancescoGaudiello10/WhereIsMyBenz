@@ -10,4 +10,4 @@ Feature: Search stations
     And I fill in "myRadius" with "1"
     And I select "Benzina" from "myDropdown"
     And I press "myButton"
-    Then I should see "27 impianti trovati"
+    Then I should see "impianto trovato"

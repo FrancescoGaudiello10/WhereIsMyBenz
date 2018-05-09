@@ -21,7 +21,7 @@
 
 <div class="Locationinput">
     <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :id => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
-    <img class="locationImg" src="/locate.png" onclick="getLocation()">
+    <img class="locationImg" src="/locate1.png" onclick="getLocation()">
 </div>
 
     
@@ -43,7 +43,7 @@
         //AUTOCOMPLETE
         function initAutocomplete() {
             // Create the search box and link it to the UI element.
-            var input = document.getElementById('city');
+            var input = document.getElementById('mySearchBar');
             var searchBox = new google.maps.places.SearchBox(input);
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
@@ -56,7 +56,7 @@
         }
         
         //CURRENT LOCATION
-        var searchBar = document.getElementById('mySearchBar')
+        var searchBar = document.getElementById('mySearchBar');
         function getLocation() {
             if (navigator.geolocation) {
                 searchBar.value = "Localizzazione in corso...";
