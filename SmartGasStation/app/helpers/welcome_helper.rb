@@ -3,11 +3,11 @@ module WelcomeHelper
         [
             ['Benzina', 'Benzina'],
             ['Blue Super', 'Blue Super'],
-            ['Gasolio','Gasolio'],
-            ['Blue Diesel','Blue Diesel'],
-            ['Excellium Diesel','Excellium Diesel'],
-            ['Metano','Metano'],
-            ['GPL','GPL']
+            ['Gasolio', 'Gasolio'],
+            ['Blue Diesel', 'Blue Diesel'],
+            ['Excellium Diesel', 'Excellium Diesel'],
+            ['Metano', 'Metano'],
+            ['GPL', 'GPL']
         ]
     end
 end

@@ -13,9 +13,11 @@
  *= require_self
  */
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-
-
+body{
+    font-family: "Open Sans";
+}
 .rating {
     padding-left: 0px;
 }
@@ -25,6 +27,7 @@
     float: left;
     margin-right: 15px;
 }
+
 .ratings {
     float: left;
     width: 48%
@@ -44,13 +47,15 @@
 
 /* navbar */
 .navbar-default {
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255, 255, 255, 0.4);
     border-color: #E7E7E7;
     color: white;
 }
+
 .nav {
     color: blue;
 }
+
 /*navbar dopo scrolling*/
 .navbar-fixed-top.scrolled {
     background-color: #fff !important;
@@ -58,12 +63,11 @@
     color: black;
 }
 
-.nav.navbar-nav li a{
-    color: black;   /*colore testo navbar*/
+.nav.navbar-nav li a {
+    color: black; /*colore testo navbar*/
 }
 
-.largerCheckbox
-{
+.largerCheckbox {
     width: 30px;
     height: 30px;
 }

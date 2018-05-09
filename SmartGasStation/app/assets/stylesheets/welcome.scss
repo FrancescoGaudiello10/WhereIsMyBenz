@@ -2,184 +2,179 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//Custom font
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-
 body.intro {
   padding-top: 0px;
-  overflow: hidden;  /*blocca lo scorrimento della pagina*/
+  overflow: hidden; /*blocca lo scorrimento della pagina*/
   //  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
   //  background-size: 100%;
 }
 
 .videoContainer {
-width: 100%;
-height: 100%;
-position: absolute;
-padding:0;
-margin:0;
-left: 0px;
-top: 0px;
-z-index: -1000;
-overflow:hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0px;
+  top: 0px;
+  z-index: -1000;
+  overflow: hidden;
 
 }
 
 .videoContainer .overlay {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 2;
-    background: black;
-    opacity: 0.4;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  background: black;
+  opacity: 0.4;
 }
 
 .videoContainer .videoPlayer {
-    min-height: 100%;
-    min-width:100%;
-position:absolute;
-bottom:0;
-left:0;
-width: auto;
-height: auto;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
 }
 
 .HomeBanner {
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-    
-    height: 100%;
-    width: 100%;
-    margin:0 auto;
-    padding-top: 150px;
-    text-align: center;
-    font-family: "Open Sans";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 150px;
+  text-align: center;
+  font-family: "Open Sans";
 }
 
 .myDivForm {
-    width: 100%;
+  width: 100%;
 }
 
 .myForm {
-    min-width: inherit !important;
+  min-width: inherit !important;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: lightgray;
-    opacity: 1; /* Firefox */
+  color: lightgray;
+  opacity: 1; /* Firefox */
 }
 
-.Locationinput { 
-    position: relative; 
-    width:580px; 
-    margin:0 
-    auto; 
+.Locationinput {
+  position: relative;
+  width: 580px;
+  margin: 0 auto;
 }
-.Locationinput img { 
-    position: absolute; 
-    top: 15px; 
-    right: 2px 
+
+.Locationinput img {
+  position: absolute;
+  top: 15px;
+  right: 2px
 }
 
 .mySearchBar {
-    border: 1px solid #fff !important;
-    min-width: inherit !important;
-    background-color: rgba(255, 255, 255, .19) !important;
-    color: white;
-    border: 1px solid #fff !important;
-    opacity: 1 !important;
-    font-size: 24px !important;
-    border-radius: 10px 10px 10px 10px;
-    padding-left: 20px;
-    width: 600px;
-    height: 60px;
-    margin: 100px auto 50px;
-    padding-bottom: 6px;
+  border: 1px solid #fff !important;
+  min-width: inherit !important;
+  background-color: rgba(255, 255, 255, .19) !important;
+  color: white;
+  border: 1px solid #fff !important;
+  opacity: 1 !important;
+  font-size: 24px !important;
+  border-radius: 10px 10px 10px 10px;
+  padding-left: 20px;
+  width: 600px;
+  height: 60px;
+  margin: 100px auto 50px;
+  padding-bottom: 6px;
 }
 
 .myRadius {
-    background-color: rgba(255, 255, 255, .19) !important;
-    color: white;
-    border: 1px solid #fff !important;
-    border-radius: 10px 0px 0px 10px;
-    opacity: 1 !important;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    height:60px;
-    width: 110px;
+  background-color: rgba(255, 255, 255, .19) !important;
+  color: white;
+  border: 1px solid #fff !important;
+  border-radius: 10px 0px 0px 10px;
+  opacity: 1 !important;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  height: 60px;
+  width: 110px;
 }
 
-
 .myButton {
-    background-color: #CE6450;
-    border: 1px solid #fff !important;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    border-radius: 0px 10px 10px 0px;
+  background-color: #CE6450;
+  border: 1px solid #fff !important;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .myButton:hover {
-    background-color: #d0513e;
+  background-color: #d0513e;
 }
 
 .ac-url-text {
 
-    color: #00AA00 !important;
+  color: #00AA00 !important;
 }
 
 .myDropdown {
-    background-color: rgba(255, 255, 255, .19) !important;
-    border: 1px solid #fff !important;
-    color: white;
-    -moz-appearance: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    border-radius: 0px 0px 0px 0px;
-    height:60px
+  background-color: rgba(255, 255, 255, .19) !important;
+  border: 1px solid #fff !important;
+  color: white;
+  -moz-appearance: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 0px 0px 0px 0px;
+  height: 60px
 }
 
-
 h1.intro {
-    color: white;
-    text-align: center;
-    font-size: 64px !important;
+  color: white;
+  text-align: center;
+  font-size: 64px !important;
 
 }
 
 h4.intro {
-    color: lightgray;
-    text-align: center;
-    font-size: 24px !important;
-    padding-top: 30px;
+  color: lightgray;
+  text-align: center;
+  font-size: 24px !important;
+  padding-top: 30px;
 }
 
 p.intro {
-    color: white;
+  color: white;
 }
 
 //Style autocomplete
 //https://google-developers.appspot.com/maps/documentation/javascript/places-autocomplete#style_autocomplete
-.pac-container, .pac-item, .pac-item-query{
-    background-color: rgba(255, 255, 255, .2) !important;
-    font-size: 16px !important;
-    color: white;
+.pac-container, .pac-item, .pac-item-query {
+  background-color: rgba(255, 255, 255, .2) !important;
+  font-size: 16px !important;
+  color: white;
 }
 
 .locationImg {
-cursor:pointer;
+  cursor: pointer;
 }
 

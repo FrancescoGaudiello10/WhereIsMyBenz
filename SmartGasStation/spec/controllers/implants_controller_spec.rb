@@ -25,117 +25,117 @@ require 'rails_helper'
 
 RSpec.describe ImplantsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Implant. As you add validations to Implant, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ImplantsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET #index" do
-    it "returns a success response" do
-      implant = Implant.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      implant = Implant.create! valid_attributes
-      get :show, params: {id: implant.to_param}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns a success response" do
-      implant = Implant.create! valid_attributes
-      get :edit, params: {id: implant.to_param}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Implant" do
-        expect {
-          post :create, params: {implant: valid_attributes}, session: valid_session
-        }.to change(Implant, :count).by(1)
-      end
-
-      it "redirects to the created implant" do
-        post :create, params: {implant: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Implant.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {implant: invalid_attributes}, session: valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
+    # This should return the minimal set of attributes required to create a valid
+    # Implant. As you add validations to Implant, be sure to
+    # adjust the attributes here as well.
+    let(:valid_attributes) {
         skip("Add a hash of attributes valid for your model")
-      }
+    }
 
-      it "updates the requested implant" do
-        implant = Implant.create! valid_attributes
-        put :update, params: {id: implant.to_param, implant: new_attributes}, session: valid_session
-        implant.reload
-        skip("Add assertions for updated state")
-      end
+    let(:invalid_attributes) {
+        skip("Add a hash of attributes invalid for your model")
+    }
 
-      it "redirects to the implant" do
-        implant = Implant.create! valid_attributes
-        put :update, params: {id: implant.to_param, implant: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(implant)
-      end
+    # This should return the minimal set of values that should be in the session
+    # in order to pass any filters (e.g. authentication) defined in
+    # ImplantsController. Be sure to keep this updated too.
+    let(:valid_session) {{}}
+
+    describe "GET #index" do
+        it "returns a success response" do
+            implant = Implant.create! valid_attributes
+            get :index, params: {}, session: valid_session
+            expect(response).to be_success
+        end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        implant = Implant.create! valid_attributes
-        put :update, params: {id: implant.to_param, implant: invalid_attributes}, session: valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested implant" do
-      implant = Implant.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: implant.to_param}, session: valid_session
-      }.to change(Implant, :count).by(-1)
+    describe "GET #show" do
+        it "returns a success response" do
+            implant = Implant.create! valid_attributes
+            get :show, params: {id: implant.to_param}, session: valid_session
+            expect(response).to be_success
+        end
     end
 
-    it "redirects to the implants list" do
-      implant = Implant.create! valid_attributes
-      delete :destroy, params: {id: implant.to_param}, session: valid_session
-      expect(response).to redirect_to(implants_url)
+    describe "GET #new" do
+        it "returns a success response" do
+            get :new, params: {}, session: valid_session
+            expect(response).to be_success
+        end
     end
-  end
+
+    describe "GET #edit" do
+        it "returns a success response" do
+            implant = Implant.create! valid_attributes
+            get :edit, params: {id: implant.to_param}, session: valid_session
+            expect(response).to be_success
+        end
+    end
+
+    describe "POST #create" do
+        context "with valid params" do
+            it "creates a new Implant" do
+                expect {
+                    post :create, params: {implant: valid_attributes}, session: valid_session
+                }.to change(Implant, :count).by(1)
+            end
+
+            it "redirects to the created implant" do
+                post :create, params: {implant: valid_attributes}, session: valid_session
+                expect(response).to redirect_to(Implant.last)
+            end
+        end
+
+        context "with invalid params" do
+            it "returns a success response (i.e. to display the 'new' template)" do
+                post :create, params: {implant: invalid_attributes}, session: valid_session
+                expect(response).to be_success
+            end
+        end
+    end
+
+    describe "PUT #update" do
+        context "with valid params" do
+            let(:new_attributes) {
+                skip("Add a hash of attributes valid for your model")
+            }
+
+            it "updates the requested implant" do
+                implant = Implant.create! valid_attributes
+                put :update, params: {id: implant.to_param, implant: new_attributes}, session: valid_session
+                implant.reload
+                skip("Add assertions for updated state")
+            end
+
+            it "redirects to the implant" do
+                implant = Implant.create! valid_attributes
+                put :update, params: {id: implant.to_param, implant: valid_attributes}, session: valid_session
+                expect(response).to redirect_to(implant)
+            end
+        end
+
+        context "with invalid params" do
+            it "returns a success response (i.e. to display the 'edit' template)" do
+                implant = Implant.create! valid_attributes
+                put :update, params: {id: implant.to_param, implant: invalid_attributes}, session: valid_session
+                expect(response).to be_success
+            end
+        end
+    end
+
+    describe "DELETE #destroy" do
+        it "destroys the requested implant" do
+            implant = Implant.create! valid_attributes
+            expect {
+                delete :destroy, params: {id: implant.to_param}, session: valid_session
+            }.to change(Implant, :count).by(-1)
+        end
+
+        it "redirects to the implants list" do
+            implant = Implant.create! valid_attributes
+            delete :destroy, params: {id: implant.to_param}, session: valid_session
+            expect(response).to redirect_to(implants_url)
+        end
+    end
 
 end

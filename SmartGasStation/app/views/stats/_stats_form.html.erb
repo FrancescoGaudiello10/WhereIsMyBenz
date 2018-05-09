@@ -1,0 +1,62 @@
+<%= form_tag("/stats/index", method: :get) do %>
+    <div align="center" class="form-inline">
+
+        <div class="form-group">
+            <p class="stats-paragraph"> Tipo carburante </p>
+            <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order)) %>
+                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, params[:tipo_carburante]),
+                               :include_blank => '-- Seleziona --', required: true %>
+            <% else %>
+                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
+                               :include_blank => '-- Seleziona --', required: true %>
+            <% end %>
+
+        </div>
+
+        <div class="form-group">
+            <p class="stats-paragraph">  Ordinamento </p>
+            <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order)) %>
+                <%= select_tag :order, options_for_select(ordine, params[:order]),
+                               :include_blank => '-- Seleziona --', required: true,
+                               :id => "ordinamento" %>
+            <% else %>
+                <%= select_tag :order, options_for_select(ordine),
+                               :include_blank => '-- Seleziona --', required: true,
+                               :id => "ordinamento" %>
+            <% end %>
+        </div>
+
+        <div class="form-group" id="provinciaDiv">
+            <p class="stats-paragraph">  Provincia </p>
+            <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order) && params.has_key?(:provincia)) %>
+                <%= select_tag :provincia, options_for_select(province, params[:provincia]),
+                               :include_blank => '-- Seleziona --', required: false %>
+            <% else %>
+                <%= select_tag :provincia, options_for_select(province),
+                               :include_blank => '-- Seleziona --', required: false %>
+            <% end %>
+
+        </div>
+
+        <div style="padding-top: 80px" >
+            <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
+            <!--                            <a href="#results">DAJE</a>-->
+        </div>
+
+
+        <script type="text/javascript">
+            //Questo script fa apparire il selettore della provincia solo se si sceglie l'opzione "Prezzo Media"
+            $(document).ready(function () {
+                $("#ordinamento").change(function () {
+                    if ($("#ordinamento").val() == "MEDIA") {
+                        $("#provinciaDiv").show()
+                    } else {
+                        $("#provinciaDiv").hide()
+                    }
+                });
+            });
+        </script>
+
+    </div>
+
+<% end %>

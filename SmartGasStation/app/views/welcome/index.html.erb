@@ -1,83 +1,85 @@
-
 <body class="intro">
-    <!-- vide background -->
-     <!-- https://coverr.co/#coverrs -->
-     <div class="videoContainer">
-         <div class="overlay">
-         </div>
-         <video autoplay muted loop class="videoPlayer">
-             <source src="/Nowhere.mp4" type="video/mp4">
-             </video>
-         </div>
-               
-    
+<!-- vide background -->
+<!-- https://coverr.co/#coverrs -->
+<div class="videoContainer">
+    <div class="overlay"></div>
+    <video autoplay muted loop class="videoPlayer">
+        <source src="/Nowhere.mp4" type="video/mp4">
+    </video>
+</div>
+
+
 <div class="HomeBanner">
 
-    <h1 class="intro"> Smart Gas Station </h1>
-    <h4 class="intro">Trova la stazione di rifornimento più conveniente vicino a te</h4>
+<!--    <h1 class="intro"> Smart Gas Station </h1>-->
+<!--    <h4 class="intro">Trova la stazione di rifornimento più conveniente vicino a te</h4>-->
+    <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1">SMART GAS STATION</h1>
+    <h3 class="mbr-section-subtitle mbr-fonts-style display-3" style="color: white">Trova la stazione di rifornimento più conveniente vicino a te</h3>
 
-    <div class="myDivForm" >
-    <%= form_tag("/implants/index", method: :get, html: { autocomplete: "off" }, :class => 'myForm') do %>
+    <div class="myDivForm">
+        <%= form_tag("/implants/index", method: :get, html: {autocomplete: "off"}, :class => 'myForm') do %>
 
-<div class="Locationinput">
-    <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :id => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
-    <img class="locationImg" src="/locate1.png" onclick="getLocation()">
-</div>
+            <div class="Locationinput">
+                <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :id => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
+                <img class="locationImg" src="/locate1.png" onclick="getLocation()">
+            </div>
 
-    
-    <%= number_field_tag :raggio, nil, required:true, min:1.0, max:50.0, :placeholder => "KM", :class => "myRadius", :id => "myRadius"  %>
-    <% if user_signed_in? %>
-        <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
-    <% else %>
-        <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
-                       :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
-    <% end %>
-        
-    <%= submit_tag("Cerca", :class => 'myButton', :id => "myButton") %>
-</div>
 
-    <% end %>
+            <%= number_field_tag :raggio, nil, required: true, min: 1.0, max: 50.0, :placeholder => "KM", :class => "myRadius", :id => "myRadius" %>
+            <% if user_signed_in? %>
+                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante, current_user.carburante_preferito),
+                               :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
+            <% else %>
+                <%= select_tag :tipo_carburante, options_for_select(tipo_carburante),
+                               :include_blank => '-- Seleziona --', required: true, :class => "myDropdown", :id => "myDropdown" %>
+            <% end %>
 
-    <script>
-        //AUTOCOMPLETE
-        function initAutocomplete() {
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('mySearchBar');
-            var searchBox = new google.maps.places.SearchBox(input);
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function () {
-                var places = searchBox.getPlaces();
-                if (places.length == 0) {
-                    return;
-                }
-            });
-        }
-        
-        //CURRENT LOCATION
-        var searchBar = document.getElementById('mySearchBar');
-        function getLocation() {
-            if (navigator.geolocation) {
-                searchBar.value = "Localizzazione in corso...";
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                alert("Geolocation is not supported by this browser.");
+            <%= submit_tag("Cerca", :class => 'myButton', :id => "myButton") %>
+            </div>
+
+        <% end %>
+
+        <script>
+            //AUTOCOMPLETE
+            function initAutocomplete() {
+                // Create the search box and link it to the UI element.
+                var input = document.getElementById('mySearchBar');
+                var searchBox = new google.maps.places.SearchBox(input);
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    }
+                });
             }
-        }
-        function showPosition(position) {            
-            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            new google.maps.Geocoder().geocode({ 'latLng': latlng },
-                function( results, status ) {
-                    searchBar.value = results[0].formatted_address;
+
+            //CURRENT LOCATION
+            var searchBar = document.getElementById('mySearchBar');
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    searchBar.value = "Localizzazione in corso...";
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
                 }
-            );
-        }
-    </script>
+            }
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
-            async defer></script>
+            function showPosition(position) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                new google.maps.Geocoder().geocode({'latLng': latlng},
+                    function (results, status) {
+                        searchBar.value = results[0].formatted_address;
+                    }
+                );
+            }
+        </script>
 
-</div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk&libraries=places&callback=initAutocomplete"
+                async defer></script>
+
+        </div>
 </div>
 </body>

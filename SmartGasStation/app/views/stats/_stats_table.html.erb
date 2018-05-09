@@ -16,12 +16,14 @@
                     <div class="cell" data-title="Bandiera"> <%= i.Bandiera.upcase %> </div>
                     <% if @order != "MEDIA" %>
                         <div class="cell" data-title="Prezzo"> € <%= i.prezzo %> </div>
-                    <%elsif @order == "MEDIA"%>
+                    <% elsif @order == "MEDIA" %>
                         <div class="cell" data-title="Prezzo"> € <%= i.inspect %> </div>
                     <% end %>
 
                     <div class="cell" data-title="Carburante"> <%= i.descCarburante %> </div>
-                    <div class="cell" data-title="Indirizzo"> <%= i.Indirizzo.humanize[0..-7] %>, <%= i.Comune.humanize %>(<%= i.Provincia %>)</div>
+                    <div class="cell" data-title="Indirizzo"> <%= i.Indirizzo.humanize[0..-7] %>
+                        , <%= i.Comune.humanize %>(<%= i.Provincia %>)
+                    </div>
                     <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
                 </div>
             <% end %>

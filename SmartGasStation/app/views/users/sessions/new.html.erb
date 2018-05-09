@@ -1,4 +1,3 @@
-
 <h2 align="center">Log in</h2>
 
 <body align="center">
@@ -6,7 +5,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
 
     <div align="center">
-        <img class="mb-4" src="/gas-station-black.png" alt="" width="72" height="72" >
+        <img class="mb-4" src="/gas-station-black.png" alt="" width="72" height="72">
     </div>
 
     <br><br>
@@ -16,20 +15,20 @@
     </div>
 
     <div class="field">
-        <%= f.password_field :password, autocomplete: "off" ,class: "form-control", placeholder: "Password" %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
         <div class="field" align="center">
             <%= f.label :remember_me %>
-            <%= f.check_box :remember_me%>
+            <%= f.check_box :remember_me %>
             <br>
         </div>
 
     <% end %>
 
     <div class="actions">
-        <%= f.submit "Log in", :class => 'btn btn-lg btn-primary btn-block'%>
+        <%= f.submit "Log in", :class => 'btn btn-lg btn-primary btn-block' %>
     </div>
 <% end %>
 

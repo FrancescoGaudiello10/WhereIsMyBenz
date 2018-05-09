@@ -6,18 +6,18 @@
         <div class="table">
 
             <div class="row header">
-                <div class="cell"> Benzina </div>
-                <div class="cell"> Gasolio </div>
-                <div class="cell"> Blue Super </div>
-                <div class="cell"> Excellium Diesel </div>
-                <div class="cell"> GPL </div>
-                <div class="cell"> Metano </div>
+                <div class="cell"> Benzina</div>
+                <div class="cell"> Gasolio</div>
+                <div class="cell"> Blue Super</div>
+                <div class="cell"> Excellium Diesel</div>
+                <div class="cell"> GPL</div>
+                <div class="cell"> Metano</div>
             </div>
 
             <div class="row">
                 <div class="cell" data-title="Benzina">
                     <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Benzina") %>
-                     <%= @prezzi["Benzina"] %>
+                    <%= @prezzi["Benzina"] %>
                 </div>
                 <div class="cell" data-title="Gasolio">
                     <%= image_tag "/check.png", :size => "18x18" if @carburanti.include?("Gasolio") %>

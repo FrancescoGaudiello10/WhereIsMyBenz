@@ -1,0 +1,40 @@
+<% @visitati.each_with_index do |i, index| %>
+    <% implant = Implant.find(i) %>
+    <%# logo = get_implant_logo(implant.Bandiera) %>
+
+    <% if index % 2 == 0 %>
+
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <img width="24" height="24" fill-rule="evenodd" clip-rule="evenodd" src= "/gas-station-black.png" >
+            </div>
+            <div class="timeline-content">
+                <p class="timeline-content-date"><%= implant.Bandiera.upcase %></p>
+                <p>
+                    <%= implant.Indirizzo.humanize[0..-7] %> ,<%= implant.Comune.humanize %>
+                    (<%= implant.Provincia %>) <br/>
+                    <%= link_to 'Dettagli', implant_path(i) %> <br/>
+                    <%= link_to 'Calcola costi', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %>
+                </p>
+            </div>
+        </div>
+
+    <% else %>
+
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <img width="24" height="24" fill-rule="evenodd" clip-rule="evenodd" src= "/gas-station-black.png" >
+            </div>
+            <div class="timeline-content right">
+                <p class="timeline-content-date"><%= implant.Bandiera.upcase %></p>
+                <p>
+                    <%= implant.Indirizzo.humanize[0..-7] %> ,<%= implant.Comune.humanize %>
+                    (<%= implant.Provincia %>) <br/>
+                    <%= link_to 'Dettagli', implant_path(i) %> <br/>
+                    <%= link_to 'Calcola Costi', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %>
+                </p>
+            </div>
+        </div>
+
+    <% end %>
+<% end %>

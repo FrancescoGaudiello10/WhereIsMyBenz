@@ -1,4 +1,3 @@
-
 <head>
     <style>
         .rowDiv {
@@ -10,7 +9,7 @@
             margin: 0px 100px 0px 100px;
         }
 
-        .columnDivComments{
+        .columnDivComments {
             background-color: whitesmoke;
             margin: 0px 40px 20px 100px;
             border-radius: 10px;
@@ -144,9 +143,11 @@
 
 <div class="rowDiv" style="background-color: whitesmoke; border-radius: 18px; margin: 0px 30px 0px 30px;">
     <div class="columnDiv">
-<!--        <img src="<%#= @logo %>" height="72" width="72" style="margin: 25px 0px 0px 100px">-->
-        <h1 class="titolo TitoloBandiera"> <%= @station.Bandiera.upcase %> </h1>
-        <h4 class="titolo"> <%=@station.Nome.humanize %>  </h4>
+        <!--        <img src="<%#= @logo %>" height="72" width="72" style="margin: 25px 0px 0px 100px">-->
+<!--        <h1 class="titolo TitoloBandiera"> <%#= @station.Bandiera.upcase %> </h1>-->
+<!--        <h4 class="titolo"> <%#= @station.Nome.humanize %>  </h4>-->
+        <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1" style="color: #6A6A6A; text-align: left; padding: 20px 0 0 20px"><%= @station.Bandiera.upcase %></h1>
+        <h3 class="mbr-section-subtitle mbr-fonts-style display-3" style="color: darkgray; text-align: left; padding-left: 20px"><%= @station.Nome.humanize %></h3>
     </div>
 </div>
 <br>
@@ -157,14 +158,14 @@
         <%= render 'prices_form' %>
 
         <h3 class="tipiCarburante">Servizi</h3><br/>
-         <%= render 'servizi_form' %>
+        <%= render 'servizi_form' %>
 
     </div>
     <div class="columnDivComments" align="right">
 
         <div style="margin: 30px 30px 0px 0px">
 
-        <!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
+            <!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
 
             <div>
                 <h2>Commenti:</h2><br>
@@ -190,7 +191,7 @@
     <!-- Titolo -->
     <div class="my-3 py-3">
         <br>
-        <h2 class="display-5">Maps</h2>
+        <h3 class="mbr-section-subtitle mbr-fonts-style display-2" style="color: white; text-align: center;">MAPS</h3>
         <p class="lead"> <%= @station.Indirizzo.humanize %> </p>
     </div>
 
@@ -199,7 +200,7 @@
         width="600"
         height="450"
         frameborder="0" style="border:0"
-        src="//www.google.com/maps/embed/v1/place?q=<%= @lat %>%2C<%= @long %>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
+        src="https://www.google.com/maps/embed/v1/place?q=<%= @lat %>%2C<%= @long %>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
     </iframe>
 
     <!-- MAPPA 2 -->

@@ -4,14 +4,11 @@ class ImplantsController < ApplicationController
     # GET /implants
     # GET /implants.json
     def index
-        @city            = params[:city]                #indirizzo cercato
-        begin
-            @coord           = Geocoder.coordinates(@city)  #coordinate dell'indirizzo cercato
-        rescue TimeoutError => e
-            flash[:error] = "Timeout. Controlla connessione internet."
-        end
+        @city = params[:city] #indirizzo cercato
 
-        @raggio          = params[:raggio][0]
+        @coord = Geocoder.coordinates(@city) #coordinate dell'indirizzo cercato
+
+        @raggio = params[:raggio][0]
         @tipo_carburante = params[:tipo_carburante]
 
         # @litri_rimanenti = params[:litri_rimanenti]
@@ -23,12 +20,12 @@ class ImplantsController < ApplicationController
         @implant = Implant
                        .select('Implants.*, prices.*')
                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                       .where('descCarburante = ?',@tipo_carburante)
+                       .where('descCarburante = ?', @tipo_carburante)
                        .group('Implants.Indirizzo')
                        .order('prices.prezzo ASC')
                        .near(@coord, @raggio, :order => :distance) #magia
 
-        @titolo_impianti = calcola_numero_impianti_trovati(@implant)
+        @titolo_impianti = helpers.calcola_numero_impianti_trovati(@implant)
 
         # carico i marker delle stazioni sulla mappa
         load_markers(@implant, @city, @coord)
@@ -37,27 +34,27 @@ class ImplantsController < ApplicationController
     # GET /implants/1
     # GET /implants/1.json
     def show
-        id       = params[:id]
-        @implant  = Implant
-                        .select('Implants.*, prices.*')
-                        .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                        .where('Implants.idImpianto = ?', id)
-                        .group('prices.descCarburante')
+        id = params[:id]
+        @implant = Implant
+                       .select('Implants.*, prices.*')
+                       .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                       .where('Implants.idImpianto = ?', id)
+                       .group('prices.descCarburante')
 
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
-        @Bandiera   = @implant.pluck(:Bandiera).first
-        @Gestore    = @implant.pluck(:Gestore).first
-        @Indirizzo  = @implant.pluck(:Indirizzo).first
-        @Comune     = @implant.pluck(:Comune).first
-        @Provincia  = @implant.pluck(:Provincia).first
+        @Bandiera = @implant.pluck(:Bandiera).first
+        @Gestore = @implant.pluck(:Gestore).first
+        @Indirizzo = @implant.pluck(:Indirizzo).first
+        @Comune = @implant.pluck(:Comune).first
+        @Provincia = @implant.pluck(:Provincia).first
         @carburanti = @implant.pluck(:descCarburante)
-        @lat        = @implant.pluck(:latitude).first
-        @long       = @implant.pluck(:longitude).first
-        @prezzi     = @implant.pluck(:descCarburante,:prezzo).to_h #hash
+        @lat = @implant.pluck(:latitude).first
+        @long = @implant.pluck(:longitude).first
+        @prezzi = @implant.pluck(:descCarburante, :prezzo).to_h #hash
 
         #Meteo per impianto selezionato
         get_weather
-        get_implant_logo(@Bandiera)
+        @logo = helpers.get_implant_logo(@Bandiera)
 
         @stazioniVicine = Implant.find(id).nearbys(3, :order => 'distance').limit(3)
 
@@ -79,11 +76,11 @@ class ImplantsController < ApplicationController
 
         respond_to do |format|
             if @implant.save
-                format.html { redirect_to @implant, notice: 'Implant was successfully created.' }
-                format.json { render :show, status: :created, location: @implant }
+                format.html {redirect_to @implant, notice: 'Implant was successfully created.'}
+                format.json {render :show, status: :created, location: @implant}
             else
-                format.html { render :new }
-                format.json { render json: @implant.errors, status: :unprocessable_entity }
+                format.html {render :new}
+                format.json {render json: @implant.errors, status: :unprocessable_entity}
             end
         end
     end
@@ -93,11 +90,11 @@ class ImplantsController < ApplicationController
     def update
         respond_to do |format|
             if @implant.update(implant_params)
-                format.html { redirect_to @implant, notice: 'Implant was successfully updated.' }
-                format.json { render :show, status: :ok, location: @implant }
+                format.html {redirect_to @implant, notice: 'Implant was successfully updated.'}
+                format.json {render :show, status: :ok, location: @implant}
             else
-                format.html { render :edit }
-                format.json { render json: @implant.errors, status: :unprocessable_entity }
+                format.html {render :edit}
+                format.json {render json: @implant.errors, status: :unprocessable_entity}
             end
         end
     end
@@ -107,8 +104,8 @@ class ImplantsController < ApplicationController
     def destroy
         @implant.destroy
         respond_to do |format|
-            format.html { redirect_to implants_url, notice: 'Implant was successfully destroyed.' }
-            format.json { head :no_content }
+            format.html {redirect_to implants_url, notice: 'Implant was successfully destroyed.'}
+            format.json {head :no_content}
         end
     end
 
@@ -123,11 +120,6 @@ class ImplantsController < ApplicationController
     def implant_params
         params.require(:implant).permit(:idImpianto, :Gestore, :Bandiera, :TipoImpianto, :NomeImpianto, :Indirizzo, :Comune, :Provincia, :latitude, :longitude, :distance)
     end
-    #converte timestamp unix in orario normale
-    def unixToHuman (timestamp)
-        #https://stackoverflow.com/a/3964560/1440037
-        Time.at(timestamp).utc.in_time_zone(+2).strftime("%H:%M:%S")
-    end
 
     #ottiene il meteo della stazione di rifornimento cercata
     def get_weather
@@ -140,32 +132,10 @@ class ImplantsController < ApplicationController
         @weather_temp = @weather["main"]["temp"]
         @weather_temp_min = @weather["main"]["temp_min"]
         @weather_temp_max = @weather["main"]["temp_max"]
-        @weather_sunrise = unixToHuman(@weather["sys"]["sunrise"])
-        @weather_sunset = unixToHuman(@weather["sys"]["sunset"])
+        @weather_sunrise = helpers.unixToHuman(@weather["sys"]["sunrise"])
+        @weather_sunset = helpers.unixToHuman(@weather["sys"]["sunset"])
     end
 
-    #ottiene il logo della stazione di rifornimento cercata
-    def get_implant_logo(query)
-        @res = HTTParty.get(
-            "https://api.qwant.com/api/search/images?q=#{query}%20logo",
-            :query => {:output => 'json'}
-        )
-        @logo = @res["data"]["result"]["items"][0]["media"]
-    end
-
-    #header della pagina dei risultati
-    def calcola_numero_impianti_trovati(implant)
-        titolo = ""
-        num = @implant.count('Implants.idImpianto').length
-        if num == 0
-            titolo = "Nessun impianto trovato."
-        elsif num == 1
-            titolo = "1 impianto trovato"
-        else
-            titolo = "#{num} impianti trovati"
-        end
-        return titolo
-    end
 
     #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
     # disegna i marker sulla mappa
@@ -175,9 +145,10 @@ class ImplantsController < ApplicationController
     # aggiunge per ultimo l'indirizzo cercato con marker blu
     def load_markers(implant, center_address, center_coords)
 
+        #Array di prezzi ordinato in ordine crescente
         prezzi = implant.pluck(:prezzo)
-        prezzo_migliore = prezzi[0]
-        prezzo_peggiore = prezzi[prezzi.length - 1]
+        prezzo_migliore = prezzi.first
+        prezzo_peggiore = prezzi.last
 
         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|
             marker.lat i.latitude
@@ -207,10 +178,10 @@ class ImplantsController < ApplicationController
         end
 
         #aggiungo l'indirizzo cercato, il centro della mappa, come ultimo elemento dell'array
-        if center_address!=nil and center_coords!=nil
-            @routers_default.append({:lat=>center_coords[0], :lng=>center_coords[1],
-                                     :picture=>{"url"=>"/blue-marker.png","width"=>30, "height"=>48},
-                                     :infowindow=>"<b>#{center_address}</b> <br>\n"
+        if center_address != nil and center_coords != nil
+            @routers_default.append({:lat => center_coords[0], :lng => center_coords[1],
+                                     :picture => {"url" => "/blue-marker.png", "width" => 30, "height" => 48},
+                                     :infowindow => "<b>#{center_address}</b> <br>\n"
                                     })
         end
 

@@ -1,10 +1,10 @@
 class StatsController < ApplicationController
     def index
-        if(params.has_key?(:tipo_carburante) && params.has_key?(:order))
+        if (params.has_key?(:tipo_carburante) && params.has_key?(:order))
             @tipo_carburante = params[:tipo_carburante]
             @order = params[:order]
 
-            if(@order == "MEDIA")
+            if (@order == "MEDIA")
 
                 @provincia = params[:provincia]
                 @prezzi_media = Implant
@@ -20,11 +20,11 @@ class StatsController < ApplicationController
                                            .average('prices.prezzo')
 
             else
-                @order_desc = (@order=="ASC") ? "migliore" : "peggiore"
+                @order_desc = (@order == "ASC") ? "migliore" : "peggiore"
                 @prezzi = Implant
                               .select('Implants.*, prices.*')
                               .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                              .where('descCarburante = ?',@tipo_carburante)
+                              .where('descCarburante = ?', @tipo_carburante)
                               .group('Implants.Indirizzo')
                               .order("prices.prezzo #{@order}")
                               .limit(5)
@@ -36,6 +36,7 @@ class StatsController < ApplicationController
     end
 
     private
+
     #https://melvinchng.github.io/rails/GoogleMap.html#65-dynamic-map-marker
     def load_markers(implant, order)
         @routers_default = Gmaps4rails.build_markers(implant) do |i, marker|

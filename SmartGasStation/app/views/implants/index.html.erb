@@ -25,7 +25,7 @@
             <div class="table">
 
                 <div class="row header">
-                    <div class="cell"> Bandiera </div>
+                    <div class="cell"> Bandiera</div>
                     <div class="cell">
                         Prezzo
                     </div>
@@ -46,11 +46,11 @@
                 <% @implant.each do |i| %>
                     <div class="row">
                         <div class="cell" data-title="Bandiera"> <%= i.Bandiera.upcase %> </div>
-                        <div class="cell" data-title="Prezzo"> <b> € <%= i.prezzo %> </b>  </div>
+                        <div class="cell" data-title="Prezzo"><b> € <%= i.prezzo %> </b></div>
                         <div class="cell" data-title="Carburante"> <%= i.descCarburante %>  </div>
                         <div class="cell" data-title="Indirizzo">  <%= i.Indirizzo.humanize[0..-7] %></div>
                         <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
-                        <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante])%> </div>
+                        <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %> </div>
                     </div>
                 <% end %>
             </div>
@@ -60,17 +60,17 @@
     </div>
 <% end %>
 
-    <script type="text/javascript">
-        handler = Gmaps.build('Google');
-        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-            markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
+<script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({provider: {}, internal: {id: 'map'}}, function () {
+        markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
 
-            circle = [{lng: <%= @coord[1] %>, lat: <%= @coord[0]%>, radius: <%= @raggio %> * 1410}] //1410 e' fattore di correzione per il raggio
-            circle_options = { strokeColor:"#FF0000",strokeOpacity: 1, strokeWeight: 3, fillColor: 'transparent' }
-            handler.addCircles(circle, circle_options);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-        });
-    </script>
-        
+        circle = [{lng: <%= @coord[1] %>, lat: <%= @coord[0]%>, radius: <%= @raggio %> * 1410}] //1410 e' fattore di correzione per il raggio
+        circle_options = {strokeColor: "#FF0000", strokeOpacity: 1, strokeWeight: 3, fillColor: 'transparent'}
+        handler.addCircles(circle, circle_options);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+    });
+</script>
+
 </body>

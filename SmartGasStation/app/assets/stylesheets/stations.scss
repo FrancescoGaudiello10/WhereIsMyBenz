@@ -1,0 +1,27 @@
+body.stationBody{
+  background-image: url('/old_gas_3.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center ;
+  background-attachment: fixed;
+}
+
+/* unvisited link */
+a.add:link {
+  color: white;
+}
+
+/* visited link */
+a.add:visited {
+  color: white;
+}
+
+/* mouse over link */
+a.add:hover {
+  color: white;
+}
+
+/* selected link */
+a.add:active {
+  color: white;
+}
