@@ -1,7 +1,8 @@
 class VisitsController < ApplicationController
 
     def index
-        @visitati = current_user.idImpianto #array di impianti visitati
+        #array di impianti visitati dal più recente
+        @visitati = current_user.idImpianto.reverse
     end
 
 end

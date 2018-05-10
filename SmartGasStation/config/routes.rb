@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   get 'stats/index'
   get 'visits/index'
   get 'calcs/show'
-  # get 'profiles/index'
-  # get 'profiles/update'
 
   devise_for :users, 
   :controllers => {
@@ -24,7 +22,6 @@ Rails.application.routes.draw do
   # do
   #   resources :comments
   # end
-  # resources :profiles
   resources :calcs
   resources :implants
   resources :prices
