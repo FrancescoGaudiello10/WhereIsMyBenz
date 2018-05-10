@@ -2,14 +2,7 @@
 
 - [ ] sistemare **grafica** (impostazioni, signup, statistiche, ...)
 - [ ] **calcolo** costi
-- [ ] **recensioni** in dettaglio stazione
-
-
-
-- [ ] ~~sistemare tema **navigation bar**~~
-- [ ] ~~**login** con github o twitter~~
-
-
+- [ ] **recensioni**
 
 - [x] [Aggiungere ruolo utente gestore](https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role#option-2-adding-an-admin-attribute)
 - [x] aggiungere profilo utente
@@ -21,3 +14,4 @@
 - [x] Visitati
 - [x] **opzioni** quando si aggiunge una nuova stazione
 - [x] ricerca in base alla **posizione** attuale
+

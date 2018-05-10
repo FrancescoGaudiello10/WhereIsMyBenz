@@ -37,12 +37,14 @@
         <div class="container">
 
                     <% if @order == "MEDIA" %>
-
+                    
+                    <div style="padding: 60px 0px 60px 0px;">
                         <h3> Nella provincia di <b><%= province_reverse[@provincia] %></b> il prezzo medio
                             di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@provincia].to_s.slice(0, 5) %></b> <br>
                             mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
                             (+<%= (@prezzi_media[@provincia].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
                             %) </h3>
+                    </div>
 
                     <% else %>
 

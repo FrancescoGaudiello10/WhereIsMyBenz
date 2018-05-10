@@ -143,11 +143,9 @@
 
 <div class="rowDiv" style="background-color: whitesmoke; border-radius: 18px; margin: 0px 30px 0px 30px;">
     <div class="columnDiv">
-        <!--        <img src="<%#= @logo %>" height="72" width="72" style="margin: 25px 0px 0px 100px">-->
-<!--        <h1 class="titolo TitoloBandiera"> <%#= @station.Bandiera.upcase %> </h1>-->
-<!--        <h4 class="titolo"> <%#= @station.Nome.humanize %>  </h4>-->
-        <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1" style="color: #6A6A6A; text-align: left; padding: 20px 0 0 20px"><%= @station.Bandiera.upcase %></h1>
-        <h3 class="mbr-section-subtitle mbr-fonts-style display-3" style="color: darkgray; text-align: left; padding-left: 20px"><%= @station.Nome.humanize %></h3>
+        <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1" style="color: #6A6A6A; padding-top: 20px"><%= @station.Bandiera.upcase %></h1>
+        <h3 class="mbr-section-subtitle mbr-fonts-style display-3" style="color: darkgray; "><%= @station.Nome.humanize %></h3>
+        <h4 style="text-align: center; padding-bottom: 30px"> <%= link_to 'Modifica', edit_station_path(@station) %> </h4>
     </div>
 </div>
 <br>
@@ -215,8 +213,5 @@
 
 
 </div>
-
-<%= link_to 'Edit', edit_station_path(@station) %> |
-<%= link_to 'Back', stations_path %>
 
 </body>

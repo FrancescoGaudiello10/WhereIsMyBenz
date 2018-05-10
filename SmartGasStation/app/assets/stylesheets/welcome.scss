@@ -19,7 +19,6 @@ body.intro {
   top: 0px;
   z-index: -1000;
   overflow: hidden;
-
 }
 
 .videoContainer .overlay {
@@ -52,7 +51,7 @@ body.intro {
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  padding-top: 150px;
+  padding-top: 130px;
   text-align: center;
   font-family: "Open Sans";
 }
@@ -91,11 +90,10 @@ body.intro {
   opacity: 1 !important;
   font-size: 24px !important;
   border-radius: 10px 10px 10px 10px;
-  padding-left: 20px;
   width: 600px;
   height: 60px;
   margin: 100px auto 50px;
-  padding-bottom: 6px;
+  padding: 0 0 6px 20px;
 }
 
 .myRadius {
