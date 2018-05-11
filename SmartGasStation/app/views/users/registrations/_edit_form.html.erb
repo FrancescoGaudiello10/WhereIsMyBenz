@@ -10,19 +10,24 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="field">
-        <%= f.label :password %> <i>(lascia in bianco se non vuoi cambiarla)</i><br/>
-        <%= f.password_field :password, autocomplete: "off" %>
-        <% if @minimum_password_length %>
-            <br/>
-            <em> almeno <%= @minimum_password_length %> caratteri</em>
-        <% end %>
-    </div>
-
-    <div class="field">
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+    <table class="profileTable">
+        <tbody>
+        <tr>
+            <td>
+                <div class="field">
+                    <%= f.label :password %>
+                    <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+            </td>
+            <td>
+                <div class="field">
+                    <%= f.label "Conferma password" %><br/>
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
     <br><br>
 
