@@ -1,113 +1,28 @@
 <head>
     <style>
         .pac-container, .pac-item, .pac-item-query {
-            background-color: rgb(0, 0, 0) !important;
+            background-color: rgba(0, 0, 0, 0.5) !important;
             font-size: 14px !important;
             color: white;
         }
-
-        #targa {
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .profileCheckBox {
-            transform: scale(1.2);
-        }
     </style>
 </head>
-<body style="background-color: white;">
-
+<body class="profileBody">
 <div class="fotosfondo" align="center">
-
-    <h2>Profilo</h2><br/>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
-        <%= devise_error_messages! %>
-
-        <div class="field">
-            <%= f.label :email %><br/>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="field">
-            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
-            <%= f.password_field :password, autocomplete: "off" %>
-            <% if @minimum_password_length %>
-                <br/>
-                <em><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
-        </div>
-
-        <div class="field">
-            <%= f.label :password_confirmation %><br/>
-            <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        </div>
-        <br>
-        <div class="field">
-            <%= f.label "Gestore", :for => "checkbox" %>
-            <%= f.check_box(:admin, {value: "1", checked: current_user.admin, :class => 'profileCheckBox', :id => "admin_checkbox"}) %>
-        </div>
-
-        <br>
-        <div class="field">
-            <%= f.label :luogo_preferito %><br/>
-            <%= f.text_field(:luogo_preferito, required: true, :class => 'luogopref', :id => "luogo_preferito", :value => current_user.luogo_preferito) %>
-        </div>
-        <br>
-        <div class="field">
-            <%= f.label :stazione_preferita %><br/>
-            <%= f.select :stazione_preferita, options_for_select(get_list_stazioni, current_user.stazione_preferita),
-                         :include_blank => '-- Seleziona --', required: true, :class => "stazione_preferita", :id => "stazione_preferita" %>
-
-        </div>
-        <br>
-        <div class="field">
-            <%= f.label :carburante_preferito %><br/>
-            <%= f.select :carburante_preferito, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                         :include_blank => '-- Seleziona --', required: true, :id => "carburante_preferito" %>
-        </div>
-
-        <div class="field">
-            <%= f.label :litri_serbatoio %><br/>
-            <%= f.number_field(:litri_serbatoio, required: true, min: 1.0, :value => current_user.litri_serbatoio,
-                               :class => "number_field_profiles", :id => "litri_serbatoio") %>
-        </div>
-
-
-        <br><br>
-        <div class="field">
-            <%= f.label :current_password %> <br/><i>(we need your current password to confirm your changes)</i><br/>
-            <%= f.password_field :current_password, autocomplete: "off" %>
-        </div>
-        <br>
-        <div class="actions">
-            <%= f.submit "Aggiorna" %>
-        </div>
-    <% end %>
-
-    <br><br><br>
-    <h3>Cancella il mio account</h3>
-
-    <p>Unhappy? <%= button_to "Cancella il mio account", registration_path(resource_name), data: {confirm: "Sei sicuro?"}, method: :delete %></p>
-
+    <h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-2">PROFILO</h2>
+    <%= render "edit_form" %>
     <br>
     <%= link_to "Indietro", :back %>
 
 </div>
 
-
 <script type="text/javascript">
     function initAutocomplete() {
-        var input = document.getElementById('luogo_preferito');
-        var searchBox = new google.maps.places.SearchBox(input);
+        let input = document.getElementById('luogo_preferito');
+        let searchBox = new google.maps.places.SearchBox(input);
         searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
-            if (places.length == 0) {
+            let places = searchBox.getPlaces();
+            if (places.length === 0) {
                 return;
             }
         });

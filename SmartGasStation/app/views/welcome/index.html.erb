@@ -18,7 +18,9 @@
         <%= form_tag("/implants/index", method: :get, html: {autocomplete: "off"}, :class => 'myForm') do %>
 
             <div class="Locationinput">
-                <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :id => "mySearchBar", :placeholder => "Inserisci indirizzo") %>
+                <%= text_field_tag(:city, nil, required: true, :class => "mySearchBar", :id => "mySearchBar", 
+                :placeholder => "Inserisci indirizzo", 
+                :value => current_user.try(:luogo_preferito?) ? current_user.luogo_preferito : "") %>
                 <img class="locationImg" src="/locate1.png" onclick="getLocation()">
             </div>
 

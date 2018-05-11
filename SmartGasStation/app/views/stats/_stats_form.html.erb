@@ -1,4 +1,4 @@
-<%= form_tag("/stats/index", method: :get) do %>
+<%= form_tag("/stats/index#results", method: :get) do %>
     <div align="center" class="form-inline">
 
         <div class="form-group">
@@ -39,8 +39,7 @@
         </div>
 
         <div style="padding-top: 80px" >
-            <%= submit_tag("Cerca", :class => 'btn btn-primary') %>
-            <!--                            <a href="#results">DAJE</a>-->
+            <%= submit_tag("Cerca", :class => 'btn btn-primary', :id => 'cercaBtn') %>
         </div>
 
 

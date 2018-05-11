@@ -38,21 +38,25 @@
 
                     <% if @order == "MEDIA" %>
                     
-                    <div style="padding: 60px 0px 60px 0px;">
-                        <h3> Nella provincia di <b><%= province_reverse[@provincia] %></b> il prezzo medio
+                    <div style="padding: 300px 0px 300px 0px;">
+                        
+                        <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                            Nella provincia di <b><%= province_reverse[@provincia] %></b> il prezzo medio
                             di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@provincia].to_s.slice(0, 5) %></b> <br>
                             mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
                             (+<%= (@prezzi_media[@provincia].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
-                            %) </h3>
+                            %)
+                        </h1>
+                
                     </div>
 
                     <% else %>
 
-                        <h3>
+                        <h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
                             In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di
                             rifornimento
                             vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
-                        </h3>
+                        </h2>
                         <br>
 
                         <div style='width: 100%;'>

@@ -1,14 +1,26 @@
+
+body.profileBody{
+  //background-image: url("/unity_gas_1.jpg");
+}
+table.profileTable td {
+  margin: 12px 12px 12px 12px;
+  padding: 12px 12px 12px 12px;
+}
+table.profileTable {
+  border-collapse: separate;
+  border-spacing: 10px;
+  *border-collapse: expression('separate', cellSpacing = '10px');
+}
+
 .luogopref {
   color: blue;
   width: 220px;
 }
 
 .fotosfondo {
-  background-image: url('/pompa.jpg');
   background-repeat: no-repeat;
   background-size: 240px 280px;
-  background-color: white;
-  //margin-top: 70px;
+  background-image: url("/pompa.jpg");
 }
 
 .bordi {
