@@ -12,13 +12,13 @@
 
 ### 2a. **Creare** il database **aggiornato** ad oggi tramite script automatico (consigliato)
 
-Aprire terminale in `/carburante2/db` ed eseguire `./generateUpdatedDB.sh`
+Aprire terminale in `/SmartGasStation/db` ed eseguire `./generateUpdatedDB.sh`
 
 ### 2b. **Importare** database già **pronto**
 
 Se il metodo 2a non funziona, aprire il terminale nella root del progetto e digitare
 
-`cp /Documenti/development.sqlite3 carburante2/db/` 
+`cp /Documenti/development.sqlite3 SmartGasStation/db/` 
 
 ### ~~2c. **Generare** database (molto più **lento**)~~ 
 
