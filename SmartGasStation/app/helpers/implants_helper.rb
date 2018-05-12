@@ -54,7 +54,8 @@ module ImplantsHelper
         [
             ['Prezzo migliore', 'ASC'],
             ['Prezzo peggiore', 'DESC'],
-            ['Prezzo Medio', 'MEDIA']
+            ['Prezzo medio', 'MEDIA'],
+            ['Andamento', 'ANDAMENTO']
         ]
     end
 
@@ -287,4 +288,55 @@ module ImplantsHelper
             'VT' => 'Viterbo'
         }
     end
+
+    def regioni
+        [
+            ["Piemonte"],
+            ["Valle d'Aosta"],
+            ["Lombardia"],
+            ["Trentino-Alto Adige"],
+            ["Veneto"],
+            ["Friuli-Venezia Giulia"],
+            ["Liguria"],
+            ["Emilia-Romagna"],
+            ["Toscana"],
+            [" Umbria"],
+            [" Marche"],
+            [" Lazio"],
+            [" Abruzzo"],
+            [" Molise"],
+            [" Campania"],
+            [" Puglia"],
+            [" Basilicata"],
+            [" Calabria"],
+            [" Sicilia"],
+            [" Sardegna"]
+        ]
+    end
+
+    def regioni_reverse
+        {
+            "Piemonte" => "Piemonte",
+            "Valle d'Aosta" => "Valle d'Aosta",
+            "Lombardia" => "Lombardia",
+            "Trentino-Alto Adige" => "Trentino-Alto Adige",
+            "Veneto" => "Veneto",
+            "Friuli-Venezia Giulia" => "Friuli-Venezia Giulia",
+            "Liguria" => "Liguria",
+            "Emilia-Romagna" => "Emilia-Romagna",
+            "Toscana" => "Toscana",
+            " Umbria" => "Umbria",
+            " Marche" => "Marche",
+            " Lazio" => "Lazio",
+            " Abruzzo" => "Abruzzo",
+            " Molise" => "Molise",
+            " Campania" => "Campania",
+            " Puglia" => "Puglia",
+            " Basilicata" => "Basilicata",
+            " Calabria" => "Calabria",
+            " Sicilia" => "Sicilia",
+            " Sardegna" => "Sardegna"
+        }
+    end
+
 end

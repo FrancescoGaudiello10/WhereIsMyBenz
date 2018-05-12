@@ -4,20 +4,28 @@ class StatsController < ApplicationController
             @tipo_carburante = params[:tipo_carburante]
             @order = params[:order]
 
-            if (@order == "MEDIA")
+            if @order == "MEDIA"
 
-                @provincia = params[:provincia]
+                @regione = params[:regione]
                 @prezzi_media = Implant
                                     .select('Implants.*, prices.*')
-                                    .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                                    .where('prices.descCarburante = ? AND Implants.Provincia = ?', @tipo_carburante, @provincia)
-                                    .group('Implants.Provincia')
+                                    .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto INNER JOIN regioni ON regioni.sigla = Implants.Provincia')
+                                    .where('prices.descCarburante = ? AND regioni.regione = ?', @tipo_carburante, @regione)
+                                    .group('regioni.regione')
                                     .average('prices.prezzo')
                 @prezzo_medio_italia = Implant
                                            .select('Implants.*, prices.*')
                                            .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
                                            .where('prices.descCarburante = ?', @tipo_carburante)
                                            .average('prices.prezzo')
+
+            elsif @order == "ANDAMENTO"
+                @andamento_array = Implant
+                                 .select('regioni.regione, avg(prices_old.prezzo) , avg(prices.prezzo)')
+                                 .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto INNER JOIN prices_old ON Implants.idImpianto = prices_old.idImpianto INNER JOIN regioni ON Implants.Provincia = regioni.sigla')
+                                 .where('prices.descCarburante = ?', @tipo_carburante)
+                                 .group('regioni.regione')
+                                 .pluck('regioni.regione, avg(prices_old.prezzo), avg(prices.prezzo)')
 
             else
                 @order_desc = (@order == "ASC") ? "migliore" : "peggiore"

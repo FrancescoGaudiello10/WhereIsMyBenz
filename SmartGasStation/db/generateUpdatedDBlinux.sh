@@ -7,8 +7,8 @@
 
 echo "--> Cancello i vecchi csv..."
 echo " "
-rm csv/*.csv
-
+rm csv/implants.csv
+rm csv/prices.csv
 
 echo "--> Scarico anagrafica_impianti_attivi.csv dal Ministero..."
 echo " "
@@ -47,6 +47,15 @@ echo "--> Cancello i file inutili..."
 rm csv/prezzo_alle_8.csv
 
 
+echo "--> Aggiungo ; alla fine di ogni riga in prices_17_mar_18.csv..."
+echo " "
+sed -e 's/$/;/' -i csv/prices_17_mar_18.csv
+
+echo "--> Aggiungo ; alla fine di ogni riga in regioni.csv..."
+echo " "
+sed -e 's/$/;/' -i csv/regioni.csv
+
+
 echo "--> Rinomino il vecchio database per non cancellarlo..."
 echo " "
 mv development.sqlite3 development-old.sqlite3
@@ -58,3 +67,5 @@ echo "--> Importo i .csv nel database..."
 echo " "
 /usr/bin/sqlite3 development.sqlite3 < csv/create_table_from_csv.sql
 
+echo " "
+echo "--> DB PRONTO"

@@ -1,7 +1,7 @@
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap-grid.min.css" integrity="sha256-Q8nNKcntju0t1uAHHUxonugW0axeUnGCDzYut4AdH3c=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap-grid.min.css" integrity="sha256-Q8nNKcntju0t1uAHHUxonugW0axeUnGCDzYut4AdH3c=" crossorigin="anonymous"/>
 </head>
-<body style="background-color: #FFFBD7; padding: 0px 0px 0px 0px;">
+<body style="padding: 0px 0px 0px 0px;">
 <section class="header13 cid-qRgSOwOQva mbr-fullscreen mbr-parallax-background" id="header13-k">
 
     <div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(35, 35, 35);">
@@ -13,7 +13,8 @@
         <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1">STATISTICHE</h1>
 
         <h3 class="mbr-section-subtitle mbr-fonts-style display-3">
-            Scopri quali sono i distributori con i prezzi migliori o peggiori in italia, <br>oppure i prezzi medi per provincia.</h3>
+            Scopri quali sono i distributori con i prezzi migliori o peggiori in italia, <br>oppure i prezzi medi per
+            provincia.</h3>
 
         <div class="container mt-5 pt-5 pb-5">
             <div class="media-container-column" data-form-type="formoid">
@@ -36,47 +37,58 @@
 
         <div class="container">
 
-                    <% if @order == "MEDIA" %>
-                    
-                    <div style="padding: 300px 0px 300px 0px;">
-                        
-                        <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                            Nella provincia di <b><%= province_reverse[@provincia] %></b> il prezzo medio
-                            di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@provincia].to_s.slice(0, 5) %></b> <br>
-                            mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
-                            (+<%= (@prezzi_media[@provincia].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
-                            %)
-                        </h1>
-                
-                    </div>
+            <% if @order == "MEDIA" %>
 
-                    <% else %>
+                <div style="padding: 300px 0px 300px 0px;">
 
-                        <h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                            In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di
-                            rifornimento
-                            vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
-                        </h2>
-                        <br>
+                    <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                        Nella regione <b><%= regioni_reverse[@regione] %></b> il prezzo medio
+                        di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@regione].to_s.slice(0, 5) %></b> <br>
+                        mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
+                        (+<%= (@prezzi_media[@regione].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
+                        %)
+                    </h1>
 
-                        <div style='width: 100%;'>
-                            <div id="map" style='width: 100%; height: 450px;'></div>
-                        </div>
-                        <script type="text/javascript">
-                            handler = Gmaps.build('Google');
-                            handler.buildMap({provider: {}, internal: {id: 'map'}}, function () {
-                                markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
-                                handler.bounds.extendWith(markers);
-                                handler.fitMapToBounds();
-                            });
-                        </script>
+                </div>
 
-                        <%= render 'stats_table' %>
+            <% elsif @order == "ANDAMENTO" %>
 
-                    <% end %>
+                <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                Andamento dei prezzi di <%= @tipo_carburante %> per regione negli ultimi <%= DateTime.now.mjd - DateTime.parse("17-03-2018").mjd %> giorni
+                </h1>
 
-                <% end %>
-    </div>
+                <div style="padding: 20px 0px 20px 0px;">
+
+                    <%=render 'graph' %>
+
+                </div>
+
+            <% else %>
+
+                <h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                    In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di
+                    rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
+                </h2>
+                <br>
+
+                <div style='width: 100%;'>
+                    <div id="map" style='width: 100%; height: 450px;'></div>
+                </div>
+                <script type="text/javascript">
+                    handler = Gmaps.build('Google');
+                    handler.buildMap({provider: {}, internal: {id: 'map'}}, function () {
+                        markers = handler.addMarkers(<%=raw @routers_default.to_json %>);
+                        handler.bounds.extendWith(markers);
+                        handler.fitMapToBounds();
+                    });
+                </script>
+
+                <%= render 'stats_table' %>
+
+            <% end %>
+
+<% end %>
+</div>
 </section>
 
 </body>

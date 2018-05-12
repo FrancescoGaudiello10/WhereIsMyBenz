@@ -1,9 +1,9 @@
 class CreatePrices < ActiveRecord::Migration[5.2]
   def change
     create_table :prices do |t|
-      t.string :idImpianto
+      t.integer :idImpianto
       t.string :descCarburante
-      t.string :prezzo
+      t.float :prezzo
       t.boolean :isSelf
       t.string :dtComu
 

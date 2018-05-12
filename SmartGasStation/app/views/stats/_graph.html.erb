@@ -1,0 +1,32 @@
+<div id="chart" style="width: auto; height: 1200px;"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<%= javascript_tag do -%>
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+    var data = JSON.parse('<%= @andamento_array.to_json.html_safe -%>');
+    data = [['Regione', 'Prezzo precendente', 'Prezzo attuale']].concat(data);
+    data = google.visualization.arrayToDataTable(data);
+
+    var formatter = new google.visualization.NumberFormat(
+    {prefix: '€', pattern:'0.000'});
+    formatter.format(data, 1);
+    formatter.format(data, 2);
+
+    var options = {
+    chart: {
+    },
+    bars: 'horizontal',
+    axes: {
+    x: {
+    0: { side: 'top', label: 'Prezzo (€)'} // Top x-axis.
+    }
+    }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('chart'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+<% end -%>

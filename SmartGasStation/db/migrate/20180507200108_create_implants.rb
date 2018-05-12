@@ -1,7 +1,7 @@
 class CreateImplants < ActiveRecord::Migration[5.2]
   def change
     create_table :implants do |t|
-      t.string :idImpianto
+      t.integer :idImpianto
       t.string :Gestore
       t.string :Bandiera
       t.string :TipoImpianto

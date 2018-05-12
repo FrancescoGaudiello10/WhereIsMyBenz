@@ -7,7 +7,8 @@
 
 echo "--> Cancello i vecchi csv..."
 echo " "
-rm csv/*.csv
+rm csv/implants.csv
+rm csv/prices.csv
 
 
 echo "--> Scarico anagrafica_impianti_attivi.csv dal Ministero..."
@@ -50,3 +51,5 @@ echo "--> Importo i .csv nel database..."
 echo " "
 /usr/local/bin/sqlite3 development.sqlite3 < csv/create_table_from_csv.sql
 
+echo " "
+echo "--> DB PRONTO"

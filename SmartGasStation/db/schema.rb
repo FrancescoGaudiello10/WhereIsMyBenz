@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_101321) do
+ActiveRecord::Schema.define(version: 2018_05_12_182036) do
 
   create_table "implants", force: :cascade do |t|
-    t.string "idImpianto"
+    t.integer "idImpianto"
     t.string "Gestore"
     t.string "Bandiera"
     t.string "TipoImpianto"
@@ -29,11 +29,19 @@ ActiveRecord::Schema.define(version: 2018_05_08_101321) do
   end
 
   create_table "prices", force: :cascade do |t|
-    t.string "idImpianto"
+    t.integer "idImpianto"
     t.string "descCarburante"
-    t.string "prezzo"
+    t.float "prezzo"
     t.boolean "isSelf"
     t.string "dtComu"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regioni", force: :cascade do |t|
+    t.string "regione"
+    t.string "sigla"
+    t.string "provincia"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
