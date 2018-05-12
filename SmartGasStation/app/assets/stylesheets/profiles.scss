@@ -1,6 +1,7 @@
 
 body.profileBody{
-  //background-image: url("/unity_gas_1.jpg");
+  background-image: url("/unity_gas_1.jpg");
+  padding-top: 0px;
 }
 table.profileTable td {
   margin: 12px 12px 12px 12px;
@@ -17,10 +18,17 @@ table.profileTable {
   width: 220px;
 }
 
+label {
+  color: white;
+}
+
 .fotosfondo {
+  padding-top: 40px;
   background-repeat: no-repeat;
   background-size: 240px 280px;
-  background-image: url("/pompa.jpg");
+  //background-image: url("/pompa.jpg");
+  background-color: rgba(0,0,0,0.25);
+  //color: white;
 }
 
 .bordi {

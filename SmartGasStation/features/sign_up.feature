@@ -10,7 +10,7 @@ Scenario: Create a new account
   And I fill in "user[password_confirmation]" with "123456"
   And I press "Crea account"
   Then I should be on my profile page
-  Then I should see "Profilo"
+  Then I should see "PROFILO"
   And I should see "lollo@gmail.com"
 
 Scenario: Can't create an account (email required)
