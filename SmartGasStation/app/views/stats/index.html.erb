@@ -54,7 +54,8 @@
             <% elsif @order == "ANDAMENTO" %>
 
                 <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                Andamento dei prezzi di <%= @tipo_carburante %> per regione negli ultimi <%= DateTime.now.mjd - DateTime.parse("17-03-2018").mjd %> giorni
+                Andamento del prezzo medio di <%= @tipo_carburante %> per regione 
+                negli ultimi <%= DateTime.now.mjd - DateTime.parse("17-03-2018").mjd %> giorni
                 </h1>
 
                 <div style="padding: 20px 0px 20px 0px;">
