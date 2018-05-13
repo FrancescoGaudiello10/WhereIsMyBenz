@@ -1,6 +1,6 @@
 .overlay{
-  background-color: rgba(0,0,0,0.25);
-  padding: 60px 0 0 0;
+//  padding: 60px 0 0 0;
+//  background-color: rgba(0,0,0,0.25);
 }
 body.visits-body{
   background-image: url('/old_gas_1.jpg');
@@ -8,8 +8,7 @@ body.visits-body{
   background-size: 100% auto;
   background-position: center top;
   background-attachment: fixed;
-  padding-top: 0px;
-
+  padding-top: 120px;
 }
 .timeline .timeline-item::after, .timeline .timeline-item::before {
   clear: both;

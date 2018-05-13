@@ -2,13 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body.intro {
-  padding-top: 0px;
-  overflow: hidden; /*blocca lo scorrimento della pagina*/
-  //  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/background.jpg');
-  //  background-size: 100%;
-}
-
 .videoContainer {
   width: 100%;
   height: 100%;
@@ -51,13 +44,13 @@ body.intro {
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  padding-top: 130px;
+  padding-top: 200px;
   text-align: center;
   font-family: "Open Sans";
 }
 
 .myDivForm {
-  width: 100%;
+    width: 100%;
 }
 
 .myForm {
@@ -71,36 +64,35 @@ body.intro {
 
 .Locationinput {
   position: relative;
-  width: 580px;
+  max-width: 650px;
   margin: 0 auto;
 }
 
 .Locationinput img {
   position: absolute;
-  top: 15px;
-  right: 2px
+  top: 25%;
+  right: 2%
 }
 
 .mySearchBar {
   border: 1px solid #fff !important;
-  min-width: inherit !important;
   background-color: rgba(255, 255, 255, .19) !important;
   color: white;
   border: 1px solid #fff !important;
   opacity: 1 !important;
   font-size: 24px !important;
   border-radius: 10px 10px 10px 10px;
-  width: 600px;
   height: 60px;
-  margin: 100px auto 50px;
-  padding: 0 0 6px 20px;
+  margin: 15px 0 60px 0;
+  padding: 0 55px 6px 20px;
+  width: 100%;
 }
 
 .myRadius {
   background-color: rgba(255, 255, 255, .19) !important;
   color: white;
   border: 1px solid #fff !important;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 10px 10px 10px;
   opacity: 1 !important;
   padding: 15px 32px;
   text-align: center;
@@ -120,7 +112,7 @@ body.intro {
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .myButton:hover {
@@ -167,7 +159,7 @@ p.intro {
 //Style autocomplete
 //https://google-developers.appspot.com/maps/documentation/javascript/places-autocomplete#style_autocomplete
 .pac-container, .pac-item, .pac-item-query {
-  background-color: rgba(255, 255, 255, .2) !important;
+  background-color: rgba(0,0,0,0.2) !important;
   font-size: 16px !important;
   color: white;
 }

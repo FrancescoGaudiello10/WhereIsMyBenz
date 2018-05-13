@@ -128,10 +128,15 @@
             background-color: #ececff;
             cursor: pointer;
         }
+        
+        body{
+            background-color: #C8D3F0;
+            padding-top: 100px;
+        }
     </style>
 </head>
 
-<body style="background-color: #C8D3F0">
+<body>
 
 <div class="rowDiv" style="background-color: whitesmoke; border-radius: 18px; margin: 0px 30px 0px 30px;">
     <div class="columnDiv">
@@ -169,26 +174,7 @@
 <!-- MAPPA -->
 <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
 
-    <!-- Titolo -->
-    <div class="my-3 py-3">
-        <br>
-        <h3 class="mbr-section-subtitle mbr-fonts-style display-2" style="color: white; text-align: center;">MAPS</h3>
-        <p class="lead"> <%= @Indirizzo.humanize %>, <%= @Comune.humanize %> (<%= @Provincia %>) </p>
-    </div>
-
-    <!-- MAPPA 1 -->
-    <iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?q=<%= @lat %>%2C<%= @long %>&zoom=18&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk">
-    </iframe>
-
-    <!-- MAPPA 2 -->
-    <iframe width="600" height="450" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/streetview?location=<%= @lat %>%2C<%= @long %>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
-            allowfullscreen>
-    </iframe>
+    <%= render 'show_maps'%>
 
     <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
 
