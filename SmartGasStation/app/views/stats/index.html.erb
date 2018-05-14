@@ -13,8 +13,8 @@
         <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1">STATISTICHE</h1>
 
         <h3 class="mbr-section-subtitle mbr-fonts-style display-3">
-            Scopri quali sono i distributori con i prezzi migliori o peggiori in italia, <br>oppure i prezzi medi per
-            provincia.</h3>
+            Scopri quali sono i distributori con i prezzi migliori o peggiori, <br>i prezzi medi per
+            regione oppure l'andamento temporale dei prezzi.</h3>
 
         <div class="container mt-5 pt-5 pb-5">
             <div class="media-container-column" data-form-type="formoid">
@@ -39,35 +39,46 @@
 
             <% if @order == "MEDIA" %>
 
+
                 <div style="padding: 300px 0px 300px 0px;">
 
-                    <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                        Nella regione <b><%= regioni_reverse[@regione] %></b> il prezzo medio
-                        di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@regione].to_s.slice(0, 5) %></b> <br>
-                        mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
-                        (+<%= (@prezzi_media[@regione].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
-                        %)
-                    </h1>
+                    <% if params[:regione] != '' %>
+
+                        <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                            Nella regione <b><%= regioni_reverse[@regione] %></b> il prezzo medio
+                            di <%= @tipo_carburante %> è <b>€<%= @prezzi_media[@regione].to_s.slice(0, 5) %></b> <br>
+                            mentre in Italia il prezzo medio è €<%= @prezzo_medio_italia.to_s.slice(0, 5) %>
+                            (+<%= (@prezzi_media[@regione].to_s.slice(0, 5).to_d / @prezzo_medio_italia.to_s.slice(0, 5).to_d).round(3) %>
+                            %)
+                        </h1>
+
+                    <% else %>
+
+                        <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
+                            Inserisci una regione.
+                        </h1>
+
+                    <% end %>
 
                 </div>
 
             <% elsif @order == "ANDAMENTO" %>
 
                 <h1 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                Andamento del prezzo medio di <%= @tipo_carburante %> per regione 
-                negli ultimi <%= DateTime.now.mjd - DateTime.parse("17-03-2018").mjd %> giorni
+                    Andamento del prezzo medio di <%= @tipo_carburante %> per regione
+                    negli ultimi <%= DateTime.now.mjd - DateTime.parse("17-03-2018").mjd %> giorni
                 </h1>
 
                 <div style="padding: 20px 0px 20px 0px;">
 
-                    <%=render 'graph' %>
+                    <%= render 'graph' %>
 
                 </div>
 
             <% else %>
 
                 <h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-3">
-                    In Italia, queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di
+                    Queste <%= @prezzi.count("Implants.idImpianto").length %> stazioni di
                     rifornimento vendono <%= @tipo_carburante %> al prezzo <%= @order_desc %>.
                 </h2>
                 <br>

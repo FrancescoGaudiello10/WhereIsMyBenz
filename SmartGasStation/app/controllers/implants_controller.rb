@@ -42,19 +42,20 @@ class ImplantsController < ApplicationController
                        .group('prices.descCarburante')
 
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
-        @Bandiera = @implant.pluck(:Bandiera).first
-        @Gestore = @implant.pluck(:Gestore).first
-        @Indirizzo = @implant.pluck(:Indirizzo).first
-        @Comune = @implant.pluck(:Comune).first
-        @Provincia = @implant.pluck(:Provincia).first
+        @Bandiera   = @implant.pluck(:Bandiera).first
+        @Gestore    = @implant.pluck(:Gestore).first
+        @Indirizzo  = @implant.pluck(:Indirizzo).first
+        @Comune     = @implant.pluck(:Comune).first
+        @Provincia  = @implant.pluck(:Provincia).first
         @carburanti = @implant.pluck(:descCarburante)
-        @lat = @implant.pluck(:latitude).first
-        @long = @implant.pluck(:longitude).first
-        @prezzi = @implant.pluck(:descCarburante, :prezzo).to_h #hash
+        @lat        = @implant.pluck(:latitude).first
+        @long       = @implant.pluck(:longitude).first
+        @prezzi     = @implant.pluck(:descCarburante, :prezzo).to_h #hash
+
 
         #Meteo per impianto selezionato
         get_weather
-        @logo = helpers.get_implant_logo(@Bandiera)
+        #@logo = helpers.get_implant_logo(@Bandiera)
 
         @stazioniVicine = Implant.find(id).nearbys(3, :order => 'distance').limit(3)
 

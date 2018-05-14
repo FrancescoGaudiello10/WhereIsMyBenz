@@ -28,15 +28,25 @@ class StatsController < ApplicationController
                                  .pluck('regioni.regione, avg(prices_old.prezzo), avg(prices.prezzo)')
 
             else
-                @order_desc = (@order == "ASC") ? "migliore" : "peggiore"
-                @prezzi = Implant
-                              .select('Implants.*, prices.*')
-                              .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                              .where('descCarburante = ?', @tipo_carburante)
+                @order_desc = (@order == "ASC") ? "migliore" : "peggiore" #descrizione
+                
+                if params[:regione]!=''
+                    @prezzi = Implant
+                              .select('regioni.regione, Implants.*, prices.*')
+                              .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto INNER JOIN regioni ON Implants.Provincia = regioni.sigla')
+                              .where('descCarburante = ? AND regioni.regione=?', @tipo_carburante, params[:regione] )
                               .group('Implants.Indirizzo')
                               .order("prices.prezzo #{@order}")
                               .limit(5)
-
+                else 
+                    @prezzi = Implant
+                                  .select('Implants.*, prices.*')
+                                  .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+                                  .where('descCarburante = ?', @tipo_carburante)
+                                  .group('Implants.Indirizzo')
+                                  .order("prices.prezzo #{@order}")
+                                  .limit(5)
+                end              
                 load_markers(@prezzi, @order)
 
             end

@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_05_12_182036) do
   create_table "regioni", force: :cascade do |t|
     t.string "regione"
     t.string "sigla"
-    t.string "provincia"
+    t.string "regione"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

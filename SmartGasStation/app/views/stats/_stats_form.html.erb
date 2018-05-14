@@ -27,8 +27,8 @@
         </div>
 
         <div class="form-group" id="provinciaDiv">
-            <p class="stats-paragraph">  Regione </p>
-            <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order) && params.has_key?(:provincia)) %>
+            <p class="stats-paragraph"> Regione </p>
+            <% if (params.has_key?(:tipo_carburante) && params.has_key?(:order) && params.has_key?(:regione)) %>
                 <%= select_tag :regione, options_for_select(regioni, params[:regione]),
                                :include_blank => '-- Seleziona --', required: false %>
             <% else %>
@@ -47,10 +47,10 @@
             //Questo script fa apparire il selettore della provincia solo se si sceglie l'opzione "Prezzo Media"
             $(document).ready(function () {
                 $("#ordinamento").change(function () {
-                    if ($("#ordinamento").val() === "MEDIA") {
-                        $("#provinciaDiv").show()
-                    } else {
+                    if ($("#ordinamento").val() === "ANDAMENTO") {
                         $("#provinciaDiv").hide()
+                    } else {
+                        $("#provinciaDiv").show()
                     }
                 });
             });

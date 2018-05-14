@@ -300,17 +300,17 @@ module ImplantsHelper
             ["Liguria"],
             ["Emilia-Romagna"],
             ["Toscana"],
-            [" Umbria"],
-            [" Marche"],
-            [" Lazio"],
-            [" Abruzzo"],
-            [" Molise"],
-            [" Campania"],
-            [" Puglia"],
-            [" Basilicata"],
-            [" Calabria"],
-            [" Sicilia"],
-            [" Sardegna"]
+            ["Umbria"],
+            ["Marche"],
+            ["Lazio"],
+            ["Abruzzo"],
+            ["Molise"],
+            ["Campania"],
+            ["Puglia"],
+            ["Basilicata"],
+            ["Calabria"],
+            ["Sicilia"],
+            ["Sardegna"]
         ]
     end
 
