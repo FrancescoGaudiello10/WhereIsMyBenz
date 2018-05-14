@@ -1,14 +1,10 @@
-.overlay{
-//  padding: 60px 0 0 0;
-//  background-color: rgba(0,0,0,0.25);
-}
+
 body.visits-body{
-  background-image: url('/old_gas_1.jpg');
+  background:linear-gradient(0deg,rgba(209,175,70,0.3),rgba(0,0,0,0.3)),url("/old_gas_1.jpg");
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center top;
   background-attachment: fixed;
-  padding-top: 120px;
 }
 .timeline .timeline-item::after, .timeline .timeline-item::before {
   clear: both;

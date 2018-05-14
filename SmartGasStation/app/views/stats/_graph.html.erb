@@ -7,7 +7,7 @@
 
     function drawChart() {
     var data = JSON.parse('<%= @andamento_array.to_json.html_safe -%>');
-    data = [['Regione', 'Prezzo precendente', 'Prezzo attuale']].concat(data);
+    data = [['Regione', 'Prezzo 17/03/2018', 'Prezzo <%= Time.now.strftime("%d/%m/%Y") %>' ]].concat(data);
     data = google.visualization.arrayToDataTable(data);
 
     var formatter = new google.visualization.NumberFormat(

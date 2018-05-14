@@ -1,7 +1,7 @@
 <!--PARTIAL-->
 <!--http://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views-->
 
-<body class="centerBody">
+<body class="centerBody editBody">
 
 <%= form_with model: @station, local: true do |form| %>
 
@@ -24,17 +24,17 @@
     <p>
         <%= form.label :Bandiera %><br>
         <%#= select_tag :Bandiera, options_for_select(@stazioni), :include_blank => '-- Seleziona --', required: true %>
-        <%= form.text_field :Bandiera, :id => "Bandiera", :value => current_user.stazione_preferita %>
+        <%= form.text_field :Bandiera, :id => "Bandiera", :value => current_user.stazione_preferita, :class => "profileInput" %>
     </p>
 
     <p>
         <%= form.label :Nome %><br>
-        <%= form.text_field :Nome %>
+        <%= form.text_field :Nome , :class => "profileInput" %>
     </p>
 
     <p>
         <%= form.label :Indirizzo %><br>
-        <%= form.text_field(:Indirizzo, required: true, :placeholder => "Inserisci indirizzo", :id => "Indirizzo") %>
+        <%= form.text_field(:Indirizzo, required: true, :placeholder => "Inserisci indirizzo", :id => "Indirizzo" , :class => "profileInput") %>
     </p>
 
     <p>
@@ -50,27 +50,27 @@
         <tbody>
         <tr>
             <td>Benzina</td>
-            <td> <%= form.text_field(:Benzina, :placeholder => "€", :type => "number", :step => "any", :id => "Benzina") %> </td>
+            <td> <%= form.text_field(:Benzina, :placeholder => "€", :type => "number", :step => "any", :id => "Benzina" , :class => "profileInput") %> </td>
         </tr>
         <tr>
             <td>Gasolio</td>
-            <td> <%= form.text_field(:Diesel, :placeholder => "€", :type => "number", :step => "any", :id => "Diesel") %> </td>
+            <td> <%= form.text_field(:Diesel, :placeholder => "€", :type => "number", :step => "any", :id => "Diesel", :class => "profileInput") %> </td>
         </tr>
         <tr>
             <td>Super</td>
-            <td> <%= form.text_field(:Super, :placeholder => "€", :type => "number", :step => "any", :id => "Super") %> </td>
+            <td> <%= form.text_field(:Super, :placeholder => "€", :type => "number", :step => "any", :id => "Super", :class => "profileInput") %> </td>
         </tr>
         <tr>
             <td>Excellium Diesel</td>
-            <td> <%= form.text_field(:Excellium, :placeholder => "€", :type => "number", :step => "any", :id => "Excellium Diesel") %> </td>
+            <td> <%= form.text_field(:Excellium, :placeholder => "€", :type => "number", :step => "any", :id => "Excellium Diesel", :class => "profileInput") %> </td>
         </tr>
         <tr>
             <td>Metano</td>
-            <td> <%= form.text_field(:Metano, :placeholder => "€", :type => "number", :step => "any", :id => "Metano") %> </td>
+            <td> <%= form.text_field(:Metano, :placeholder => "€", :type => "number", :step => "any", :id => "Metano", :class => "profileInput") %> </td>
         </tr>
         <tr>
             <td>GPL</td>
-            <td> <%= form.text_field(:GPL, :placeholder => "€", :type => "number", :step => "any", :id => "GPL") %> </td>
+            <td> <%= form.text_field(:GPL, :placeholder => "€", :type => "number", :step => "any", :id => "GPL", :class => "profileInput") %> </td>
         </tr>
         </tbody>
         </tr>
@@ -104,7 +104,7 @@
 
     <br>
     <p>
-        <%= form.submit "Crea Stazione" %>
+        <%= form.submit "Crea Stazione", :class => "profileSubmit" %>
     </p>
 
 <% end %>

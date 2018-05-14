@@ -55,7 +55,7 @@ class ImplantsController < ApplicationController
 
         #Meteo per impianto selezionato
         get_weather
-        #@logo = helpers.get_implant_logo(@Bandiera)
+        @logo = helpers.get_implant_logo(@Bandiera)
 
         @stazioniVicine = Implant.find(id).nearbys(3, :order => 'distance').limit(3)
 

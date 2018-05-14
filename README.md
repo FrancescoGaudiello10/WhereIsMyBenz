@@ -14,21 +14,15 @@
 
 Aprire terminale in `/SmartGasStation/db` ed eseguire `./generateUpdatedDB.sh`
 
-### 2b. **Importare** database già **pronto**
+#### 2b. **Importare** database già **pronto**
 
 Se il metodo 2a non funziona, aprire il terminale nella root del progetto e digitare
 
 `cp /Documenti/development.sqlite3 SmartGasStation/db/` 
 
-### ~~2c. **Generare** database (molto più **lento**)~~ 
-
-~~`rake db:migrate` per creare il database vuoto~~
-
-~~`rake db:seed` per riempire il database con i dati degli impianti e dei prezzi dai .csv _(questo comando ci mette >10 minuti perché deve importare ~86.400 righe)_~~
 
 
-
-### 3. Eseguire **server** su porta 3000
+### 3. Eseguire **server**
 
 `rails server` 
 

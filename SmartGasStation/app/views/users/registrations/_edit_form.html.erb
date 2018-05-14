@@ -1,9 +1,10 @@
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="field">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "profileInput" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -15,14 +16,14 @@
         <tr>
             <td>
                 <div class="field">
-                    <%= f.label :password %>
-                    <%= f.password_field :password, autocomplete: "off" %>
+                    <%= f.label "Nuova password" %>
+                    <%= f.password_field :password, autocomplete: "off", class: "profileInput" %>
                 </div>
             </td>
             <td>
                 <div class="field">
                     <%= f.label "Conferma password" %><br/>
-                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", class: "profileInput"  %>
                 </div>
             </td>
         </tr>
@@ -44,14 +45,14 @@
             <td>
                 <div class="field">
                     <%= f.label :luogo_preferito %><br/>
-                    <%= f.text_field(:luogo_preferito, required: true, :class => 'luogopref', :id => "luogo_preferito", :value => current_user.luogo_preferito) %>
+                    <%= f.text_field(:luogo_preferito, required: true, :class => 'luogopref profileInput', :id => "luogo_preferito", :value => current_user.luogo_preferito) %>
                 </div>
             </td>
             <td>
                 <div class="field">
                     <%= f.label :stazione_preferita %><br/>
                     <%= f.select :stazione_preferita, options_for_select(get_list_stazioni, current_user.stazione_preferita),
-                                 :include_blank => '-- Seleziona --', required: true, :class => "stazione_preferita", :id => "stazione_preferita" %>
+                                 :include_blank => '-- Seleziona --', required: true, :class => "stazione_preferita profileInput", :id => "stazione_preferita" %>
                 </div>
             </td>
         </tr>
@@ -60,14 +61,14 @@
                 <div class="field">
                     <%= f.label :carburante_preferito %><br/>
                     <%= f.select :carburante_preferito, options_for_select(tipo_carburante, current_user.carburante_preferito),
-                                 :include_blank => '-- Seleziona --', required: true, :id => "carburante_preferito" %>
+                                 :include_blank => '-- Seleziona --', required: true, :id => "carburante_preferito", :class => "profileInput"  %>
                 </div>
             </td>
             <td>
                 <div class="field">
                     <%= f.label :litri_serbatoio %><br/>
                     <%= f.number_field(:litri_serbatoio, required: true, min: 1.0, :value => current_user.litri_serbatoio,
-                                       :class => "number_field_profiles", :id => "litri_serbatoio") %>
+                                       :class => "number_field_profiles", :id => "litri_serbatoio" , :class => "profileInput" ) %>
                 </div>
             </td>
         </tr>
@@ -76,16 +77,17 @@
 
     <br><br>
     <div class="field">
-        <%= f.label :current_password %> <br/><i>(necessaria per confermare le modifiche)</i><br/>
-        <%= f.password_field :current_password, autocomplete: "off" %>
+        <%= f.label "Password attuale" %> <br/> <p style="color: white;"><i>(necessaria per confermare le modifiche)</i></p>
+        <%= f.password_field :current_password, autocomplete: "off",  :class => "profileInput"  %>
     </div>
     <br>
     <div class="actions">
-        <%= f.submit "Aggiorna" %>
+        <%= f.submit "Aggiorna", :class => "profileSubmit" %>
     </div>
 <% end %>
 
 <br><br><br>
-<h3>Cancella il mio account</h3>
 
-<p>Unhappy? <%= button_to "Cancella il mio account", registration_path(resource_name), data: {confirm: "Sei sicuro?"}, method: :delete %></p>
+<p>
+    <%= button_to "Cancella il mio account", registration_path(resource_name), data: {confirm: "Sei sicuro?"}, method: :delete , :class => "profileSubmit", :style => "background-color: red;" %>
+</p>
