@@ -14,7 +14,6 @@
                     <%= implant.Indirizzo.humanize[0..-7] %> ,<%= implant.Comune.humanize %>
                     (<%= implant.Provincia %>) <br/>
                     <%= link_to 'Dettagli', implant_path(i) %> <br/>
-                    <%= link_to 'Calcola costi', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %>
                 </p>
             </div>
         </div>

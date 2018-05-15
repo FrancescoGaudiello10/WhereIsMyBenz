@@ -38,7 +38,7 @@
                         <div class="cell" data-title="Carburante"> <%= i.descCarburante %>  </div>
                         <div class="cell" data-title="Indirizzo">  <%= i.Indirizzo.humanize[0..-7] %></div>
                         <div class="cell" data-title="Dettagli"> <%= link_to 'Dettagli', implant_path(i) %>  </div>
-                        <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %> </div>
+                        <div class="cell" data-title="Vado qui"> <%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante], prezzo:i.prezzo) %> </div>
                     </div>
                 <% end %>
             </div>

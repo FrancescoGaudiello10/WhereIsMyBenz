@@ -3,4 +3,4 @@
 <%= carburante %>: <b>€<%= prezzo %></b>  <br>
 <%= indirizzo %> <br>
 <%= link_to 'Dettagli', implant_path(i) %> <br>
-<%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante]) %>
+<%= link_to 'Vado qui', calc_path(id: i, tipo_carburante: params[:tipo_carburante], prezzo:i.prezzo) %>

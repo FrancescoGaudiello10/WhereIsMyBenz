@@ -1,5 +1,3 @@
-<!--PARTIAL-->
-<!--http://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views-->
 
 <body class="centerBody editBody">
 
@@ -85,15 +83,15 @@
         <tbody>
         <tr>
             <td>24/7</td>
-            <td> <%= form.check_box :allDay, {}, 'true', '' %> </td>
+            <td> <%= form.check_box :allDay, {:class => "profileCheckBox"}, 'true', '' %> </td>
         </tr>
         <tr>
             <td>Self Service</td>
-            <td> <%= form.check_box :Self, {}, 'true', '' %></td>
+            <td> <%= form.check_box :Self, {:class => "profileCheckBox"}, 'true', '' %></td>
         </tr>
         <tr>
             <td>Autolavaggio</td>
-            <td> <%= form.check_box :autoLavaggio, {}, 'true', '' %> </td>
+            <td> <%= form.check_box :autoLavaggio, {:class => "profileCheckBox"}, 'true', '' %> </td>
         </tr>
         <tr>
         </tbody>
