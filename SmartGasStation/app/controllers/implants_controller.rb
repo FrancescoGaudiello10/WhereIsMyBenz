@@ -1,4 +1,5 @@
 class ImplantsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_implant, only: [:show, :edit, :update, :destroy]
 
     # GET /implants

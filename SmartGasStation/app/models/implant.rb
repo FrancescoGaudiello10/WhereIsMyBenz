@@ -8,7 +8,7 @@ class Implant < ApplicationRecord
 
     #Location https://www.youtube.com/watch?v=4iAjdTrgAvs
     geocoded_by :full_address #, :latitude  => :Latitudine, :longitude => :Longitudine
-    after_validation :geocode #, if: :address_changed?
+    after_validation :geocode, if: :address_changed?
 
     private
 

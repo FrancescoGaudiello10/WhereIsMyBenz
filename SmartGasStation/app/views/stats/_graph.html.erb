@@ -16,14 +16,14 @@
     formatter.format(data, 2);
 
     var options = {
-    chart: {
-    },
-    bars: 'horizontal',
-    axes: {
-    x: {
-    0: { side: 'top', label: 'Prezzo (€)'} // Top x-axis.
-    }
-    }
+        chart: { },
+        bars: 'horizontal',
+        axes: {
+            x: {
+                0: { side: 'top', label: 'Prezzo (€)'} // Top x-axis.
+            }
+        },
+        backgroundColor: '#FFFBDE'
     };
 
     var chart = new google.charts.Bar(document.getElementById('chart'));

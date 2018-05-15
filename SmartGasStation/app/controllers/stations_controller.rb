@@ -1,7 +1,7 @@
 class StationsController < ApplicationController
     before_action :set_station, only: [:show, :edit, :update, :destroy]
     #autenticazione richiesta
-    before_action :authenticate_user! #, :admin_user, only: :index
+    before_action :authenticate_user! 
     #solo gli amministratori possono modificare o cancellare stazioni
     before_action :admin_user, only: [:new, :edit, :update, :destroy]
 

@@ -1,4 +1,5 @@
 class StatsController < ApplicationController
+    before_action :authenticate_user!
     def index
         if (params.has_key?(:tipo_carburante) && params.has_key?(:order))
             @tipo_carburante = params[:tipo_carburante]
