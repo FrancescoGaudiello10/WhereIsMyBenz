@@ -49,6 +49,7 @@ CREATE TABLE "regioni" (
 
 .mode csv
 .separator ;
+
 .import csv/implants.csv implants
 .import csv/prices.csv prices
 .import csv/prices_17_mar_18.csv prices_old
@@ -58,7 +59,6 @@ UPDATE "implants"   SET created_at    = CURRENT_TIMESTAMP;
 UPDATE "prices"     SET created_at    = CURRENT_TIMESTAMP;
 UPDATE "prices_old" SET created_at    = CURRENT_TIMESTAMP;
 UPDATE "regioni"    SET created_at    = CURRENT_TIMESTAMP;
-
 
 --Carica stazioni di prova
 INSERT INTO "stations" VALUES ('1','ESSO','Mario Rossi','Via Ariosto 22,Roma','1.798','1.578',NULL,NULL,'0.789','0.687','1',NULL,'1',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

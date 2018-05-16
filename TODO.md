@@ -1,9 +1,8 @@
 # Cose da Fare
 
-- [ ] sistemare **grafica** (impostazioni, signup, statistiche, ...)
 - [ ] **calcolo** costi
 - [ ] **recensioni**
-
+- [x] sistemare **grafica** (impostazioni, signup, statistiche, ...)
 - [x] [Aggiungere ruolo utente gestore](https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role#option-2-adding-an-admin-attribute)
 - [x] aggiungere profilo utente
 - [x] gestire ruolo admin
