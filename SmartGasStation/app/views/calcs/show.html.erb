@@ -1,4 +1,7 @@
-<body class="text-center">
+<body class="text-center w3-khaki" >
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 <h1>Calcola costi</h1>
 
@@ -6,22 +9,49 @@
 
     <!--    <img class="mb-4" src="http://cdn.onlinewebfonts.com/svg/download_403829.png" alt="" width="72" height="72">-->
 
-    <div class="input">
+    <div class="input" style="">
         <p> Vuoi fare il pieno? </p>
-        <%= label_tag(:pieno_si, "Si") %>
-        <%= radio_button_tag(:pieno, true) %>
-        <%= label_tag(:pieno_no, "No") %>
-        <%= radio_button_tag(:pieno, false) %>
+        <p style="text-color: black;">
+          <%= label_tag(:pieno_si, "Si") %>
+          <%= radio_button_tag(:pieno, true) %>
+          <%= label_tag(:pieno_no, "No") %>
+          <%= radio_button_tag(:pieno, false) %>
+        </p>
     </div>
 
-    <div class="input">
+    <div class="w3-container w3-center">
+
+
         <p>
             Quanti litri ti rimangono?
-            <%= number_field(:litri_rimanenti, nil, required: true, min: 0.0, max: 50.0) %> L
+            <%= number_field(:litri_rimanenti, nil, required: true, min: 0.0, max: 50.0) %>
+        </p>
     </div>
 
     <div class="actions">
         <%= submit_tag("Calcola", :class => 'btn btn-lg btn-primary btn-block') %>
+    </div>
+    <div>
+      <% if (params.has_key?(:pieno)) %>
+      <% if (params[:pieno] == "true") %>
+          <br>
+          <br>
+          <p> Considerando che hai <%= @litri - params[:litri_rimanenti][0].to_i %> litri di serbatio da riempire in questa stazione pagheresti <%= (@litri - params[:litri_rimanenti][0].to_i)*@prezzo.to_i %> euro.
+          <br>
+          <br>
+          <p> Questa stazione, per quanto riguarda il prezzo del tipo di carburante (<% @tipo_carburante %>), costa il **calcoli percentuale** </p> <p class="w3-wide"> rispetto alla media italiana
+          <br>
+          <br>
+          <p> Vuoi confrontare i prezzi con le altre stazioni? <a href="javascript:history.back()">Back</a>
+      <% else%>
+          <br>
+          <br>
+          <p> Sei sicuro? Qui pagheresti solo <%= (@litri - params[:litri_rimanenti][0].to_i)*@prezzo.to_i %>
+          <p> Vuoi confrontare i prezzi con le altre stazioni?
+            <a style="text-color:blue;" href="javascript:history.back()">Back</a>
+      <% end%>
+      <% end%>
+
     </div>
 
 <% end %>
