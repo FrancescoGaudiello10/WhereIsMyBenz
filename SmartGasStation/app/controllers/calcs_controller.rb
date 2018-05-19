@@ -3,9 +3,13 @@ class CalcsController < ApplicationController
 
         @id = params[:id]
         @tipo_carburante = params[:tipo_carburante]
+        @litri = current_user.litri_serbatoio
+        @prezzo = params[:price]
 
         salvaImpiantoDB(@id)
         flash[:notice] = "Stazione salvata tra quelle visitate"
+
+
 
         @implant = Implant
                        .select('Implants.*, prices.*')
