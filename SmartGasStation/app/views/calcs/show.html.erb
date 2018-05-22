@@ -37,6 +37,12 @@
         <%= submit_tag("Calcola", :class => 'btn btn-lg btn-primary btn-block') %>
     </div>
     <div>
+      <% if (@litri.to_i == 0) %>
+        <script> alert("Completa prima il tuo profilo")
+        window.location.href = "http://localhost:3000/users/edit"
+        </script>
+
+      <% end %>
         <% if (params.has_key?(:pieno)) %>
             <% if (params[:pieno] == "true") %>
                 <br>

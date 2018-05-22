@@ -58,4 +58,4 @@ rails db:migrate > /dev/null
 printf "\n> Importo i .csv nel database...\n"
 /usr/bin/sqlite3 development.sqlite3 < csv/create_table_from_csv.sql > /dev/null 2>&1
 
-printf "\n> DB PRONTO"
+printf "\n> DB PRONTO\n"
