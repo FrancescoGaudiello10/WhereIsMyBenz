@@ -4,18 +4,16 @@ class CalcsController < ApplicationController
         @id = params[:id]
         @tipo_carburante = params[:tipo_carburante]
         @litri = current_user.litri_serbatoio
-        @prezzo = params[:price]
+        @prezzo = params[:prezzo]
 
         salvaImpiantoDB(@id)
         flash[:notice] = "Stazione salvata tra quelle visitate"
 
-
-
-        @implant = Implant
-                       .select('Implants.*, prices.*')
-                       .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-                       .where("Implants.idImpianto = ? AND descCarburante = ?", @id, @tipo_carburante)
-                       .group("descCarburante")
+        # @implant = Implant
+        #                .select('Implants.*, prices.*')
+        #                .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
+        #                .where("Implants.idImpianto = ? AND descCarburante = ?", @id, @tipo_carburante)
+        #                .group("descCarburante")
 
     end
 
