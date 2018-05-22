@@ -9,12 +9,6 @@ class CalcsController < ApplicationController
         salvaImpiantoDB(@id)
         flash[:notice] = "Stazione salvata tra quelle visitate"
 
-        # @implant = Implant
-        #                .select('Implants.*, prices.*')
-        #                .joins('INNER JOIN prices ON Implants.idImpianto = prices.idImpianto')
-        #                .where("Implants.idImpianto = ? AND descCarburante = ?", @id, @tipo_carburante)
-        #                .group("descCarburante")
-
     end
 
     private
