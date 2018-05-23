@@ -7,6 +7,7 @@
     <!--    <img class="mb-4" src="http://cdn.onlinewebfonts.com/svg/download_403829.png" alt="" width="72" height="72">-->
 
     <div class="input" style="">
+
         <p> Vuoi fare il pieno? </p>
 
         <input type="radio" name="pieno" value="litri">SI <br>
@@ -27,6 +28,7 @@
         </div>
 
         <%= number_field(:litri_rimanenti, nil, required: true, min: 0.0, max: current_user.litri_serbatoio, class: "profileInput") %>
+
     </div>
 
     <div class="actions">

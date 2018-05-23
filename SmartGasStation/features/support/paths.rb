@@ -23,8 +23,8 @@ module NavigationHelpers
     when /^the add station page$/
       '/stations/new'
 
-    when /^the last insertion page$/
-      property_path(Property.last)
+    when /^the station details page$/
+      '/stations/1'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
