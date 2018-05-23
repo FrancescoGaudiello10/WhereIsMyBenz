@@ -165,21 +165,13 @@
     <div class="columnDivComments" align="right">
 
         <div style="margin: 30px 30px 0px 0px">
-
-            <!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form-->
-
             <div>
                 <h2>Commenti:</h2><br>
-                <%#= render @station.comments %>
-            </div>
-            <br>
-            <!-- solo admin può lasciare commenti nelle stazioni -->
-            <%# if current_user.admin %>
-            <div>
+                <%= render @parent.comments %>
+
                 <h2>Aggiungi un commento:</h2>
-                <%#= render 'comments/form' %>
+                <%= render "comments/form"%>
             </div>
-            <%# end %>
 
         </div>
 
@@ -205,10 +197,10 @@
     </iframe>
 
     <!-- MAPPA 2 -->
-    <iframe width="600" height="450" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/streetview?location=<%= @lat %>%2C<%= @long %>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
-            allowfullscreen>
-    </iframe>
+<iframe width="600" height="450" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/streetview?location=<%= @lat %>%2C<%= @long %>&key=AIzaSyArL2n6TaQSKSC3Fd5r4zp0jv2LW-CeQHk"
+        allowfullscreen>
+</iframe>
 
     <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 50px; border-radius: 21px 21px 0 0;"></div>
 

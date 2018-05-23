@@ -42,6 +42,8 @@ class ImplantsController < ApplicationController
                        .where('Implants.idImpianto = ?', id)
                        .group('prices.descCarburante')
 
+        @parent = @implant #comments
+
         #https://apidock.com/rails/ActiveRecord/Calculations/pluck
         @Bandiera   = @implant.pluck(:Bandiera).first
         @Gestore    = @implant.pluck(:Gestore).first
@@ -52,7 +54,6 @@ class ImplantsController < ApplicationController
         @lat        = @implant.pluck(:latitude).first
         @long       = @implant.pluck(:longitude).first
         @prezzi     = @implant.pluck(:descCarburante, :prezzo).to_h #hash
-
 
         #Meteo per impianto selezionato
         get_weather

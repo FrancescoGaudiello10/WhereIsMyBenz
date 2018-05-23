@@ -1,8 +1,16 @@
 # **SmartGasStation**
 
-# Istruzioni (Rails 2.3.0)
 
 
+## Documentazione
+
+Tutta la documentazione del progetto si trova in `/Documenti`
+
+[Sprint](https://docs.google.com/spreadsheets/d/1wNigGqi95EVZ0tcmlrIhOrcxq4cOpbE0YcOfuEVk_MY/edit?usp=sharing)
+
+
+
+## Esecuzione (Rails 2.3.0)
 
 ### 1. Installare **dipendenze**
 
@@ -10,7 +18,7 @@
 
 
 
-### 2a. **Creare** il database **aggiornato** ad oggi tramite script automatico (consigliato)
+### 2. **Creare** il database **aggiornato** ad oggi tramite script automatico 
 
 Aprire terminale in `/SmartGasStation/db` ed eseguire `./generateUpdatedDB.sh`
 

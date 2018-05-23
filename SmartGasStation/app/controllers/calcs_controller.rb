@@ -3,8 +3,8 @@ class CalcsController < ApplicationController
 
         @id = params[:id]
         @tipo_carburante = params[:tipo_carburante]
-        @litri = current_user.litri_serbatoio
-        @prezzo = params[:prezzo]
+        @litri = current_user.litri_serbatoio.to_i
+        @prezzo = params[:prezzo].to_f
 
         salvaImpiantoDB(@id)
         flash[:notice] = "Stazione salvata tra quelle visitate"
@@ -12,7 +12,6 @@ class CalcsController < ApplicationController
     end
 
     private
-
     def salvaImpiantoDB(id)
         if is_number(id)
             @visitati = current_user.idImpianto #impianti attualmente in DB
@@ -20,7 +19,6 @@ class CalcsController < ApplicationController
             current_user.update_attribute :idImpianto, @visitati #scrivo nel DB
         end
     end
-
     # https://stackoverflow.com/a/26062228/1440037
     def is_number(n)
         !!(n =~ /\A[-+]?[0-9]+(\.[0-9]+)?\z/)

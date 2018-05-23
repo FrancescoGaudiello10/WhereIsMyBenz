@@ -8,8 +8,8 @@ class User < ApplicationRecord
     # a ciascun utente e' associato un array con gli id degli impianti visitati
     # converto valore nel DB in array
     serialize :idImpianto, Array
-    
-    
+
+    #has_many :comments, as: :commentable, dependent: :destroy
     
     #devise stuff
     def self.new_with_session(params, session)

@@ -1,5 +1,7 @@
 class Station < ApplicationRecord
 
+    has_many :comments, as: :commentable, dependent: :destroy
+
     validates :Bandiera, presence: true
     validates :Nome, presence: true
     validates :Indirizzo, presence: true

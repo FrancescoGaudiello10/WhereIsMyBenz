@@ -22,7 +22,7 @@ RSpec.describe StationsController, type: :controller do
                  params: {
                      station: {
                          Bandiera: "ESSO",
-                         Nome: "Mario ROssi",
+                         Nome: "Mario Rossi",
                          Indirizzo: "Via Ariosto 22, Roma",
                          Benzina: "1.578", Diesel: "1.389", Super: "", Excellium: "", Metano: "0.579", GPL: "",
                          allDay: "", Self: "", autoLavaggio: ""

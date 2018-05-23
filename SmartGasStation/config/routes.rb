@@ -18,12 +18,10 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :stations 
-  # do
-  #   resources :comments
-  # end
+  resources :stations, :implants do
+    resources :comments, only: [:create, :destroy] #-> url.com/topics/:topic_id/comments
+  end
   resources :calcs
-  resources :implants
   resources :prices
   resources :visits
   resources :stats

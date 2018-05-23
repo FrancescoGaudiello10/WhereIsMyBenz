@@ -9,16 +9,8 @@
     <div class="input" style="">
         <p> Vuoi fare il pieno? </p>
 
-        <table class="profileTable">
-            <tr>
-                <th> <%= radio_button_tag(:pieno, true) %></th>
-                <th><%= label_tag(:pieno_si, "Si") %></th>
-            </tr>
-            <tr>
-                <td><%= radio_button_tag(:pieno, false) %></td>
-                <td><%= label_tag(:pieno_no, "No") %></td>
-            </tr>
-        </table>
+        <input type="radio" name="pieno" value="litri">SI <br>
+        <input type="radio" name="pieno" value="soldi">NO
 
         <%= hidden_field_tag(:prezzo, @prezzo) %>
         <%= hidden_field_tag(:tipo_carburante, @tipo_carburante) %>
@@ -27,39 +19,45 @@
 
     <div class="w3-container w3-center">
 
-        <p>
-            Quanti litri ti rimangono?
-            <%= number_field(:litri_rimanenti, nil, required: true, min: 0.0, max: 50.0, class: "profileInput") %>
-        </p>
+        <div id="soldi" style="display: none">
+            <p> Quanti soldi vuoi mettere? </p>
+        </div>
+        <div id="litri" style="display: none">
+            <p> Quanti litri ti rimangono? </p>
+        </div>
+
+        <%= number_field(:litri_rimanenti, nil, required: true, min: 0.0, max: current_user.litri_serbatoio, class: "profileInput") %>
     </div>
 
     <div class="actions">
         <%= submit_tag("Calcola", :class => 'btn btn-lg btn-primary btn-block') %>
     </div>
     <div>
-      <% if (@litri.to_i == 0) %>
-        <script> alert("Completa prima il tuo profilo")
-        window.location.href = "http://localhost:3000/users/edit"
-        </script>
+        <% if (@litri == 0) %>
+            <script> alert("Completa prima il tuo profilo")</script>
+            <% redirect_to edit_user_registration_url %>
 
-      <% end %>
+        <% end %>
         <% if (params.has_key?(:pieno)) %>
-            <% if (params[:pieno] == "true") %>
+            <% if (params[:pieno] == "litri") %>
                 <br>
                 <br>
-                <p style="font-size: 20px"> Considerando che hai <%= @litri - params[:litri_rimanenti][0].to_i %> litri di serbatio da riempire
-                    in questa stazione
-                    pagheresti €<%= (@litri - params[:litri_rimanenti][0].to_i) * (@prezzo.to_f).round %>
+                <p style="font-size: 20px"> Considerando che hai <%= @litri - params[:litri_rimanenti][0].to_i %> litri
+                    di serbatoio da riempire in questa stazione pagheresti
+                    €<%= (@litri - params[:litri_rimanenti][0].to_i) * (@prezzo).round %>
                     <br><br>
 
-                <p> Vuoi confrontare i prezzi con le altre stazioni? <a href="javascript:history.back()">Back</a>
+                <p> Vuoi confrontare i prezzi con le altre stazioni? </p> <%= link_to :back %>
             <% else %>
                 <br>
                 <br>
-                <p> Sei sicuro? Qui un pieno costa solo €<%= (@litri - params[:litri_rimanenti][0].to_i) * @prezzo.to_i %>
-                <br><br>
-                <p> Vuoi confrontare i prezzi con le altre stazioni?
-                    <a style="text-color:blue;" href="javascript:history.back()">Back</a>
+                <!--                <p> Sei sicuro? Qui un pieno costa solo €<%#= (@litri - params[:litri_rimanenti][0].to_i) * @prezzo %>-->
+
+                <p style="font-size: 20px"> Con €<%= params[:litri_rimanenti][0] %> metteresti <%= params[:litri_rimanenti][0].to_i * @prezzo %>
+                    litri di <%= @tipo_carburante %> </p>
+
+                <br>
+                <p> Vuoi confrontare i prezzi con le altre stazioni? </p> <%= link_to :back %>
             <% end %>
 
         <% end %>
@@ -68,4 +66,15 @@
 
 <% end %>
 
+<script type="text/javascript">
+    //Questo script fa apparire il selettore della provincia solo se si sceglie l'opzione "Prezzo Media"
+    $(document).ready(function () {
+        $('input[type=radio][name=pieno]').change(function () {
+            $('#soldi').css("display", "none");
+            $('#litri').css("display", "none");
+            var fieldToShow = $(this).val();
+            $("#" + fieldToShow).css("display", "block");
+        });
+    });
+</script>
 </body>

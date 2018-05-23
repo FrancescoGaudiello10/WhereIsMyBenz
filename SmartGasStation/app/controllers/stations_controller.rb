@@ -18,6 +18,7 @@ class StationsController < ApplicationController
         @coord = Geocoder.coordinates(@station.Indirizzo)
         @lat = @coord[0]
         @long = @coord[1]
+        @parent = @station
     end
 
     # GET /stations/new
