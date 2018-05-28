@@ -10,8 +10,11 @@
 <!--    http://guides.rubyonrails.org/getting_started.html#deleting-comments-->
 <!--    smart resolution to a named route-->
 <!--    DELETE /stations/:station_id/comments/:id-->
+<%if current_user.admin %>
     <%= link_to "Elimina",
                 polymorphic_path([@parent, comment]),
                 method: :delete,
                 data: {confirm: 'Sei sicuro?'} %>
+<%end %>
+
 </p>
