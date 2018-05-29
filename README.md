@@ -1,12 +1,6 @@
 # **SmartGasStation**
 
-
-
-## Documentazione
-
-Tutta la documentazione del progetto si trova in `/Documenti`
-
-[Sprint](https://docs.google.com/spreadsheets/d/1wNigGqi95EVZ0tcmlrIhOrcxq4cOpbE0YcOfuEVk_MY/edit?usp=sharing)
+#### Trova la stazione di rifornimento più vicina a te.
 
 
 
