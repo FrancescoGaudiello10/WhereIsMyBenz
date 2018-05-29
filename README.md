@@ -4,7 +4,7 @@
 
 
 
-## Esecuzione (Rails 2.3.0)
+## Esecuzione (Rails 2.3.0, LXLE-BIAR-1.4)
 
 ### 1. Installare **dipendenze**
 
