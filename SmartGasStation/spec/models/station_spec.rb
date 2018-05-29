@@ -65,27 +65,20 @@ RSpec.describe Station, type: :model do
         end
     end
 
-    # context "Inserzione con 2 o più recensioni" do
-    #     it "dovrei vedere le recensioni ordinate per data crescente" do
-    #         user = User.create(:email => "giacominoalberobello@omega.it", :password => "password", :password_confirmation => "password", :username => "giacominoalberobello")
-    #         station = Station.new(:title => "Eccezionale", :description => "Fantasticissimo!!!", :price => "567.0", :city => "New York, Stati Uniti", :user_id => user.id)
-    #         station.save!
-    #         recensione1 = station.reviews.create!(:title => "Prima Recensione", :body => "Questa è la prima recensione", :valutation => 4, :user_id => user.id)
-    #         recensione2 = station.reviews.create!(:title => "Seconda Recensione", :body => "Questa è la seconda recensione", :valutation => 3, :user_id => user.id)
-    #         expect(station.reload.reviews).to eq([recensione1, recensione2])
-    #     end
-    # end
-    #
-    # context "Inserzione con almeno una recensione" do
-    #     it "rimozione recensione da una proprietà" do
-    #         user = User.create(:email => "giacominoalberobello@omega.it", :password => "password", :password_confirmation => "password", :username => "giacominoalberobello")
-    #         station = Station.new(:title => "Eccezionale", :description => "Fantasticissimo!!!", :price => "567.0", :city => "New York, Stati Uniti", :user_id => user.id)
-    #         station.save!
-    #         recensione1 = station.reviews.create!(:title => "Prima Recensione", :body => "Questa è la prima recensione", :valutation => 4, :user_id => user.id)
-    #         station.reviews.first.delete
-    #         expect(station.reload.reviews.first).to eq(nil)
-    #     end
-    #
-    # end
+    context "Inserzione con 2 o più recensioni" do
+        it "dovrei vedere le recensioni ordinate per data crescente" do
+            station = Station.new(
+                :Bandiera => "ESSO",
+                :Nome => "Mario ROssi",
+                :Indirizzo => "Via Ariosto 22, Roma",
+                :Benzina => "1.578", :Diesel => "1.389", :Super => "", :Excellium => "", :Metano => "0.579", :GPL => "",
+                :allDay => "", :Self => "", :autoLavaggio => ""
+            )            
+            station.save!
+            recensione1 = station.comments.create!(:title => "Prima Recensione", :body => "Questa è la prima recensione")
+            recensione2 = station.comments.create!(:title => "Seconda Recensione", :body => "Questa è la seconda recensione")
+            expect(station.reload.comments).to eq([recensione1, recensione2])
+        end
+    end
 
 end
