@@ -3,8 +3,7 @@
 
 <h1 class="mbr-section-title align-center mbr-white mbr-bold mbr-fonts-style display-1">STAZIONI</h1>
 <% if current_user.admin? %>
-    <h3>  </h3>
-    <h3 class="mbr-section-subtitle mbr-fonts-style display-3"><%= link_to 'Aggiungi stazione', new_station_path, {:style => 'color: #FFFFFF'} %></h3>
+    <h3 align="center" class="mbr-section-subtitle mbr-fonts-style display-3"><%= link_to 'Aggiungi stazione', new_station_path, {:style => 'color: #FFFFFF'} %></h3>
 <% end %>
 
 <% if @station.count == 0 %>

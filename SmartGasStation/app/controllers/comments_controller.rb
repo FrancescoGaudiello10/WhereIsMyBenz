@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
     def create
-        #id = params[:implant_id] || params[:station_id]
         @parent = parent
 
         @comment = @parent.comments.new comment_params

@@ -44,24 +44,18 @@
             <% if (params[:pieno] == "litri") %>
                 <br>
                 <br>
-                <p style="font-size: 20px"> Considerando che hai <%= @litri - params[:litri_rimanenti][0].to_i %> litri
-                    di serbatoio da riempire in questa stazione pagheresti
-                    €<%= (@litri - params[:litri_rimanenti][0].to_i) * (@prezzo).round %>
+                <p style="font-size: 20px"> Il tuo serbatoio ha <%=@litri%> litri , per riempirlo metteresti <%= @litri - params[:litri_rimanenti][0].to_i %> litri
+                    e in questa stazione pagheresti
+                    €<%= ( (@litri - params[:litri_rimanenti][0].to_f) * (@prezzo) ).round(2) %>
                     <br><br>
-
-                <p> Vuoi confrontare i prezzi con le altre stazioni? </p> <%= link_to :back %>
             <% else %>
                 <br>
                 <br>
-                <!--                <p> Sei sicuro? Qui un pieno costa solo €<%#= (@litri - params[:litri_rimanenti][0].to_i) * @prezzo %>-->
-
-                <p style="font-size: 20px"> Con €<%= params[:litri_rimanenti][0] %> metteresti <%= params[:litri_rimanenti][0].to_i * @prezzo %>
+                <p style="font-size: 20px"> Con €<%= params[:litri_rimanenti][0] %> metteresti <%= ( params[:litri_rimanenti][0].to_f * @prezzo ).round(2) %>
                     litri di <%= @tipo_carburante %> </p>
-
                 <br>
-                <p> Vuoi confrontare i prezzi con le altre stazioni? </p> <%= link_to :back %>
             <% end %>
-
+            <p> Vuoi confrontare i prezzi con le altre stazioni? </p> <%= link_to :back %>
         <% end %>
 
     </div>
