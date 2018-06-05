@@ -51,7 +51,7 @@
             <% else %>
                 <br>
                 <br>
-                <p style="font-size: 20px"> Con €<%= params[:litri_rimanenti][0] %> metteresti <%= ( params[:litri_rimanenti][0].to_f * @prezzo ).round(2) %>
+                <p style="font-size: 20px"> Con €<%= params[:litri_rimanenti][0] %> metteresti <%= ( params[:litri_rimanenti][0].to_f / @prezzo ).round(2) %>
                     litri di <%= @tipo_carburante %> </p>
                 <br>
             <% end %>

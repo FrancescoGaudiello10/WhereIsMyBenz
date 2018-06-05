@@ -1,7 +1,7 @@
 class Implant < ApplicationRecord
 
     #Database relations
-    has_many :comments, as: :commentable, dependent: :destroy
+    #has_many :comments, as: :commentable, dependent: :destroy
     has_many :prices
 
     #REST requests
