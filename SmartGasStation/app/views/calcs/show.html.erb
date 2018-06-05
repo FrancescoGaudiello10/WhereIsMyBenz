@@ -37,7 +37,7 @@
     <div>
         <% if (@litri == 0) %>
             <script> alert("Completa prima il tuo profilo")</script>
-            <% redirect_to edit_user_registration_url %>
+            <% controller.redirect_to edit_user_registration_url %>
 
         <% end %>
         <% if (params.has_key?(:pieno)) %>
