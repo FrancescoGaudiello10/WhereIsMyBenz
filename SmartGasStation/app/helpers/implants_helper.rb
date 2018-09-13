@@ -16,11 +16,15 @@ module ImplantsHelper
 
     #ottiene il logo della stazione di rifornimento cercata
     def get_implant_logo(query)
-        res = HTTParty.get(
+        begin  
+            res = HTTParty.get(
             "https://api.qwant.com/api/search/images?q=#{query}%20logo",
             :query => {:output => 'json'}
-        )
-        return res["data"]["result"]["items"][0]["media"]
+            )
+            return res["data"]["result"]["items"][0]["media"]
+        rescue 
+            return "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ic_local_gas_station_48px.svg/2000px-Ic_local_gas_station_48px.svg.png"
+        end 
     end
 
     #converte timestamp unix in orario normale

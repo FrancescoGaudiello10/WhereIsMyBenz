@@ -7,7 +7,7 @@ module VisitsHelper
         	)
         	return res["data"]["result"]["items"][0]["media"]
 		rescue 
-		    return ""
+		    return "http://worldartsme.com/images/gas-station-logo-clipart-1.jpg"
 		end 
     end
 end
