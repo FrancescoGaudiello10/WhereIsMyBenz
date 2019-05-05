@@ -1,9 +1,9 @@
-# **SmartGasStation**
+# **⛽ SmartGasStation**
 
 #### Trova la stazione di rifornimento più vicina a te.
 
 <p align="center">
-  <img src="Documenti/img.PNG" width="900" />
+  <img src="Documenti/img.png" width="900" />
 </p>
 
 
