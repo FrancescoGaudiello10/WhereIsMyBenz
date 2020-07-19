@@ -1,11 +1,6 @@
-# **⛽ SmartGasStation**
+# **⛽ WhereIsMyBenz**
 
 #### Trova la stazione di rifornimento più vicina a te.
-
-<p align="center">
-  <img src="Documenti/img.png" width="900" />
-</p>
-
 
 
 ## Esecuzione (Rails 2.3.0)
